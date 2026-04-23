@@ -1,0 +1,68 @@
+@import "tailwindcss";
+
+@theme {
+  /* Primary palette */
+  --color-deep-purple: #2e008b;
+  --color-electric-violet: #9b0aa5;
+  --color-electric-blue: #3750dc;
+
+  /* Accent palette */
+  --color-soft-lavender: #a082e6;
+  --color-pink: #eb5adc;
+  --color-light-blue: #7da0eb;
+
+  /* Neutrals */
+  --color-dark: #34303d;
+  --color-gray: #666666;
+  --color-light-gray: #ededed;
+  --color-off-white: #fffdfb;
+  --color-border: rgba(199, 199, 199, 0.6);
+
+  /* Spacing scale */
+  --spacing-2xs: 8px;
+  --spacing-xs: 12px;
+  --spacing-s: 16px;
+  --spacing-m: 24px;
+  --spacing-l: 32px;
+  --spacing-xl: 40px;
+  --spacing-2xl: 48px;
+  --spacing-3xl: 64px;
+
+  /* Border radius */
+  --radius-card: 8px;
+  --radius-card-lg: 12px;
+  --radius-pill: 100px;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  color: var(--color-dark);
+  background-color: var(--color-off-white);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+::selection {
+  background-color: var(--color-soft-lavender);
+  color: white;
+}
+
+/* Dream cards hover interaction */
+.dream-cards .dream-card {
+  transition: flex-grow 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.dream-cards .dream-card .dream-image {
+  transition: left 0.5s cubic-bezier(0.4, 0, 0.2, 1),
+              top 0.5s cubic-bezier(0.4, 0, 0.2, 1),
+              width 0.5s cubic-bezier(0.4, 0, 0.2, 1),
+              height 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.dream-cards.animating .dream-card,
+.dream-cards.animating .dream-card .dream-image {
+  transition: none !important;
+}
