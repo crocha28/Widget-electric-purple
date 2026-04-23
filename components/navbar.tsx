@@ -4,16 +4,16 @@ import { ChevronDown, User, ShoppingBag } from "lucide-react";
 import { useState } from "react";
 
 const leftLinks = [
-  { label: "Loja online", hasDropdown: true },
-  { label: "Descobrir IQOS", hasDropdown: true },
-  { label: "Serviços Exclusivos", hasDropdown: false },
+  { label: "Online Store", hasDropdown: true },
+  { label: "Discover IQOS", hasDropdown: true },
+  { label: "Exclusive Services", hasDropdown: false },
   { label: "App", hasDropdown: true },
 ];
 
 const rightLinks = [
-  { label: "Informação Importante", hasDropdown: false },
-  { label: "Ajuda", hasDropdown: true },
-  { label: "Mapa de lojas", hasDropdown: false },
+  { label: "Important Information", hasDropdown: false },
+  { label: "Help", hasDropdown: true },
+  { label: "Store Locator", hasDropdown: false },
 ];
 
 export default function Navbar() {
