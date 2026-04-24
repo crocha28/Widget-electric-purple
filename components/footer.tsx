@@ -1,30 +1,30 @@
 const usefulLinks = [
-  "Página inicial",
-  "O que é o IQOS?",
+  "Home",
+  "What is IQOS?",
   "IQOS App",
-  "Loja Online",
-  "Mapa de lojas",
-  "Aceda a PMI.com",
+  "Online Store",
+  "Store Locator",
+  "Visit PMI.com",
 ];
 
 const helpLinks = [
-  "Obter ajuda",
-  "Perguntas Frequentes",
-  "Garantia",
-  "Contactos",
-  "Diagnóstico Online",
+  "Get Help",
+  "FAQs",
+  "Warranty",
+  "Contact Us",
+  "Online Diagnostics",
 ];
 
 const legalLinks = [
-  "Política de privacidade",
-  "Termos e condições",
-  "Condições de Venda",
-  "Política de cookies",
-  "Livro reclamações eletrónico",
-  "Resolução de litígios online",
-  "Preferência de cookies",
-  "Declaração de Acessibilidade",
-  "Regulamento de dados",
+  "Privacy Policy",
+  "Terms & Conditions",
+  "Terms of Sale",
+  "Cookie Policy",
+  "Electronic Complaints Book",
+  "Online Dispute Resolution",
+  "Cookie Preferences",
+  "Accessibility Statement",
+  "Data Regulations",
 ];
 
 export default function Footer() {
@@ -35,7 +35,7 @@ export default function Footer() {
         <div className="flex flex-col sm:flex-row gap-12 lg:gap-[120px]">
           {/* Links Úteis */}
           <div className="flex flex-col gap-10">
-            <span className="text-sm text-off-white/50">Links Úteis</span>
+            <span className="text-sm text-off-white/50">Useful Links</span>
             <div className="flex flex-col gap-5">
               {usefulLinks.map((link) => (
                 <a
@@ -51,7 +51,7 @@ export default function Footer() {
 
           {/* Ajuda */}
           <div className="flex flex-col gap-10">
-            <span className="text-sm text-off-white/50">Ajuda</span>
+            <span className="text-sm text-off-white/50">Help</span>
             <div className="flex flex-col gap-5">
               {helpLinks.map((link) => (
                 <a
@@ -69,7 +69,7 @@ export default function Footer() {
         {/* Payment methods */}
         <div className="flex items-center gap-3 flex-wrap">
           <span className="text-xs text-[#c2bfc2] tracking-wide">
-            Aceitamos
+            We accept
           </span>
           <div className="flex items-center gap-3 ml-3">
             {["VISA", "MC", "MB", "MBWay"].map((brand) => (
@@ -88,7 +88,7 @@ export default function Footer() {
         {/* Legal footer */}
         <div className="flex flex-col lg:flex-row gap-6 items-start">
           <span className="text-xs text-off-white/50 whitespace-nowrap shrink-0">
-            &copy; 2026 Philip Morris Products SA. Todos os direitos reservados.
+            &copy; 2026 Philip Morris Products SA. All rights reserved.
           </span>
           <div className="flex flex-wrap gap-x-4 gap-y-2">
             {legalLinks.map((link) => (
