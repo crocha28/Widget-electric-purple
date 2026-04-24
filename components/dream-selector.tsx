@@ -389,9 +389,21 @@ export default function DreamSelector() {
             {/* Video placeholder + Cancel — hidden initially, revealed by GSAP */}
             <div
               ref={placeholderRef}
-              className="w-full bg-[#d9d9d9] rounded-[16px] overflow-hidden"
+              className="w-full rounded-[16px] overflow-hidden relative"
               style={{ height: 0, opacity: 0 }}
-            />
+            >
+              {phase === "loading" && (
+                <div className="absolute inset-0 flex flex-col items-center justify-center gap-6 z-10">
+                  <div className="dream-loader">
+                    <div className="dream-loader-ring" />
+                    <div className="dream-loader-ring dream-loader-ring--delay" />
+                  </div>
+                  <p className="text-sm tracking-[0.5px] text-[#666] animate-pulse">
+                    Crafting your Electric Dream…
+                  </p>
+                </div>
+              )}
+            </div>
 
             <button
               ref={cancelRef}
