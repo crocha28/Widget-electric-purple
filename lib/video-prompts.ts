@@ -25,31 +25,58 @@ export interface DreamVideoVariation {
 // ---------------------------------------------------------------------------
 
 export const MASTER_PROMPT = `\
-STYLE & COLOR GRADING:
-Cinematic, dreamlike 8-second vertical video (9:16, 750p). The entire color \
-palette is built around "Electric Purple" — deep purples (#2e008b), electric \
-violets (#9b0aa5), soft lavenders (#a082e6), with accent pinks (#eb5adc) and \
-electric blues (#3750dc / #7da0eb). Shadows are tinted deep indigo-purple; \
-mid-tones sit slightly desaturated; highlights bloom into lavender, pink, or \
-electric blue. Every single frame must feel immersed in this palette — even \
-golden-hour warmth carries a violet haze underneath.
+STRICT COLOR PALETTE — MANDATORY:
+The ONLY colors allowed in the entire video are these six brand colors and \
+their gradients between each other:
+  1. Deep Purple #2e008b (shadows, dark areas, deep water, night sky)
+  2. Electric Violet #9b0aa5 (mid-tones, reflections, ambient light)
+  3. Soft Lavender #a082e6 (sky, mist, soft highlights, haze)
+  4. Pink #eb5adc (accent highlights, sparkles, foam, rim light)
+  5. Electric Blue #3750dc (cool accents, deep water, night sky edges)
+  6. Light Blue #7da0eb (zenith sky, cold water reflections)
+NO OTHER COLORS ARE PERMITTED. No yellow, no orange, no amber, no gold, no \
+green, no red, no brown, no teal, no cyan. Even sunlight must appear as warm \
+pink-lavender, not yellow or orange. Vegetation must read as dark purple or \
+deep violet silhouettes, never green. Wood must appear as warm purple-brown \
+tinted with violet. Water must be deep purple, electric violet, or blue — \
+never teal or cyan. The sky must always be within the purple-blue-lavender \
+spectrum. White is only acceptable in foam, mist, or highlights and must \
+carry a lavender or pink tint.
 
 CINEMATIC LANGUAGE:
-Smooth, slow-motion-adjacent camera movements — no jump cuts, no abrupt \
-transitions. Shallow depth of field with anamorphic bokeh. Subtle lens flares \
+The entire 8 seconds must feel like ONE single continuous shot — no cuts, no \
+abrupt angle changes, no sudden shifts in perspective. The camera glides in a \
+single fluid direction (e.g. slow dolly forward, gentle crane rise, steady \
+orbit). If the camera moves, it commits to that trajectory for the full \
+duration. Shallow depth of field with oval bokeh. Subtle lens flares \
 permitted when light sources hit the lens. Dreamlike pacing: every movement \
 feels weightless, as if the viewer is drifting through a lucid dream.
 
 LIGHTING:
-Golden-hour warmth filtered through a purple atmospheric haze. Strong \
-backlight when possible — silhouettes and rim-light are encouraged. Volumetric \
-light (god-rays, light shafts through mist or steam) whenever the scene \
-supports it. Practicals (candles, string lights, neon, embers) should cast \
-warm pools that bleed into the surrounding purple tones.
+All light sources must appear within the brand palette. Sunset/pink-violeten-hour \
+light must read as warm pink (#eb5adc) and soft lavender (#a082e6), NOT as \
+yellow or amber. Backlight is encouraged — rim-light in pink or lavender. \
+Volumetric light (god-rays, light shafts through mist or steam) must be \
+tinted purple or lavender, never white or yellow. Practicals (candles, string \
+lights, neon, embers) must cast pools of pink, violet, or lavender light.
+
+TIME-OF-DAY MARKERS:
+Every scene must include a clear, visible celestial reference — a large low \
+sun on the horizon for pink-violet hour, a crescent moon or full moon for night \
+scenes, a glowing dawn band for early morning, or a deep blue-to-violet \
+gradient at zenith for blue hour. The viewer must instantly understand what \
+time of day it is just by looking at the sky.
+
+GEOGRAPHIC CONTEXT:
+Every scene must feel grounded in a specific, recognizable place. Include \
+environmental anchors that orient the viewer: distinctive architecture, \
+named landmarks, characteristic vegetation (Nordic pine, birch), waterway \
+shape, or skyline silhouettes. The viewer should never wonder "where is \
+this?" — the location must be self-evident within the first 2 seconds.
 
 TEXTURE & FILM STOCK:
 Subtle filmic grain (organic, not digital noise). Slightly halated highlights \
-reminiscent of Kodak Vision3 500T pushed one stop. Chromatic aberration on \
+reminiscent of classic 500T cinema film stock pushed one stop. Chromatic aberration on \
 extreme edges only. No oversharpening — the image should feel tactile and \
 analog even though it is AI-generated.
 
@@ -62,7 +89,10 @@ CONSTRAINTS:
 - The mood must be aspirational, sensorial, and immersive — "dreaming with \
   your eyes open."
 - All motion must loop-friendly: the first and last frames should have similar \
-  luminance and composition energy to allow seamless replay.`;
+  luminance and composition energy to allow seamless replay.
+- CRITICAL: The camera must maintain ONE single continuous motion throughout \
+  the entire 8 seconds. No mid-shot direction changes, no perspective shifts, \
+  no cutting between angles. One fluid, committed movement from start to end.`;
 
 // ---------------------------------------------------------------------------
 // TAGGING TAXONOMY
@@ -81,25 +111,34 @@ export const GLOBAL_TAGS = [
 
 export const DREAM_TAGS: Record<DreamId, readonly string[]> = {
   archipelago: [
-    "nature", "sea", "sunset", "cruise", "archipelago", "golden-hour",
+    "nature", "sea", "sunset", "cruise", "archipelago", "pink-violeten-hour",
     "water", "islands", "boat", "horizon", "reflections", "waves", "calm",
     "serenity", "nordic", "twilight", "silhouette", "deck", "wake", "sky",
-    "vaxholm", "sandhamn", "fjaderholmarna", "grinda", "moja",
-    "uto", "landsort", "dalaro",
+    "paris", "rome", "santorini", "maldives", "venice",
+    "dubai", "sydney", "bangkok", "lisbon", "iceland",
+    "whitsundays", "amalfi", "norway", "new-york", "istanbul",
+    "ha-long-bay", "new-zealand", "australia", "lofoten", "mexico",
+    "como", "ireland", "dubrovnik", "egypt", "nile",
   ],
   "grona-lund": [
     "music", "concert", "festival", "night", "lights", "stage", "crowd",
     "energy", "neon", "bass", "rhythm", "amusement-park", "ferris-wheel",
     "lasers", "confetti", "speakers", "vibration", "electric", "strobe",
-    "atmosphere", "djurgarden", "gamla-stan", "strandvagen",
-    "sodermalm", "stadshuset", "fotografiska",
+    "atmosphere", "new-york", "london", "tokyo", "berlin", "rio",
+    "coachella", "nashville", "paris", "havana", "las-vegas",
+    "ibiza", "tomorrowland", "santa-monica", "amsterdam",
+    "hollywood", "cappadocia", "detroit", "sydney", "dubai",
+    "hong-kong", "glastonbury", "marrakech",
   ],
   "floating-sauna": [
     "wellness", "sauna", "steam", "water", "heat", "cold-plunge",
     "stillness", "wood", "floating", "lake", "minimal", "breath", "mist",
     "glow", "ritual", "contrast", "ice", "embers", "zen", "immersion",
-    "riddarfjarden", "brunnsviken", "langholmen", "hellasgarden",
-    "malaren", "saltsjon",
+    "iceland", "norway", "kyoto", "istanbul", "marrakech",
+    "swiss-alps", "lake-bled", "lapland", "azores", "bali",
+    "cenote", "finland", "tromso", "budapest", "dead-sea",
+    "santorini", "capri", "abisko", "sahara", "hallstatt",
+    "bangkok", "taj-mahal",
   ],
 };
 
@@ -120,97 +159,100 @@ const archipelagoVariations: DreamVideoVariation[] = [
     id: "archipelago-01",
     variationNumber: 1,
     dreamId: "archipelago",
-    name: "Golden Wake",
+    name: "Paris Seine Wake",
     camera: "Tracking behind boat",
     focus: "Wide",
-    keyElement: "Boat wake splitting purple-gold water",
-    atmosphere: "Golden hour, clear sky",
-    tags: ["sunset", "wake", "golden-hour", "water"],
+    keyElement: "Boat wake splitting purple-pink Seine River, Eiffel Tower silhouette",
+    atmosphere: "Purple sunset, clear sky",
+    tags: ["sunset", "wake", "pink-violeten-hour", "water", "paris"],
     prompt: compose(`\
-SCENE: A wooden cruise boat glides through the Stockholm archipelago at golden \
-hour. The camera follows from behind, centered on the creamy V-shaped wake \
+SCENE: A sleek river cruise boat glides along the Seine River in Paris at pink-violeten \
+hour. The camera follows from behind, centered on the soft lavender V-shaped wake \
 that splits the water into two shimmering curtains — one side catching the \
-sinking amber sun, the other side reflecting deep violet sky. Small rocky \
-islands dotted with pine trees drift past in the background. The wake's foam \
-catches pink and lavender highlights.
+sinking pink-lavender sun, the other side reflecting deep violet sky. The iconic \
+Eiffel Tower silhouette rises in the background against the purple sky, while \
+stone bridges arch over the Seine ahead. The wake's foam catches pink and \
+lavender highlights.
 CAMERA: Tracking behind the vessel at water level, drifting slowly upward over \
-8 seconds to reveal more of the archipelago horizon.
+8 seconds to reveal more of the Parisian skyline and the Eiffel Tower.
 FOCUS: Wide — the boat occupies the lower third, the wake fills the middle, \
-and the purple-gold sky dominates the top.
+and the purple-pink sky with the Eiffel Tower dominates the top.
 KEY ELEMENT: The V-shaped wake acts as leading lines that pull the eye toward \
-the violet horizon.
-ATMOSPHERE: Golden hour with clear sky. Warm amber sunlight from the left, \
+the violet horizon and the Eiffel Tower silhouette.
+ATMOSPHERE: Purple sunset with clear sky. Warm pink-lavender sunlight from the left, \
 filtered through a purple atmospheric haze that tints the shadows indigo.
-COLOR EMPHASIS: Gold-to-purple gradient on the water surface; deep purple \
-(#2e008b) in the shadows of the islands; soft lavender (#a082e6) in the sky \
+COLOR EMPHASIS: Pink-to-purple gradient on the water surface; deep purple \
+(#2e008b) in the shadows of the bridges and tower; soft lavender (#a082e6) in the sky \
 near the horizon; pink (#eb5adc) catching on the foam crests.
 MOTION: The boat moves steadily forward; the wake expands rhythmically; gentle \
-ripples propagate outward; distant islands slide past in parallax.`),
+ripples propagate outward; Parisian landmarks slide past in parallax.`),
   },
   {
     id: "archipelago-02",
     variationNumber: 2,
     dreamId: "archipelago",
-    name: "Vaxholm Fortress Pass",
+    name: "Rome Tiber Pass",
     camera: "Slow lateral dolly",
     focus: "Wide",
-    keyElement: "Vaxholm fortress silhouetted against violet sky",
-    atmosphere: "Golden hour, haze",
-    tags: ["islands", "silhouette", "golden-hour", "vaxholm"],
+    keyElement: "Castel Sant'Angelo silhouetted against violet sky from the Tiber",
+    atmosphere: "Purple sunset, haze",
+    tags: ["silhouette", "pink-violeten-hour", "rome", "tiber"],
     prompt: compose(`\
-SCENE: The camera moves laterally along the waterline approaching Vaxholm — \
-the historic gateway to the Stockholm archipelago. The iconic Vaxholm \
-Fortress (Vaxholms kastell) rises on its island in the mid-ground, its \
-stone walls and tower silhouetted against a sky of violet, lavender, and \
-ember-orange. The water between the fortress island and the surrounding \
-granite islets catches fragments of the sky's color — electric violet in the \
-troughs, gold on the wave crests. A thin atmospheric haze softens the town \
-of Vaxholm on the far shore into purple silhouettes layered in depth. Sailing \
-boats are moored near the fortress.
+SCENE: The camera moves laterally along the waterline of the Tiber River in \
+Rome at dusk. The iconic Castel Sant'Angelo rises on the right bank in the \
+mid-ground, its cylindrical fortress and angel statue silhouetted against a \
+sky of violet, lavender, and deep violet-pink. The water of the Tiber catches \
+fragments of the sky's color — electric violet in the troughs, pink-violet on \
+the wave crests. The Ponte Sant'Angelo bridge with its baroque angel statues \
+stretches across the river in the foreground, its stone arches reflected in \
+the purple water. A thin atmospheric haze softens the dome of St. Peter's \
+Basilica on the far horizon into purple silhouettes layered in depth.
 CAMERA: Slow lateral dolly at water level, left to right, revealing the \
-fortress and the Vaxholm waterfront in a cinematic parallax.
-FOCUS: Wide — foreground water detail yields to the sharp fortress mid-ground \
-and a hazy Vaxholm shoreline behind.
-KEY ELEMENT: Vaxholm Fortress as the iconic sentinel of the archipelago — its \
-distinctive stone profile instantly recognizable against the Electric Purple \
-sky.
-ATMOSPHERE: Golden hour with low atmospheric haze. The sun is just off-frame \
-left, casting long warm sidelight that rakes across the fortress walls.
+Castel and the bridge in a cinematic parallax.
+FOCUS: Wide — foreground water detail yields to the sharp Castel mid-ground \
+and a hazy Vatican skyline behind.
+KEY ELEMENT: Castel Sant'Angelo as an iconic Roman sentinel — its distinctive \
+cylindrical profile and angel statue instantly recognizable against the \
+violet-purple sky.
+ATMOSPHERE: Purple sunset with low atmospheric haze. The sun is just off-frame \
+left, casting long warm sidelight that rakes across the Castel walls.
 COLOR EMPHASIS: Deep purple (#2e008b) on the fortress stone shadows; electric \
 violet (#9b0aa5) on the mid-ground water; soft lavender (#a082e6) in the \
-haze over Vaxholm town; gold and pink (#eb5adc) on the sunlit fortress walls.
-MOTION: Gentle lateral drift revealing the fortress from different angles; \
-water laps softly against the fortress island rocks; moored sailboats bob \
-gently; a distant bird glides across the violet sky.`),
+haze over St. Peter's dome; pink-violet and pink (#eb5adc) on the sunlit Castel walls.
+MOTION: Gentle lateral drift revealing the Castel from different angles; \
+water laps softly against the ancient stone embankment; the angel statues on \
+the bridge stand sentinel; a distant bird glides across the violet sky.`),
   },
   {
     id: "archipelago-03",
     variationNumber: 3,
     dreamId: "archipelago",
-    name: "Deck Reflections",
+    name: "Santorini Deck Reflections",
     camera: "Static low-angle",
     focus: "Detail",
-    keyElement: "Polished wood deck reflecting sunset light",
-    atmosphere: "Golden hour, calm",
-    tags: ["deck", "reflections", "calm", "golden-hour"],
+    keyElement: "Polished deck reflecting caldera sunset, white buildings visible",
+    atmosphere: "Purple sunset, calm",
+    tags: ["deck", "reflections", "calm", "pink-violeten-hour", "santorini"],
     prompt: compose(`\
-SCENE: Low-angle shot from deck level of a polished teak boat deck. The wood \
-is wet from sea spray, creating a mirror-like surface that reflects the \
-purple-gold sunset sky above. A coiled nautical rope sits in the left third \
-of frame. The horizon is visible as a thin line of light in the background, \
-out of focus. Warm amber light spills across the deck from the right while \
-purple shadows pool between the planks.
+SCENE: Low-angle shot from deck level of a polished teak boat deck anchored in \
+the Santorini caldera. The wood is wet from sea spray, creating a mirror-like \
+surface that reflects the purple-pink sunset sky above. A coiled nautical rope \
+sits in the left third of frame. In the background, the iconic white-washed \
+buildings of Oia cling to the caldera cliff edge, their domes and walls \
+rendered as soft lavender silhouettes against the violet sky. Warm pink-lavender \
+light spills across the deck from the right while purple shadows pool between \
+the planks.
 CAMERA: Static, positioned just inches above the deck surface, with a very \
 slight forward drift over 8 seconds.
 FOCUS: Detail — shallow depth of field keeps the nearest planks sharp while \
-the rope and horizon melt into creamy bokeh.
+the white buildings of Santorini and the horizon melt into soft lavender bokeh.
 KEY ELEMENT: The wet deck surface acting as a mirror for the sky's \
-purple-to-gold gradient.
-ATMOSPHERE: Golden hour, dead calm. No wind. The reflection on the deck is \
+purple-to-pink-violet gradient, with Santorini's caldera silhouette beyond.
+ATMOSPHERE: Purple sunset, dead calm. No wind. The reflection on the deck is \
 almost perfect — a second sky beneath the viewer's feet.
-COLOR EMPHASIS: Warm amber and soft lavender (#a082e6) reflected on the wet \
+COLOR EMPHASIS: Warm pink-lavender and soft lavender (#a082e6) reflected on the wet \
 wood; deep purple (#2e008b) in the plank gaps and shadows; pink (#eb5adc) \
-highlights on the rope fibers catching the sun.
+highlights on the rope fibers catching the sun; white buildings tinted lavender.
 MOTION: A single water droplet slides slowly across the polished surface; the \
 reflected clouds drift imperceptibly; the boat sways with the gentlest rocking.`),
   },
@@ -218,24 +260,27 @@ reflected clouds drift imperceptibly; the boat sways with the gentlest rocking.`
     id: "archipelago-04",
     variationNumber: 4,
     dreamId: "archipelago",
-    name: "Horizon Melt",
+    name: "Maldives Horizon Melt",
     camera: "Slow crane rising",
     focus: "Ultra-wide",
-    keyElement: "Horizon line where sea meets purple sky",
+    keyElement: "Infinite Indian Ocean horizon with overwater bungalow silhouettes",
     atmosphere: "Blue hour, mist",
-    tags: ["horizon", "twilight", "sea", "calm"],
+    tags: ["horizon", "twilight", "sea", "calm", "maldives"],
     prompt: compose(`\
-SCENE: The camera starts just above the water surface — close enough to see \
-individual ripples — then slowly cranes upward to reveal an endless horizon \
-where the dark sea merges with a gradient sky that transitions from deep \
-indigo at the top through electric violet to a thin band of residual amber at \
-the horizon line. A low mist hugs the water surface, diffusing into lavender \
-wisps. The sea is nearly still, with long, slow swells.
+SCENE: The camera starts just above the Indian Ocean surface in the Maldives — \
+close enough to see individual ripples — then slowly cranes upward to reveal an \
+endless horizon where the dark sea merges with a gradient sky that transitions \
+from deep indigo at the top through electric violet to a thin band of residual \
+pink-lavender at the horizon line. Silhouettes of overwater bungalows stretch \
+along a sandbar to the right, their thatched roofs and stilts creating a \
+distinctive Maldivian profile. A low mist hugs the water surface, diffusing \
+into lavender wisps. The sea is nearly still, with long, slow swells.
 CAMERA: Slow crane rise — starts at 30cm above water, ends at roughly 3m, \
 maintaining the horizon at the center of frame throughout.
-FOCUS: Ultra-wide — the horizon line is the subject, stretching edge to edge.
+FOCUS: Ultra-wide — the horizon line is the subject, stretching edge to edge, \
+with overwater bungalows punctuating the silhouette.
 KEY ELEMENT: The precise line where ocean and sky meet, blurred by mist into \
-an ambiguous, dreamlike boundary.
+an ambiguous, dreamlike boundary, with the Maldivian bungalows as anchors.
 ATMOSPHERE: Blue hour, 20 minutes after sunset. The light is cold and \
 ethereal, filtered through a thin mist layer that glows faintly violet.
 COLOR EMPHASIS: Deep purple (#2e008b) dominating the water and upper sky; \
@@ -248,27 +293,29 @@ left; long ocean swells undulate in slow motion.`),
     id: "archipelago-05",
     variationNumber: 5,
     dreamId: "archipelago",
-    name: "Ripple Close-Up",
+    name: "Venice Canal Ripples",
     camera: "Macro, slight drift",
     focus: "Extreme detail",
-    keyElement: "Water surface ripples catching violet light",
-    atmosphere: "Golden hour",
-    tags: ["water", "reflections", "waves", "golden-hour"],
+    keyElement: "Grand Canal water ripples catching violet light from palazzo facades",
+    atmosphere: "Purple sunset",
+    tags: ["water", "reflections", "waves", "pink-violeten-hour", "venice"],
     prompt: compose(`\
-SCENE: Extreme close-up of the ocean surface. Each ripple acts as a tiny \
-curved mirror reflecting a different slice of the sunset sky — some crests \
-catch gold, others catch electric violet, others catch pink. The water \
-between the ripples is dark indigo-purple, creating a mosaic of moving color. \
-Occasional micro-bubbles catch the light as tiny pinpoints.
-CAMERA: Macro lens hovering just above the water surface with a gentle \
-lateral drift, as if floating on the current.
+SCENE: Extreme close-up of the Grand Canal surface in Venice. Each ripple acts \
+as a tiny curved mirror reflecting a different slice of the sunset sky and the \
+ornate palazzo facades lining the canal — some crests catch pink-violet, others \
+catch electric violet, others catch pink. The water between the ripples is dark \
+indigo-purple, creating a mosaic of moving color. Occasional micro-bubbles \
+catch the light as tiny pinpoints. The distorted reflections of Gothic arched \
+windows and balconies from the palazzos shimmer in the water.
+CAMERA: Macro lens hovering just above the canal surface with a gentle \
+lateral drift, as if floating on the current of a passing gondola.
 FOCUS: Extreme detail — individual ripple crests are razor-sharp; the troughs \
 soften into bokeh.
-KEY ELEMENT: The water surface acting as a fragmented, living canvas of the \
-Electric Purple palette.
-ATMOSPHERE: Golden hour — warm directional light from a low angle creates \
+KEY ELEMENT: The Grand Canal water surface acting as a fragmented, living \
+canvas of the purple-violet palette, with palazzo reflections adding depth.
+ATMOSPHERE: Purple sunset — warm directional light from a low angle creates \
 specular highlights on every ripple crest.
-COLOR EMPHASIS: Electric violet (#9b0aa5) and gold alternating on ripple \
+COLOR EMPHASIS: Electric violet (#9b0aa5) and pink-violet alternating on ripple \
 crests; deep purple (#2e008b) in the troughs; pink (#eb5adc) specular \
 highlights; light blue (#7da0eb) reflections from the zenith sky.
 MOTION: Ripples propagate diagonally across frame in slow motion; light \
@@ -278,37 +325,37 @@ dances across the surface in a hypnotic, rhythmic pattern.`),
     id: "archipelago-06",
     variationNumber: 6,
     dreamId: "archipelago",
-    name: "Fjäderholmarna Overhead",
+    name: "Dubai Creek Overhead",
     camera: "Top-down drone",
     focus: "Overhead",
-    keyElement: "Boat approaching Fjäderholmarna from the city",
+    keyElement: "Boat approaching Dubai Creek with Burj Khalifa and skyline visible",
     atmosphere: "Twilight, clear",
-    tags: ["archipelago", "boat", "fjaderholmarna", "nature"],
+    tags: ["boat", "dubai", "skyline", "aerial"],
     prompt: compose(`\
-SCENE: Bird's-eye view looking straight down at a small white cruise boat \
-approaching Fjäderholmarna — the closest archipelago islands to central \
-Stockholm, just 25 minutes from the city. The four small islands of \
-Fjäderholmarna are visible below: Stora Fjäderholmen with its characteristic \
-red wooden buildings and restaurant terraces, the smaller Ängsholmen green \
-with gardens. The water is a deep electric violet, catching lavender and pink \
-highlights where the twilight sky reflects. The boat's wake draws a perfect \
-white line through the purple water, connecting the distant Stockholm skyline \
-(faintly visible at the frame edge) to the island cluster.
+SCENE: Bird's-eye view looking straight down at a traditional wooden dhow \
+cruising along Dubai Creek — the historic waterway that splits the city into \
+Deira and Bur Dubai. The towering Burj Khalifa pierces the skyline in the \
+distance, its spire catching the last violet light. The modern Dubai skyline \
+clusters along the far shore with its distinctive skyscrapers rendered as \
+purple silhouettes. The water of the Creek is a deep electric violet, catching \
+lavender and pink highlights where the twilight sky reflects. The dhow's wake \
+draws a perfect white line through the purple water. Traditional souks and \
+waterfront buildings line the near shore.
 CAMERA: Top-down drone, slowly rotating clockwise (about 15 degrees over 8 \
 seconds) to add a subtle vertiginous drift.
-FOCUS: Overhead — the boat is small in frame, emphasizing the island cluster \
-and its relationship to the distant city.
-KEY ELEMENT: Fjäderholmarna as the first taste of the archipelago — the city \
-still visible behind, the wilderness ahead.
+FOCUS: Overhead — the dhow is small in frame, emphasizing the Creek's \
+serpentine path and the dramatic skyline beyond.
+KEY ELEMENT: Dubai Creek as the historic heart of the city — the old souks \
+visible below, the futuristic skyline with Burj Khalifa piercing the purple sky.
 ATMOSPHERE: Twilight — the sky provides even, diffused purple light with no \
 hard shadows. Clear air, no haze.
 COLOR EMPHASIS: Deep purple (#2e008b) water; electric violet (#9b0aa5) in the \
-open water reflections; the red wooden buildings on Stora Fjäderholmen are \
-warm accents; the boat's white hull is the single bright moving element; \
-wake foam tinted lavender (#a082e6).
-MOTION: The boat crawls forward leaving its white wake; the drone rotates \
+open water reflections; the Burj Khalifa catches soft lavender (#a082e6) light; \
+the dhow's white hull is the single bright moving element; wake foam tinted \
+lavender (#a082e6).
+MOTION: The dhow crawls forward leaving its white wake; the drone rotates \
 slowly; tiny ripples spread outward from the boat's passage; lights begin \
-to glow on the island terraces.`),
+to glow across the Dubai skyline.`),
   },
   {
     id: "archipelago-07",
@@ -324,18 +371,18 @@ to glow on the island terraces.`),
 SCENE: Shot from the bow of the boat, looking forward and slightly down. The \
 prow cuts through the water, sending up curtains of fine spray on both sides. \
 The spray is backlit by the setting sun, turning each droplet into a tiny \
-prism of gold, violet, and pink. Through the spray, the purple horizon and \
+prism of pink-violet, violet, and pink. Through the spray, the purple horizon and \
 distant islands are visible but softened. The polished brass fitting on the \
-bow catches a warm purple-gold reflection.
+bow catches a warm purple-pink reflection.
 CAMERA: Low-angle, mounted near the waterline on the bow, with a subtle \
 forward lean as the boat rises and dips on gentle swells.
 FOCUS: Medium — the spray curtain is the sharp subject; the horizon beyond is \
 soft and dreamy.
-KEY ELEMENT: Backlit spray droplets acting as prisms for the Electric Purple \
+KEY ELEMENT: Backlit spray droplets acting as prisms for the purple-violet \
 palette.
 ATMOSPHERE: Sunset with strong backlight. The sun is low and directly ahead, \
 creating a corona effect filtered through the spray.
-COLOR EMPHASIS: Gold and pink (#eb5adc) in the backlit spray; electric violet \
+COLOR EMPHASIS: Pink (#eb5adc) and lavender in the backlit spray; electric violet \
 (#9b0aa5) in the water; deep purple (#2e008b) in the shadowed hull; soft \
 lavender (#a082e6) in the sky beyond.
 MOTION: Continuous spray arcing upward and falling back; the boat rocks \
@@ -353,21 +400,21 @@ gently on swells; droplets hang in slow motion mid-air.`),
     tags: ["twilight", "calm", "reflections", "deck"],
     prompt: compose(`\
 SCENE: A string of warm Edison-bulb lanterns stretches across the boat's deck, \
-their amber glow creating pools of warm light on the wooden surface. Beyond \
+their pink-lavender glow creating pools of warm light on the wooden surface. Beyond \
 the deck railing, the blue-hour sky is a deep electric violet gradient. The \
 lanterns' light reflects on polished brass fittings and glass surfaces on \
-deck. A wine glass sits on a small table, catching both the amber lantern \
+deck. A wine glass sits on a small table, catching both the pink-lavender lantern \
 light and the violet sky.
 CAMERA: Slow orbit around the lantern string, moving roughly 30 degrees over \
 8 seconds, keeping the lights and sky in constant relationship.
-FOCUS: Medium — the nearest lantern bulb is in focus with creamy bokeh on the \
+FOCUS: Medium — the nearest lantern bulb is in focus with soft lavender bokeh on the \
 more distant bulbs and the purple sky.
-KEY ELEMENT: The warm amber of the lanterns against the cold violet of the \
-twilight sky — a temperature contrast that unifies in the Electric Purple \
+KEY ELEMENT: The warm pink-lavender of the lanterns against the cold violet of the \
+twilight sky — a temperature contrast that unifies in the purple-violet \
 palette.
 ATMOSPHERE: Blue hour — the sky is luminous violet-blue; the deck is lit only \
 by the practical lanterns.
-COLOR EMPHASIS: Warm amber/gold from lanterns; deep purple (#2e008b) sky; \
+COLOR EMPHASIS: Warm pink-lavender/pink-violet from lanterns; deep purple (#2e008b) sky; \
 electric violet (#9b0aa5) at the horizon; soft lavender (#a082e6) bokeh on \
 distant lights; the wine glass catches pink (#eb5adc) reflections.
 MOTION: Slow orbital drift; lanterns sway gently with the boat's rocking; the \
@@ -385,7 +432,7 @@ wine glass surface trembles with micro-ripples.`),
     tags: ["silhouette", "sunset", "boat", "sky"],
     prompt: compose(`\
 SCENE: A classic wooden sailboat in perfect silhouette against a sky that \
-bleeds from deep amber at the horizon through electric violet to deep purple \
+bleeds from deep pink-lavender at the horizon through electric violet to deep purple \
 overhead. The sails are full but the boat moves slowly — the scene is about \
 stillness, not speed. The water below is a dark mirror, reflecting the sky's \
 gradient in muted, deeper tones. A few small islands sit on the horizon as \
@@ -399,7 +446,7 @@ KEY ELEMENT: The stark black silhouette of the sailboat's mast, rigging, and \
 hull against the intensely colored sky.
 ATMOSPHERE: Peak sunset — the sky is at maximum saturation. No clouds, just \
 pure gradient.
-COLOR EMPHASIS: The sky is the canvas — amber at bottom, electric violet \
+COLOR EMPHASIS: The sky is the canvas — pink-lavender at bottom, electric violet \
 (#9b0aa5) in the middle, deep purple (#2e008b) at the top. The water mirrors \
 this but two stops darker. The silhouette is pure black (#34303d).
 MOTION: Minimal — the boat drifts almost imperceptibly; the water surface \
@@ -419,19 +466,19 @@ shimmers with slow, oily undulations; the reflected colors shift subtly.`),
 SCENE: Late Nordic summer night — the sky never fully darkens. The camera \
 starts on the dark silhouettes of archipelago islands reflected in still \
 water, then tilts slowly upward to reveal a sky where the deep purple of \
-night is interrupted by faint, shimmering curtains of green-tinted aurora, \
+night is interrupted by faint, shimmering curtains of violet-tinted aurora, \
 interweaving with the dominant violet and lavender tones. Stars are faintly \
 visible. The water below mirrors both the aurora and the purple sky.
 CAMERA: Slow tilt up — starts on water reflection, ends on the aurora-tinged \
 sky. Steady, meditative pace.
 FOCUS: Wide — sharp from the island silhouettes to the stars.
-KEY ELEMENT: The rare interplay of faint aurora greens woven into the Electric \
+KEY ELEMENT: The rare interplay of faint purple-violet wisps woven into the violet \
 Purple palette — a uniquely Nordic phenomenon.
 ATMOSPHERE: Clear Nordic summer night. The air is perfectly still. The \
 temperature of the light is cold but alive with subtle color shifts.
 COLOR EMPHASIS: Deep purple (#2e008b) as the base sky; electric violet \
 (#9b0aa5) and soft lavender (#a082e6) in the aurora curtains (with faint \
-green accents); electric blue (#3750dc) in the star reflections on water.
+lavender accents); electric blue (#3750dc) in the star reflections on water.
 MOTION: The tilt is the primary motion; the aurora shimmers in slow, \
 undulating curtains; stars twinkle subtly; water reflects everything in \
 gentle distortion.`),
@@ -444,25 +491,25 @@ gentle distortion.`),
     camera: "Tracking alongside",
     focus: "Detail",
     keyElement: "Close ocean surface with electric violet undertones",
-    atmosphere: "Golden hour",
+    atmosphere: "Purple sunset",
     tags: ["waves", "water", "reflections", "sea"],
     prompt: compose(`\
 SCENE: The camera travels alongside the boat at water level, focused on the \
 ocean surface texture as it reacts to the hull's passage. The water has a deep \
-electric violet base color with golden-hour light painting every wave crest \
-in amber. The interaction between the hull's pressure wave and the open sea \
+electric violet base color with pink-violeten-hour light painting every wave crest \
+in pink-lavender. The interaction between the hull's pressure wave and the open sea \
 creates complex, mesmerizing patterns — standing waves, interference patterns, \
 and tiny vortices.
 CAMERA: Tracking alongside the hull at water level, matching the boat's \
 speed, focused on the 2-meter zone where hull meets water.
 FOCUS: Detail — the nearest wave textures are sharp; background water softens \
-into an impressionist blur of violet and gold.
+into an impressionist blur of violet and pink-violet.
 KEY ELEMENT: The complex fluid dynamics of water against hull, painted in \
-purple and gold.
-ATMOSPHERE: Golden hour — low-angle sunlight rakes across the wave texture, \
+purple and pink-violet.
+ATMOSPHERE: Purple sunset — low-angle sunlight rakes across the wave texture, \
 exaggerating every crest and trough with dramatic light and shadow.
 COLOR EMPHASIS: Electric violet (#9b0aa5) in the wave troughs and shadows; \
-gold crests; deep purple (#2e008b) in the deeper water; occasional pink \
+pink-violet crests; deep purple (#2e008b) in the deeper water; occasional pink \
 (#eb5adc) highlight where spray catches direct sun.
 MOTION: Continuous forward tracking; complex fluid motion in the wave \
 patterns; occasional spray droplets arcing through frame.`),
@@ -471,38 +518,39 @@ patterns; occasional spray droplets arcing through frame.`),
     id: "archipelago-12",
     variationNumber: 12,
     dreamId: "archipelago",
-    name: "Landsort Lighthouse",
+    name: "Sandhamn Harbour Light",
     camera: "Dolly forward",
     focus: "Wide",
-    keyElement: "Landsort lighthouse beam sweeping through purple mist",
+    keyElement: "Sandhamn harbour light glowing through purple mist",
     atmosphere: "Twilight, foggy",
-    tags: ["islands", "landsort", "mist", "nordic"],
+    tags: ["islands", "sandhamn", "mist", "nordic"],
     prompt: compose(`\
-SCENE: Dusk settling over the southernmost point of the Stockholm archipelago. \
-The historic Landsort lighthouse — Sweden's oldest still-operating lighthouse, \
-built in 1689 — stands on its rocky island of Öja, its distinctive white tower \
-emitting a rotating beam that cuts through a low-hanging violet mist. Each \
-sweep of the beam illuminates the mist in a cone of soft lavender light before \
-fading. The rugged, windswept rocks of Landsort's southern tip frame the shot \
-in the foreground. The open Baltic Sea stretches beyond, its surface glassy \
-and reflecting the lighthouse beam as a shimmering purple stripe. The cluster \
-of red wooden pilot houses at the base of the lighthouse adds warm accent.
-CAMERA: Slow dolly forward across the open water, approaching Landsort island \
-over 8 seconds.
-FOCUS: Wide — foreground wave crests are soft; the lighthouse tower and its \
-beam are the mid-ground subject; the open Baltic horizon is ultra-soft in fog.
-KEY ELEMENT: The Landsort lighthouse as the archipelago's outermost sentinel \
-— where Sweden meets the open sea, its historic beam sweeping through purple \
-twilight.
+SCENE: Dusk settling over Sandhamn — the legendary sailing destination and \
+jewel of the Stockholm outer archipelago, beloved by locals and visitors alike. \
+The iconic Sandhamn harbour entrance is framed by the distinctive yellow-banned \
+(now rendered in pink-lavender tones) pilot tower and the charming village \
+waterfront. A harbour navigation light emits a steady glow that cuts through \
+a low-hanging violet mist rolling in from the Baltic. The classic wooden \
+buildings of Sandhamn village line the waterfront — the renowned Seglarhotellet \
+(Sailors' Hotel) and the Royal Swedish Yacht Club premises, all bathed in \
+purple twilight. Moored sailing yachts bob gently in the harbour, their masts \
+creating vertical lines against the purple sky.
+CAMERA: Slow dolly forward across the harbour water, approaching Sandhamn's \
+waterfront over 8 seconds.
+FOCUS: Wide — foreground wave crests are soft; the village waterfront and its \
+lights are the mid-ground subject; the Baltic horizon is ultra-soft in fog.
+KEY ELEMENT: Sandhamn's iconic harbour as the archipelago's most famous \
+destination — where Stockholm's sailing culture meets the open Baltic, its \
+charming waterfront glowing through purple twilight.
 ATMOSPHERE: Twilight with dense low fog rolling in from the Baltic. Visibility \
 is limited, creating a mysterious, edge-of-the-world feeling.
-COLOR EMPHASIS: Soft lavender (#a082e6) in the illuminated mist cone; deep \
+COLOR EMPHASIS: Soft lavender (#a082e6) in the illuminated mist; deep \
 purple (#2e008b) in the surrounding darkness; electric violet (#9b0aa5) on \
-the water reflection of the beam; the white lighthouse tower catches purple \
-ambient light; warm red from the pilot houses.
-MOTION: Slow forward dolly; the lighthouse beam sweeps once fully across \
-frame during the 8 seconds; mist drifts and swirls in the beam's wake; \
-Baltic waves roll against the rocky shore.`),
+the harbour water reflections; the village buildings catch purple \
+ambient light; pink-violet from the harbour lights.
+MOTION: Slow forward dolly; the harbour light glows steadily; mist drifts \
+and swirls; moored yacht masts sway gently; Baltic waves lap against the \
+harbour walls.`),
   },
   {
     id: "archipelago-13",
@@ -513,10 +561,10 @@ Baltic waves roll against the rocky shore.`),
     focus: "Wide",
     keyElement: "Sun touching horizon, sky exploding in purple/pink",
     atmosphere: "Sunset peak",
-    tags: ["sunset", "sky", "horizon", "golden-hour"],
+    tags: ["sunset", "sky", "horizon", "pink-violeten-hour"],
     prompt: compose(`\
 SCENE: The exact moment the sun touches the horizon line. The sky detonates \
-into bands of color — amber closest to the sun, then hot pink, electric \
+into bands of color — pink-lavender closest to the sun, then hot pink, electric \
 violet, soft lavender, and finally deep purple overhead. Thin clouds catch \
 these colors and streak them horizontally across the frame. The sea below is \
 a dark mirror reflecting the explosion in slightly muted tones. A few island \
@@ -525,10 +573,10 @@ CAMERA: Static — locked off on a tripod. The stillness contrasts with the \
 sky's intensity. Very subtle exposure shift as the sun moves.
 FOCUS: Wide — everything sharp, horizon to zenith.
 KEY ELEMENT: The sun itself at the exact moment of horizon contact, with the \
-sky as a full-spectrum showcase of the Electric Purple palette.
+sky as a full-spectrum showcase of the purple-violet palette.
 ATMOSPHERE: Peak sunset — maximum color saturation. Clear sky with scattered \
 high cirrus clouds acting as color canvases.
-COLOR EMPHASIS: Full palette in natural gradient — amber/gold at the center, \
+COLOR EMPHASIS: Full palette in natural gradient — pink-lavender/pink-violet at the center, \
 pink (#eb5adc), electric violet (#9b0aa5), soft lavender (#a082e6), deep \
 purple (#2e008b) radiating outward.
 MOTION: Near-static — the sun sinks imperceptibly; clouds drift at altitude; \
@@ -542,23 +590,23 @@ the sea surface catches and releases colors in slow, breathing undulations.`),
     camera: "Slow pan",
     focus: "Detail",
     keyElement: "Nautical rope coil on railing, bokeh water behind",
-    atmosphere: "Golden hour",
+    atmosphere: "Purple sunset",
     tags: ["boat", "deck", "calm", "nature"],
     prompt: compose(`\
 SCENE: Close-up of a coil of thick nautical rope resting on a brass rail at \
-the side of the boat. The rope's hemp fibers catch warm golden-hour light, \
+the side of the boat. The rope's hemp fibers catch warm pink-violeten-hour light, \
 revealing texture and subtle purple shadow between the coils. Behind the \
-railing, the archipelago water is a field of purple and gold bokeh circles. \
-The brass rail has a warm amber patina with violet reflections from the sky.
+railing, the archipelago water is a field of purple and pink-violet bokeh circles. \
+The brass rail has a warm pink-lavender patina with violet reflections from the sky.
 CAMERA: Slow pan from the rope coil to the right, gradually shifting focus \
 from the rope to the water beyond the railing.
 FOCUS: Detail — shallow depth of field. The rope starts sharp, then focus \
 racks to the water bokeh, then back.
 KEY ELEMENT: The tactile materiality of the rope — hemp, brass, wood — \
 juxtaposed with the ethereal purple bokeh of the sea.
-ATMOSPHERE: Golden hour, calm. Warm sidelight from the left paints the rope \
-in amber while the shadows between coils are deep violet.
-COLOR EMPHASIS: Warm amber on rope fibers; deep purple (#2e008b) shadows; \
+ATMOSPHERE: Purple sunset, calm. Warm sidelight from the left paints the rope \
+in pink-lavender while the shadows between coils are deep violet.
+COLOR EMPHASIS: Warm pink-lavender on rope fibers; deep purple (#2e008b) shadows; \
 soft lavender (#a082e6) and pink (#eb5adc) bokeh circles on the water; brass \
 rail reflects electric violet (#9b0aa5) from the sky.
 MOTION: Slow pan; the rope sways almost imperceptibly with the boat's gentle \
@@ -572,17 +620,17 @@ rocking; bokeh circles on the water shift and dance.`),
     camera: "Slow dolly between",
     focus: "Wide",
     keyElement: "Boat entering the narrows at Sandhamn",
-    atmosphere: "Golden hour, haze",
+    atmosphere: "Purple sunset, haze",
     tags: ["archipelago", "sandhamn", "water", "nature"],
     prompt: compose(`\
 SCENE: The boat enters the iconic narrow passage approaching Sandhamn — the \
 legendary sailing destination in the outer Stockholm archipelago. The camera \
 is positioned at the bow, looking forward through the gap between Sandön and \
-the neighboring island. The distinctive yellow and red wooden houses of \
+the neighboring island. The distinctive pink and deep-violet wooden houses of \
 Sandhamn village are visible at the far end of the strait, their facades \
-catching the golden-hour light. The islands rise on either side with \
+catching the pink-violeten-hour light. The islands rise on either side with \
 weathered granite cliffs and wind-shaped pines silhouetted against the \
-purple-gold sky. The water in the strait is calm and deeply colored — almost \
+purple-pink sky. The water in the strait is calm and deeply colored — almost \
 black-purple in the cliff shadows, brightening to violet where the sky light \
 reaches it. Classic wooden sailing yachts are moored along the Sandhamn \
 waterfront.
@@ -592,11 +640,11 @@ FOCUS: Wide — sharp cliff faces on either side framing the village ahead.
 KEY ELEMENT: Sandhamn as the archipelago's most celebrated destination — its \
 colorful wooden village emerging from between the dark rock walls like a \
 hidden jewel.
-ATMOSPHERE: Golden hour with atmospheric haze diffusing the light around the \
+ATMOSPHERE: Purple sunset with atmospheric haze diffusing the light around the \
 village. The warm light on the old wooden facades contrasts with the purple \
 shadows of the narrows.
 COLOR EMPHASIS: Deep purple (#2e008b) and near-black on the cliff faces; \
-electric violet (#9b0aa5) on the water surface; warm gold and amber on the \
+electric violet (#9b0aa5) on the water surface; warm pink-violet and pink-lavender on the \
 Sandhamn village facades; soft lavender (#a082e6) haze around the village; \
 the classic sailing boats' white hulls catch pink (#eb5adc) light.
 MOTION: Forward dolly through the narrows; water ripples reflect off the \
@@ -649,10 +697,10 @@ camera drifts almost imperceptibly forward; the island reflection shimmers.`),
     prompt: compose(`\
 SCENE: Starting on the dark purple water surface, the camera tilts upward to \
 reveal a cathedral of cumulonimbus clouds rising into the upper atmosphere. \
-The clouds are lit from below by the setting sun — their bases glow amber and \
+The clouds are lit from below by the setting sun — their bases glow pink-lavender and \
 electric violet, while their towering tops darken to deep indigo-purple. \
 Light shafts break through gaps between clouds, striking the water as \
-lavender god-rays. A thin strip of orange horizon is visible between the \
+lavender god-rays. A thin strip of pink-violet horizon is visible between the \
 water and the cloud base.
 CAMERA: Slow tilt up — water to sky, taking the full 8 seconds to reveal \
 the clouds' full height.
@@ -675,25 +723,25 @@ shift and breathe; the water surface catches falling light patches.`),
     camera: "Following drone",
     focus: "Overhead",
     keyElement: "Perfect V-shaped wake stretching behind vessel",
-    atmosphere: "Golden hour",
+    atmosphere: "Purple sunset",
     tags: ["wake", "boat", "water", "archipelago"],
     prompt: compose(`\
 SCENE: Drone view following directly above and behind a cruise boat. The \
 vessel creates a perfect symmetrical V-wake that stretches to the bottom of \
 frame and beyond. The wake's white foam lines create a strong geometric \
-pattern against the deep violet water. Golden-hour light catches the wake's \
-outer edges in amber while the inner water between the V is sheltered and \
+pattern against the deep violet water. Purple-sunset light catches the wake's \
+outer edges in pink-lavender while the inner water between the V is sheltered and \
 darker purple. Tiny islands are scattered across the seascape ahead.
 CAMERA: Following drone at about 50m altitude, locked onto the boat, \
 maintaining the V-wake centered in frame.
 FOCUS: Overhead — the geometric wake pattern is the composition.
 KEY ELEMENT: The mathematical perfection of the V-wake as a graphic element \
 drawn in white on a purple canvas.
-ATMOSPHERE: Golden hour — directional light from the left creates a warm/cool \
-split on the wake: left side amber-lit, right side in purple shadow.
+ATMOSPHERE: Purple sunset — directional light from the left creates a warm/cool \
+split on the wake: left side pink-lavender-lit, right side in purple shadow.
 COLOR EMPHASIS: Deep purple (#2e008b) water; white wake foam with lavender \
 (#a082e6) tint in the shadow side; electric violet (#9b0aa5) in the wider \
-water; golden amber on the sun-facing wake edge; islands as dark spots.
+water; pink-violeten pink-lavender on the sun-facing wake edge; islands as dark spots.
 MOTION: Steady forward following; the wake continuously unfurls; small boats \
 or markers pass below in parallax; water texture ripples.`),
   },
@@ -714,10 +762,10 @@ islands in the outer Stockholm archipelago. The distinctive Möja landscape is \
 visible: the rocky eastern shoreline with its smooth, glacier-polished granite \
 slabs, a few weathered red fishing huts (sjöbodar) along the shore, and the \
 sparse pine forest silhouetted behind them. The sky is a perpetual twilight \
-gradient — amber at the horizon, cycling through electric violet to deep \
+gradient — pink-lavender at the horizon, cycling through electric violet to deep \
 purple overhead. The entire 360-degree sky glows. The open Baltic water \
 beyond Möja reflects this wrap-around light, creating an otherworldly scene \
-where everything is suffused in purple-gold. Fishing nets and lobster pots \
+where everything is suffused in purple-pink. Fishing nets and lobster pots \
 on the shore add texture.
 CAMERA: Static ultra-wide. The horizon bisects the frame perfectly. No \
 movement — the scene's strangeness speaks for itself.
@@ -728,9 +776,9 @@ landscape — where the comfort of the village meets the wildness of the \
 open Baltic.
 ATMOSPHERE: Nordic midnight sun — a quality of light that exists nowhere else. \
 Neither day nor night. Temperature neutral, tending purple.
-COLOR EMPHASIS: Equal balance of amber and purple — electric violet (#9b0aa5) \
+COLOR EMPHASIS: Equal balance of pink-lavender and purple — electric violet (#9b0aa5) \
 in the mid-sky, deep purple (#2e008b) at zenith, soft lavender (#a082e6) in \
-the water reflections, gold at both horizons; warm red on the fishing huts.
+the water reflections, pink-violet at both horizons; pink-violet on the fishing huts.
 MOTION: Extremely minimal — the sun barely moves along the horizon; water \
 shimmers against the smooth granite; a flag on a fishing hut barely stirs.`),
   },
@@ -748,7 +796,7 @@ shimmers against the smooth granite; a flag on a fishing hut barely stirs.`),
 SCENE: The anchor chain runs taut from the boat's bow downward into deep \
 purple water. The camera follows it, tilting slowly downward. Where the chain \
 enters the water, a column of silver-white bubbles rises, backlit by the \
-last purple-amber light from the sky. The chain disappears into the depths, \
+last purple-pink-lavender light from the sky. The chain disappears into the depths, \
 which darken from electric violet to pure indigo-black. The underwater \
 portion shows the chain slightly refracted and wavering.
 CAMERA: Slow downward tilt following the chain from deck level into the water. \
@@ -756,11 +804,11 @@ The transition from above-water to below-water happens at roughly the 4-second \
 mark.
 FOCUS: Medium — the chain is the sharp subject; the water surface and the \
 depths beyond are soft.
-KEY ELEMENT: The chain as a connector between the world above (amber-lit) and \
+KEY ELEMENT: The chain as a connector between the world above (pink-lavender-lit) and \
 the world below (deep purple) — a vertical journey through the palette.
 ATMOSPHERE: Dusk — the last light catches the chain and bubbles while the \
 water below is already immersed in deep purple darkness.
-COLOR EMPHASIS: Amber on the dry chain above water; deep purple (#2e008b) in \
+COLOR EMPHASIS: Pink-lavender on the dry chain above water; deep purple (#2e008b) in \
 the depths; electric violet (#9b0aa5) at the waterline; soft lavender \
 (#a082e6) in the bubbles; light blue (#7da0eb) refracted through the water \
 surface.
@@ -775,17 +823,17 @@ surface undulates from above, then closes over the camera's perspective.`),
     camera: "Dolly past foreground",
     focus: "Layered",
     keyElement: "Grinda island birch trees framing the cruise boat",
-    atmosphere: "Golden hour",
+    atmosphere: "Purple sunset",
     tags: ["islands", "grinda", "nordic", "boat"],
     prompt: compose(`\
 SCENE: The camera moves past a cluster of white birch trees on Grinda island \
 — one of the most popular nature islands in the inner archipelago, known for \
-its lush deciduous forests. The pale birch trunks and trembling green-gold \
+its lush deciduous forests. The pale birch trunks and trembling deep-violet \
 leaves act as natural frames for the scene beyond: a purple sea stretching \
 toward the distant silhouettes of Viggsö and Svartsö islands, with a cruise \
 boat passing in the mid-ground. Grinda's iconic meadow landscape is hinted \
 at through the trees — wild flowers at the base of the birches. The birch \
-bark catches warm golden light while the spaces between the trunks reveal \
+bark catches warm pink-violeten light while the spaces between the trunks reveal \
 the deep violet water. Lichen-covered granite rocks typical of Grinda's \
 shoreline anchor the foreground.
 CAMERA: Slow dolly laterally, passing behind and between birch trunks in a \
@@ -795,12 +843,12 @@ focus, distant island silhouettes are slightly soft.
 KEY ELEMENT: Grinda's lush birch forest as a natural cinema screen — the \
 white trunks framing slices of the purple seascape in a composition unique \
 to this island's character.
-ATMOSPHERE: Golden hour — warm sidelight on the birch bark, purple shadow \
+ATMOSPHERE: Purple sunset — warm sidelight on the birch bark, purple shadow \
 between the trees. The combination is iconic Swedish summer.
-COLOR EMPHASIS: White-silver birch bark catching gold and pink (#eb5adc) \
+COLOR EMPHASIS: White-silver birch bark catching pink-violet and pink (#eb5adc) \
 light; deep purple (#2e008b) sea visible between trunks; soft lavender \
 (#a082e6) sky; electric violet (#9b0aa5) in the tree shadows; meadow \
-wildflowers adding tiny purple and yellow accents at the base.
+wildflowers adding tiny purple and lavender accents at the base.
 MOTION: Lateral dolly creating parallax between tree layers; birch leaves \
 tremble in a light breeze; the distant boat glides smoothly; a butterfly \
 crosses the foreground meadow flowers.`),
@@ -819,7 +867,7 @@ crosses the foreground meadow flowers.`),
 SCENE: Extreme close tracking shot of the boat's wake foam. The churning \
 white-lavender foam contrasts sharply with the deep violet water surrounding \
 it. Sunset backlight penetrates the thinner foam sections, turning them \
-translucent pink and gold. Air bubbles trapped in the foam catch individual \
+translucent pink and pink-violet. Air bubbles trapped in the foam catch individual \
 specular highlights. As the foam dissipates at the edges, it transitions \
 from white to lavender to deep purple water in a beautiful gradient.
 CAMERA: Tracking close alongside the wake, matching the boat's speed, \
@@ -829,9 +877,9 @@ soft purple bokeh.
 KEY ELEMENT: The ephemeral beauty of sea foam — its white chaos against the \
 controlled deep purple of the water.
 ATMOSPHERE: Sunset backlight — every bubble and foam strand is edge-lit in \
-gold and violet.
+pink-violet and violet.
 COLOR EMPHASIS: White foam with lavender (#a082e6) tint in shadows; deep \
-purple (#2e008b) water; pink (#eb5adc) and gold in backlit translucent foam; \
+purple (#2e008b) water; pink (#eb5adc) and pink-violet in backlit translucent foam; \
 electric violet (#9b0aa5) where foam dissolves into water.
 MOTION: Continuous tracking; the foam churns and evolves organically; bubbles \
 pop and reform; the edge between foam and water is constantly negotiated.`),
@@ -849,12 +897,12 @@ pop and reform; the edge between foam and water is constantly negotiated.`),
     prompt: compose(`\
 SCENE: A sweeping 180-degree panoramic view from the historic harbor of \
 Dalarö — the southern gateway to the Stockholm archipelago since the 17th \
-century. The camera slowly pans from west (where the last amber glow clings \
+century. The camera slowly pans from west (where the last pink-lavender glow clings \
 to the horizon above the Dalarö skans fortress ruins) through south (the \
 open water toward Ornö and Utö, pure electric violet sky) to east (where the \
 sky deepens to indigo above the small islands of the Dalarö archipelago). \
 The distinctive Dalarö waterfront is visible in the pan — traditional red \
-and yellow wooden houses along the harbor, historic steamboat pier, and \
+and violet wooden houses along the harbor, historic steamboat pier, and \
 classic archipelago boats moored in a row. Dozens of islands are scattered \
 across the southern view at varying distances, each a different shade of \
 purple silhouette.
@@ -867,9 +915,9 @@ and wild archipelago nature — its charming harbor opening onto the vast \
 purple seascape.
 ATMOSPHERE: Blue hour — the light is even, cool, and deeply violet. No hard \
 shadows. The air is crystalline.
-COLOR EMPHASIS: Full purple gradient — from residual amber/gold in the west, \
+COLOR EMPHASIS: Full purple gradient — from residual pink-lavender/pink-violet in the west, \
 through electric violet (#9b0aa5), to deep purple (#2e008b) in the east. \
-Warm red and yellow Dalarö facades add color contrast; islands layer in \
+Warm pink and violet Dalarö facades add color contrast; islands layer in \
 progressively lighter purple — dark indigo nearest, soft lavender (#a082e6) \
 farthest.
 MOTION: Continuous smooth pan; harbor boat lights blink; water shimmers \
@@ -890,21 +938,21 @@ sways gently.`),
 SCENE: Starting on the warm-lit wooden deck, the camera tilts slowly upward \
 along the boat's mast. The mast is a dark vertical line that bisects the \
 frame, its rigging lines radiating outward like a spider's web. As the \
-camera rises, it passes through the deck-light zone (warm amber) into the \
+camera rises, it passes through the deck-light zone (warm pink-lavender) into the \
 middle zone (electric violet sky) and finally into the upper sky (deep purple \
-with the first visible stars). The mast's peak has a small amber navigation \
+with the first visible stars). The mast's peak has a small pink-lavender navigation \
 light that acts as a warm counterpoint to the cold stars.
 CAMERA: Slow tilt upward, following the mast from deck to sky tip over 8 \
 seconds. The mast stays centered throughout.
 FOCUS: Vertical composition — the bottom is detail (deck texture), the middle \
 is medium (rigging), the top is wide (open sky with stars).
 KEY ELEMENT: The mast as a vertical axis connecting earth (deck) to cosmos \
-(stars), transitioning through the full Electric Purple palette.
+(stars), transitioning through the full purple-violet palette.
 ATMOSPHERE: Night onset — the deck retains warm practical light while the sky \
 has fully shifted to purple. Stars are just appearing.
-COLOR EMPHASIS: Warm amber at the deck base; electric violet (#9b0aa5) in the \
+COLOR EMPHASIS: Warm pink-lavender at the deck base; electric violet (#9b0aa5) in the \
 mid-sky; deep purple (#2e008b) at the zenith; soft lavender (#a082e6) in the \
-star glow; the navigation light is a warm amber jewel.
+star glow; the navigation light is a warm pink-lavender jewel.
 MOTION: Slow upward tilt; the rigging lines sway gently; stars flicker; the \
 navigation light glows steadily; the mast itself sways with the boat's rock.`),
   },
@@ -917,16 +965,16 @@ navigation light glows steadily; the mast itself sways with the boat's rock.`),
     focus: "Wide",
     keyElement: "Sun setting behind Utö island's distinctive silhouette",
     atmosphere: "Sunset end",
-    tags: ["sunset", "uto", "silhouette", "golden-hour"],
+    tags: ["sunset", "uto", "silhouette", "pink-violeten-hour"],
     prompt: compose(`\
 SCENE: The very last sliver of the sun disappears behind the silhouette of \
 Utö — the southernmost inhabited island in the Stockholm archipelago, \
 recognizable by the profile of its historic windmill and the old mining \
 village skyline. For a brief moment, the windmill and the island's ridge \
-are rimmed in blinding gold — a thin line of fire separating the dark \
+are rimmed in blinding pink-violet — a thin line of fire separating the dark \
 landmass from the purple sky. The sky above Utö glows in a diminishing \
-aureole of amber that fades rapidly through pink into electric violet and \
-finally deep purple. The water catches the last reflection — a single golden \
+aureole of pink-lavender that fades rapidly through pink into electric violet and \
+finally deep purple. The water catches the last reflection — a single pink-violeten \
 path that narrows and darkens as the sun vanishes. The small harbor lights \
 of Gruvbryggan (Utö's main pier) twinkle at the base of the silhouette.
 CAMERA: Slow zoom out — starting tight on the sun-rimmed windmill silhouette, \
@@ -936,13 +984,13 @@ to communicate the vastness of the moment.
 KEY ELEMENT: Utö's iconic windmill silhouette as the last point where sunlight \
 touches the archipelago — a recognizable landmark marking the end of the day \
 and the southernmost reach of the island chain.
-ATMOSPHERE: Sunset end — the transition point between golden hour and blue \
+ATMOSPHERE: Sunset end — the transition point between pink-violet hour and blue \
 hour. The light is fading rapidly and the purple is winning.
-COLOR EMPHASIS: Intense gold/amber rim on the windmill and island edge; pink \
+COLOR EMPHASIS: Intense pink-violet/pink-lavender rim on the windmill and island edge; pink \
 (#eb5adc) aureole closest to the sun; electric violet (#9b0aa5) expanding \
 outward; deep purple (#2e008b) overtaking the sky; soft lavender (#a082e6) \
-in the fading water reflection; warm harbor lights as tiny amber points.
-MOTION: Slow zoom out; the golden rim thins and extinguishes; the purple \
+in the fading water reflection; warm harbor lights as tiny pink-lavender points.
+MOTION: Slow zoom out; the pink-violeten rim thins and extinguishes; the purple \
 expands to fill the frame; the water reflection narrows to a point; harbor \
 lights grow more visible as the natural light fades.`),
   },
@@ -957,166 +1005,184 @@ const gronaLundVariations: DreamVideoVariation[] = [
     id: "grona-lund-01",
     variationNumber: 1,
     dreamId: "grona-lund",
-    name: "Stage Pulse",
+    name: "Times Square Pulse",
     camera: "Slow dolly forward",
     focus: "Wide",
-    keyElement: "Stage lit in deep purple/violet with haze",
+    keyElement: "Stage lit in deep purple/violet with Times Square billboards visible",
     atmosphere: "Night, haze",
-    tags: ["stage", "lights", "concert", "energy"],
+    tags: ["stage", "lights", "concert", "new-york"],
     prompt: compose(`\
-SCENE: A massive outdoor concert stage at Gröna Lund, seen from the back of \
-the crowd. The stage is a wall of deep purple and electric violet light, \
-pulsing rhythmically with a bass-heavy beat. Theatrical haze fills the air, \
-catching the light beams and turning them into solid cones of violet. The \
-stage's LED screens display abstract purple wave patterns. Silhouettes of the \
-crowd's raised hands fill the lower third of frame.
+SCENE: A massive concert stage erected in the heart of Times Square, New York, \
+seen from the back of the crowd. The stage is a wall of deep purple and \
+electric violet light, pulsing rhythmically with a bass-heavy beat. Behind \
+and above, the iconic Times Square billboards and LED facades have been \
+overtaken by purple-violet wave patterns, turning the entire canyon of \
+buildings into a synchronized light show. Theatrical haze fills the air, \
+catching the light beams and turning them into solid cones of violet. \
+Silhouettes of the crowd's raised hands fill the lower third of frame.
 CAMERA: Slow dolly forward through the crowd — as if pushing toward the stage. \
-The stage grows larger and more intense over 8 seconds.
-FOCUS: Wide — the stage is the subject, the crowd silhouettes frame it.
-KEY ELEMENT: The stage as a monolithic source of purple light, radiating \
-energy outward through the haze.
+The stage and Times Square's towering neon grow larger and more intense over \
+8 seconds.
+FOCUS: Wide — the stage is the subject, the crowd silhouettes and Times Square \
+billboards frame it.
+KEY ELEMENT: The stage as a monolithic source of purple light, with Times \
+Square's famous neon billboards amplifying the violet energy into every corner \
+of the urban canyon.
 ATMOSPHERE: Night with heavy theatrical haze. The air is thick with light \
 beams made visible by the fog. Every breath catches violet.
 COLOR EMPHASIS: Electric violet (#9b0aa5) as the dominant stage wash; deep \
-purple (#2e008b) in the sky and shadows; pink (#eb5adc) accent lights; soft \
-lavender (#a082e6) in the haze; the crowd is near-black silhouette.
+purple (#2e008b) in the sky and shadows; pink (#eb5adc) accent lights on the \
+billboards; soft lavender (#a082e6) in the haze; the crowd is near-black \
+silhouette.
 MOTION: Forward dolly; haze drifts and swirls; light beams pulse with the \
-rhythm; crowd hands sway; stage LEDs animate.`),
+rhythm; Times Square billboards animate in sync; crowd hands sway.`),
   },
   {
     id: "grona-lund-02",
     variationNumber: 2,
     dreamId: "grona-lund",
-    name: "Neon Ferris & Gamla Stan",
+    name: "London Eye & Big Ben",
     camera: "Orbit around",
     focus: "Wide",
-    keyElement: "Ferris wheel with Gamla Stan skyline visible behind",
+    keyElement: "London Eye ferris wheel with Big Ben and Parliament silhouette behind",
     atmosphere: "Night, clear",
-    tags: ["ferris-wheel", "neon", "djurgarden", "gamla-stan"],
+    tags: ["ferris-wheel", "neon", "london", "big-ben"],
     prompt: compose(`\
-SCENE: The iconic Gröna Lund ferris wheel dominates the frame, its structure \
-outlined in LED lights cycling through the Electric Purple palette — from \
-deep purple at the base through electric violet on the spokes to soft \
-lavender at the top. Each gondola has a pink accent light. As the camera \
-orbits, the Stockholm skyline reveals itself behind the wheel — the \
-unmistakable silhouette of Gamla Stan (the Old Town) with its church spires \
-and the Royal Palace is visible across the dark harbor water, bathed in \
-warm amber light that contrasts with the purple night sky. The Djurgården \
-waterfront below glitters with the park's reflected neon.
-CAMERA: Slow orbit — the camera circles the ferris wheel about 30 degrees \
-over 8 seconds, shifting the Gamla Stan skyline from hidden to revealed \
+SCENE: The London Eye dominates the frame, its massive structure outlined in \
+LED lights cycling through the purple-violet palette — from deep purple at \
+the base through electric violet on the spokes to soft lavender at the top. \
+Each capsule has a pink accent light. As the camera orbits, the Westminster \
+skyline reveals itself behind the wheel — the unmistakable silhouette of Big \
+Ben's clock tower and the Houses of Parliament stretching along the Thames, \
+bathed in pink-lavender light that contrasts with the purple night sky. The \
+Thames below glitters with the wheel's reflected neon and the purple glow \
+of the South Bank.
+CAMERA: Slow orbit — the camera circles the London Eye about 30 degrees \
+over 8 seconds, shifting Big Ben and Parliament from hidden to revealed \
 behind the wheel.
-FOCUS: Wide — the full ferris wheel in frame with Gamla Stan's silhouette \
-and harbor reflections.
-KEY ELEMENT: The ferris wheel as a giant purple mandala with Stockholm's \
-most historic quarter visible through its spokes — modern spectacle framing \
+FOCUS: Wide — the full London Eye in frame with Big Ben's silhouette \
+and Thames reflections.
+KEY ELEMENT: The London Eye as a giant purple mandala with Westminster's \
+most iconic landmarks visible through its spokes — modern spectacle framing \
 centuries of history.
-ATMOSPHERE: Night, clear sky. The ferris wheel is the brightest object in \
-frame, with Gamla Stan's warm glow as the atmospheric backdrop.
+ATMOSPHERE: Night, clear sky. The London Eye is the brightest object in \
+frame, with Westminster's warm glow as the atmospheric backdrop.
 COLOR EMPHASIS: Electric violet (#9b0aa5) on the wheel structure; deep purple \
-(#2e008b) sky; pink (#eb5adc) gondola accents; warm amber on Gamla Stan's \
-facades; soft lavender (#a082e6) light spill; electric blue (#3750dc) harbor \
-water reflections bridging Djurgården to the Old Town.
-MOTION: The ferris wheel rotates slowly; gondolas sway; the orbit reveals \
-Gamla Stan progressively; LED lights animate in sequence; harbor reflections \
-of both park and Old Town shimmer.`),
+(#2e008b) sky; pink (#eb5adc) capsule accents; warm pink-lavender on Parliament's \
+facades; soft lavender (#a082e6) light spill; electric blue (#3750dc) Thames \
+water reflections bridging South Bank to Westminster.
+MOTION: The London Eye rotates slowly; capsules sway; the orbit reveals \
+Big Ben progressively; LED lights animate in sequence; Thames reflections \
+of both wheel and Parliament shimmer.`),
   },
   {
     id: "grona-lund-03",
     variationNumber: 3,
     dreamId: "grona-lund",
-    name: "Bass Drop",
+    name: "Shibuya Bass Drop",
     camera: "Static with subtle shake",
     focus: "Medium",
-    keyElement: "Speaker stack vibrating, air distortion visible",
+    keyElement: "Speaker stack vibrating with Shibuya Crossing neon signs visible",
     atmosphere: "Night, intense",
-    tags: ["bass", "speakers", "vibration", "energy"],
+    tags: ["bass", "speakers", "vibration", "tokyo"],
     prompt: compose(`\
-SCENE: A massive wall of black speaker stacks at the side of the stage. The \
-camera faces them straight-on, close enough to feel the vibration. The \
-speaker cones pulse visibly with each bass hit. The air in front of the \
-speakers distorts like heat haze — visible compression waves. Purple and \
-violet stage light bathes the speaker cabinets from behind, creating a \
-dramatic rim-light on their edges. A thin layer of mist at the base catches \
-the light.
+SCENE: A massive wall of black speaker stacks at the side of an outdoor \
+stage set up near Shibuya Crossing, Tokyo. The camera faces them straight-on, \
+close enough to feel the vibration. The speaker cones pulse visibly with each \
+bass hit. The air in front of the speakers distorts like heat haze — visible \
+compression waves. Through the gap beside the speaker wall, Shibuya's iconic \
+neon signs and LED screens are visible, their normally multicolored glow \
+overridden by purple-violet hues. Purple and violet stage light bathes the \
+speaker cabinets from behind, creating a dramatic rim-light on their edges. \
+A thin layer of mist at the base catches the light.
 CAMERA: Static with subtle physical shake synchronized to the bass hits — the \
 camera itself vibrates with the sound pressure.
 FOCUS: Medium — the speaker wall fills the frame; individual cone movements \
-are visible.
+are visible; Shibuya's neon bleeds into the edges.
 KEY ELEMENT: The raw physical power of sound made visible — vibrating cones, \
-air distortion, camera shake.
+air distortion, camera shake — framed by Tokyo's electric cityscape.
 ATMOSPHERE: Night, intense. The bass is felt more than heard. The air itself \
-seems to pulse purple.
+seems to pulse purple against Shibuya's neon canyon.
 COLOR EMPHASIS: Deep purple (#2e008b) on the speaker cabinets; electric violet \
 (#9b0aa5) rim-light from behind; soft lavender (#a082e6) in the mist at the \
-base; occasional pink (#eb5adc) flash from stage effects.
+base; pink (#eb5adc) Shibuya neon reflections; electric blue (#3750dc) in \
+the distant crossing signals.
 MOTION: Speaker cones pulse rhythmically; visible air compression waves; \
 camera micro-shakes on each bass hit; mist at the base ripples with the \
-pressure waves.`),
+pressure waves; Shibuya screens flicker in the background.`),
   },
   {
     id: "grona-lund-04",
     variationNumber: 4,
     dreamId: "grona-lund",
-    name: "Laser Cathedral",
+    name: "Berlin Laser Cathedral",
     camera: "Tilt up",
     focus: "Wide",
-    keyElement: "Grid of purple/pink lasers cutting through fog",
+    keyElement: "Grid of purple/pink lasers in a Berlin warehouse club",
     atmosphere: "Night, heavy fog",
-    tags: ["lasers", "lights", "concert", "atmosphere"],
+    tags: ["lasers", "lights", "concert", "berlin"],
     prompt: compose(`\
-SCENE: Looking upward from the crowd level as dozens of laser beams cut \
-through dense fog above the stage. The lasers create a geometric grid — \
-parallel lines, fans, and cones — in electric violet, pink, and soft \
-lavender. Where the beams intersect, they create brighter nodes of light. \
-The fog is thick enough to make each beam a solid line of light. Through the \
-laser grid, the dark purple night sky is faintly visible.
+SCENE: Looking upward from the crowd level inside a cavernous Berlin \
+warehouse club as dozens of laser beams cut through dense fog above the \
+stage. The raw industrial concrete ceiling and exposed steel trusses of the \
+venue frame the laser grid — parallel lines, fans, and cones — in electric \
+violet, pink, and soft lavender. Where the beams intersect, they create \
+brighter nodes of light. The fog is thick enough to make each beam a solid \
+line of light. Through the laser grid, the warehouse's massive skylights \
+reveal a faint deep purple Berlin night sky.
 CAMERA: Tilt up — starting from the crowd's raised hands, ascending through \
-the laser grid to the open sky over 8 seconds.
+the laser grid to the warehouse ceiling and skylights over 8 seconds.
 FOCUS: Wide — the entire laser architecture is in view, creating a cathedral \
-of light.
+of light within Berlin's industrial bones.
 KEY ELEMENT: The geometric precision of laser beams contrasting with the \
-organic movement of fog — order and chaos in purple light.
-ATMOSPHERE: Night with very heavy theatrical fog. The lasers need the fog to \
-exist visibly — they are painting on a canvas of mist.
+organic movement of fog — order and chaos in purple light, amplified by \
+Berlin's raw warehouse architecture.
+ATMOSPHERE: Night with very heavy theatrical fog inside the club. The lasers \
+need the fog to exist visibly — they are painting on a canvas of mist within \
+Berlin's legendary underground scene.
 COLOR EMPHASIS: Electric violet (#9b0aa5) primary lasers; pink (#eb5adc) \
 accent lasers; soft lavender (#a082e6) where beams scatter in the fog; deep \
-purple (#2e008b) in the negative space between beams.
+purple (#2e008b) in the negative space between beams and concrete walls.
 MOTION: Lasers sweep slowly in synchronized patterns; fog drifts and curls \
 around the beams; beam intersections pulse; the tilt reveals new layers of \
-the laser architecture.`),
+the laser architecture against the industrial ceiling.`),
   },
   {
     id: "grona-lund-05",
     variationNumber: 5,
     dreamId: "grona-lund",
-    name: "Confetti Rain",
+    name: "Rio Confetti Rain",
     camera: "Slow-motion fall",
     focus: "Detail",
-    keyElement: "Purple and violet confetti pieces falling through spotlights",
+    keyElement: "Purple confetti falling with Christ the Redeemer silhouette in distance",
     atmosphere: "Night, celebratory",
-    tags: ["confetti", "lights", "festival", "energy"],
+    tags: ["confetti", "lights", "festival", "rio"],
     prompt: compose(`\
 SCENE: Thousands of pieces of confetti in shades of purple, violet, lavender, \
-and pink fall through the air in extreme slow motion. Each piece tumbles and \
-rotates, catching spotlight beams from different angles — sometimes opaque \
-and dark, sometimes translucent and glowing. The confetti is in sharp focus \
-in the mid-ground while the background stage lights are soft purple bokeh \
-circles. Occasional gold confetti pieces provide warm accent.
+and pink fall through the air in extreme slow motion above an outdoor concert \
+stage in Rio de Janeiro. Each piece tumbles and rotates, catching spotlight \
+beams from different angles — sometimes opaque and dark, sometimes translucent \
+and glowing. The confetti is in sharp focus in the mid-ground while the \
+background reveals the distant silhouette of Christ the Redeemer atop \
+Corcovado, illuminated in electric violet against the deep purple sky. Stage \
+lights below are soft purple bokeh circles. The energy of Carnival pulses \
+through the scene.
 CAMERA: Slow-motion capture of the confetti fall, with a very slight \
 downward drift matching the confetti's trajectory.
-FOCUS: Detail — individual confetti pieces are readable; some are so close \
-they're large abstract shapes passing through the foreground bokeh.
-KEY ELEMENT: The confetti as individual carriers of the Electric Purple \
-palette — each piece a tiny canvas.
-ATMOSPHERE: Night, celebratory peak moment. The confetti cannon has just \
-fired. The air is full of color.
+FOCUS: Detail — individual confetti pieces are readable; Christ the Redeemer \
+is a soft violet silhouette in the distance; some confetti is so close it \
+becomes large abstract shapes in foreground bokeh.
+KEY ELEMENT: The confetti as individual carriers of the purple-violet \
+palette — each piece a tiny canvas — with Rio's iconic statue watching over \
+the celebration.
+ATMOSPHERE: Night, celebratory peak moment with Carnival energy. The confetti \
+cannon has just fired. The air is full of color above Rio.
 COLOR EMPHASIS: Every piece is a different shade — deep purple (#2e008b), \
-electric violet (#9b0aa5), soft lavender (#a082e6), pink (#eb5adc), with \
-gold accents. The background bokeh is electric violet.
+electric violet (#9b0aa5), soft lavender (#a082e6), pink (#eb5adc). Christ \
+the Redeemer glows in electric violet. The background bokeh is electric violet.
 MOTION: Ultra-slow-motion tumble of confetti; each piece rotates and catches \
 light at different angles; some pieces collide and redirect; spotlight beams \
-illuminate different zones.`),
+illuminate different zones; the statue stands sentinel in the distance.`),
   },
   {
     id: "grona-lund-06",
@@ -1177,7 +1243,7 @@ ATMOSPHERE: Night, intimate — this is a private view of the instrument. The \
 macro perspective makes the guitar a landscape.
 COLOR EMPHASIS: Chrome and silver strings catching electric violet (#9b0aa5) \
 light; deep purple (#2e008b) in the shadows between strings; soft lavender \
-(#a082e6) and pink (#eb5adc) in the lens flare; warm amber on the wood body.
+(#a082e6) and pink (#eb5adc) in the lens flare; warm pink-lavender on the wood body.
 MOTION: The strings vibrate at different frequencies — visible standing waves; \
 the camera drifts slowly across them; lens flare shifts with the camera \
 position; light reflections dance on the chrome frets.`),
@@ -1238,7 +1304,7 @@ KEY ELEMENT: The violence and beauty of percussion — a single strike as a \
 universe of physics and light.
 ATMOSPHERE: Night, dynamic. Stage lighting from above and behind catches the \
 cymbal as a reflective surface for the purple palette.
-COLOR EMPHASIS: Bronze cymbal reflecting electric violet (#9b0aa5) and amber; \
+COLOR EMPHASIS: Bronze cymbal reflecting electric violet (#9b0aa5) and pink-lavender; \
 deep purple (#2e008b) background; soft lavender (#a082e6) in the flying \
 droplets; pink (#eb5adc) reflected in the concentric waves.
 MOTION: Ultra-slow-motion: the stick's impact, the wave propagation, the \
@@ -1262,7 +1328,7 @@ all outlined in colored lights. As the crane ascends, Stockholm's most iconic \
 landmarks reveal themselves: to the left, the grand boulevard of Strandvägen \
 with its Art Nouveau facades and moored vintage boats; across the water, the \
 distinctive silhouette of Stockholm City Hall (Stadshuset) with its three \
-golden crowns tower; further left, the spires of Gamla Stan; and the Nordiska \
+pink-violeten crowns tower; further left, the spires of Gamla Stan; and the Nordiska \
 Museet's Renaissance castle silhouette right next to the park. The harbor \
 water reflects the entire spectacle in shimmering purple.
 CAMERA: Crane rising — starting at crowd level, ascending to reveal the full \
@@ -1277,7 +1343,7 @@ Nordic air produces after dark, with Stockholm's light pollution creating \
 a lavender dome over the city.
 COLOR EMPHASIS: Electric violet (#9b0aa5) LED lights on rides; deep purple \
 (#2e008b) night sky; pink (#eb5adc) neon accents; Strandvägen and Stadshuset \
-in warm amber; soft lavender (#a082e6) light pollution dome; electric blue \
+in warm pink-lavender; soft lavender (#a082e6) light pollution dome; electric blue \
 (#3750dc) harbor reflections connecting park to city.
 MOTION: The crane rises steadily; ride lights animate; the ferris wheel \
 rotates; the expanding view reveals more of Stockholm's waterfront; harbor \
@@ -1323,7 +1389,7 @@ moves in jerky reveals; the effect is hypnotic and dream-like, fitting the \
     name: "Mic Stand",
     camera: "Slow orbit",
     focus: "Detail",
-    keyElement: "Chrome mic stand reflecting colorful stage lights",
+    keyElement: "Chrome mic stand reflecting purple-hued stage lights",
     atmosphere: "Night",
     tags: ["stage", "concert", "music", "lights"],
     prompt: compose(`\
@@ -1372,7 +1438,7 @@ wristbands, moving from back of crowd toward the stage.
 FOCUS: Detail — nearest wristbands are sharp, showing their texture and \
 glow; distant ones become a field of bokeh light points.
 KEY ELEMENT: The wristbands as collective pixels — individual nodes forming a \
-unified, synchronized display of Electric Purple.
+unified, synchronized display of purple-violet light.
 ATMOSPHERE: Night — the wristbands and stage provide the only illumination. \
 The crowd is a dark mass animated by hundreds of purple light points.
 COLOR EMPHASIS: Electric violet (#9b0aa5) primary wristband color; pink \
@@ -1398,7 +1464,7 @@ on the rails, pink on the support structure. The camera tracks alongside at \
 rail level as a coaster train rushes past, its own lights a streak of lavender. \
 The track twists and curves ahead, its illuminated path drawing glowing purple \
 lines against the night sky. Below, the park's lights are a distant carpet \
-of warm color.
+of purple-pink light.
 CAMERA: Tracking alongside the coaster track at rail level, matching the \
 train's speed for a beat, then letting it pull ahead.
 FOCUS: Wide — the track structure and its LED outlines fill the frame with \
@@ -1427,7 +1493,7 @@ angles of light.`),
     prompt: compose(`\
 SCENE: An abstract, semi-real visualization of sound waves propagating through \
 the concert atmosphere. Concentric rings of energy expand outward from the \
-stage in the Electric Purple palette — each ring a different shade. The waves \
+stage in the purple-violet palette — each ring a different shade. The waves \
 interact with the haze, creating visible interference patterns. Where the \
 waves pass through the crowd, wristbands pulse. Where they hit surfaces, \
 they create ripple reflections. The scene sits between photorealism and \
@@ -1502,7 +1568,7 @@ security strip catches violet light.
 CAMERA: Macro static — the ticket is pinned in space; the bokeh background \
 shifts subtly as the hand holding it sways slightly.
 FOCUS: Extreme detail — paper fibers and ink edges are sharp; the background \
-is pure creamy bokeh.
+is pure soft lavender bokeh.
 KEY ELEMENT: The ticket as artifact — a physical token of the experience, \
 rendered with the intimacy of macro photography.
 ATMOSPHERE: Night — the ticket is lit by ambient stage light spillage; the \
@@ -1530,7 +1596,7 @@ balloons are backlit by the park's lights below, giving their undersides a \
 warm glow while their tops are silhouetted against the deep purple sky. As \
 they rise above the park's treeline, the grand Strandvägen boulevard comes \
 into view across the harbor — its row of Art Nouveau and Jugendstil apartment \
-buildings lit in warm amber, the historic wooden boats (Strandvägen's \
+buildings lit in warm pink-lavender, the historic wooden boats (Strandvägen's \
 skärgårdsbåtar) moored along the quay, and the avenue's double row of linden \
 trees. The balloons float between the worlds of Djurgården's park magic and \
 Strandvägen's urban elegance.
@@ -1545,7 +1611,7 @@ ATMOSPHERE: Night, whimsical. A moment of childlike wonder with Stockholm's \
 most elegant boulevard as backdrop.
 COLOR EMPHASIS: Balloons in deep purple (#2e008b), electric violet (#9b0aa5), \
 soft lavender (#a082e6), and pink (#eb5adc); Strandvägen facades in warm \
-amber; the sky is deep indigo; electric blue (#3750dc) harbor water between \
+pink-lavender; the sky is deep indigo; electric blue (#3750dc) harbor water between \
 Djurgården and the boulevard.
 MOTION: Balloons rise and slowly separate; they rotate and catch light \
 differently; the tilt reveals Strandvägen progressively; harbor reflections \
@@ -1565,7 +1631,7 @@ connect the two shores.`),
 SCENE: A professional audio mixing console in the sound booth, its surface \
 alive with color. Rows of faders, knobs, and illuminated VU meters create a \
 landscape of precision and light. The faders are lit from below by built-in \
-LEDs; the VU meters glow amber and green; the entire console is bathed in \
+LEDs; the VU meters glow pink-lavender and violet; the entire console is bathed in \
 ambient purple light from the stage. The fader positions reflect the current \
 mix — different heights forming a visual rhythm. Out-of-focus stage is visible \
 in the far background through the booth opening.
@@ -1577,7 +1643,7 @@ KEY ELEMENT: The mixing desk as the unseen conductor of the concert \
 experience — every sound heard by the crowd shaped by these controls.
 ATMOSPHERE: Night, intimate. This is the backstage brain of the show, lit by \
 its own functional lights and the ambient purple spill.
-COLOR EMPHASIS: Amber and green VU meters against electric violet (#9b0aa5) \
+COLOR EMPHASIS: Pink-lavender and violet VU meters against electric violet (#9b0aa5) \
 ambient light; deep purple (#2e008b) shadows between channels; soft lavender \
 (#a082e6) light from the console's own illumination; fader caps catching \
 pink (#eb5adc) stage reflections.
@@ -1599,7 +1665,7 @@ background pulses with distant purple light.`),
 SCENE: Ultra-wide shot from across the harbor water on the Södermalm side, \
 framing Gröna Lund's main stage as a purple beacon on the Djurgården \
 waterfront. The camera position near Fotografiska (Stockholm's renowned \
-photography museum) places its distinctive red-brick industrial building \
+photography museum) places its distinctive pink-violet industrial building \
 at the left frame edge. The stage lights are reflected in the harbor water \
 in long, shimmering purple and violet streaks that stretch toward the camera. \
 The Södermalm cliff face (Stigberget) rises to the right of frame, its \
@@ -1616,9 +1682,9 @@ waterfront, with Fotografiska as the cultural anchor.
 ATMOSPHERE: Night with reflections. The harbor connects Djurgården's concert \
 energy to Södermalm's urban culture, the water multiplying the purple light.
 COLOR EMPHASIS: Electric violet (#9b0aa5) stage and its water reflection; \
-deep purple (#2e008b) sky and dark water; warm red-brick of Fotografiska; \
+deep purple (#2e008b) sky and dark water; warm pink-violet of Fotografiska; \
 soft lavender (#a082e6) in the harbor reflections; Södermalm's cliff-top \
-lights in warm amber; pink (#eb5adc) accent lights reflected.
+lights in warm pink-lavender; pink (#eb5adc) accent lights reflected.
 MOTION: Water choppy with shifting reflections; distant stage lights pulse; \
 a Djurgården ferry crosses the harbor; Södermalm's cliff-top restaurants \
 glow steadily.`),
@@ -1645,7 +1711,7 @@ CAMERA: Fast zoom out — starting close on the first spark eruption, pulling \
 back rapidly to reveal the full spectacular display.
 FOCUS: Wide — the pyrotechnics fill the frame at multiple depths.
 KEY ELEMENT: The explosive power of the finale — contained violence of \
-pyrotechnics rendered in the Electric Purple palette.
+pyrotechnics rendered in the purple-violet palette.
 ATMOSPHERE: Night, explosive. The air fills with smoke, sparks, and purple \
 light. Maximum sensory overload.
 COLOR EMPHASIS: Electric violet (#9b0aa5) and pink (#eb5adc) pyrotechnic \
@@ -1678,7 +1744,7 @@ spotlights. The rain falls toward and past the camera.
 FOCUS: Detail — some raindrops are frozen sharp; others are long streaks \
 depending on their distance from the lens.
 KEY ELEMENT: Rain as a natural light-catching medium — each drop a brief \
-carrier of the Electric Purple palette.
+carrier of the purple-violet palette.
 ATMOSPHERE: Night, light summer rain. The rain adds a layer of magic to the \
 concert, not dampening the energy but enhancing the light effects.
 COLOR EMPHASIS: Electric violet (#9b0aa5) raindrop streaks through the main \
@@ -1735,9 +1801,9 @@ sea of hands.`),
 SCENE: A vinyl record spins on a turntable at the DJ booth side-stage. The \
 camera captures the record at macro level — the grooves are visible as \
 concentric lines that catch the ambient purple stage light in shifting \
-patterns. The record label at the center is a design in Electric Purple \
+patterns. The record label at the center is a design in purple-violet \
 tones. The tonearm sits in the groove, its cartridge reflecting a tiny \
-version of the stage lights. Warm amber light from the DJ booth's equipment \
+version of the stage lights. Warm pink-lavender light from the DJ booth's equipment \
 contrasts with the purple ambient.
 CAMERA: Macro orbit — slowly circling the spinning record, keeping the \
 groove detail in focus as the reflections shift.
@@ -1750,7 +1816,7 @@ ATMOSPHERE: Night, with a retro warmth. The turntable setup evokes analog \
 craft in a digital world.
 COLOR EMPHASIS: Black vinyl catching electric violet (#9b0aa5) and soft \
 lavender (#a082e6) reflections in the grooves; deep purple (#2e008b) in the \
-record's shadowed areas; pink (#eb5adc) label; warm amber from the booth \
+record's shadowed areas; pink (#eb5adc) label; warm pink-lavender from the booth \
 lights.
 MOTION: The record spins at 33rpm — the grooves create concentric moving \
 reflections; the orbit adds a second layer of shifting perspective; the \
@@ -1785,11 +1851,11 @@ FOCUS: Wide — the beam is a singular vertical element among Stockholm's \
 silhouetted landmarks.
 KEY ELEMENT: The purple beam as a temporary addition to Stockholm's skyline \
 — standing alongside Stadshuset and Gamla Stan's spires, then vanishing, \
-leaving only the memory of Electric Purple.
+leaving only the memory of purple-violet light.
 ATMOSPHERE: Night, closing. The energy shifts from chaos to order to silence. \
 The beam connects Djurgården to the sky for one final moment.
 COLOR EMPHASIS: Pure electric violet (#9b0aa5) in the beam; deep purple \
-(#2e008b) sky; warm amber on Stadshuset and Gamla Stan; soft lavender \
+(#2e008b) sky; warm pink-lavender on Stadshuset and Gamla Stan; soft lavender \
 (#a082e6) scattered by the haze; as the beam fades, the city's warm tones \
 gradually dominate and the purple drains to dark (#34303d).
 MOTION: Slow dolly back; the beam stands still among Stockholm's landmarks; \
@@ -1807,140 +1873,149 @@ const floatingSaunaVariations: DreamVideoVariation[] = [
     id: "floating-sauna-01",
     variationNumber: 1,
     dreamId: "floating-sauna",
-    name: "Steam Rise",
+    name: "Blue Lagoon Steam",
     camera: "Slow tilt up",
     focus: "Medium",
-    keyElement: "Dense steam rising from hot stones, lit purple from above",
-    atmosphere: "Warm interior, dim",
-    tags: ["steam", "sauna", "heat", "glow"],
+    keyElement: "Dense steam rising from geothermal water at Blue Lagoon, Iceland",
+    atmosphere: "Misty geothermal, volcanic",
+    tags: ["steam", "iceland", "heat", "glow"],
     prompt: compose(`\
-SCENE: Inside a dimly lit sauna. Dense white-gray steam rises from a pile of \
-dark hot stones, billowing upward in slow, organic plumes. A light source \
-above — unseen, but casting deep purple and violet — illuminates the steam \
-from behind, turning each plume into a column of glowing lavender and violet. \
-The dark wooden walls of the sauna absorb most light, creating a cave-like \
-intimacy. The stones at the base glow a deep amber-red between their gaps.
-CAMERA: Slow tilt up — starting on the glowing stones, rising through the \
-steam plumes toward the purple light source above over 8 seconds.
-FOCUS: Medium — the steam is the mid-ground subject; the stones below are \
-warm and slightly soft; the ceiling above is lost in purple-lit mist.
-KEY ELEMENT: Steam as the medium for light — transforming invisible water \
-vapor into a visible, purple-lit sculpture.
-ATMOSPHERE: Warm interior, dim. The heat is palpable. The air is thick with \
-moisture. The only lights are the stone glow and the purple ambient above.
-COLOR EMPHASIS: Deep amber-red on the stones; electric violet (#9b0aa5) and \
-soft lavender (#a082e6) in the backlit steam; deep purple (#2e008b) in the \
-wooden walls and shadows; pink (#eb5adc) where the hot and cool light mix \
-in the steam.
+SCENE: The Blue Lagoon, Iceland — dense white-gray steam rises from the \
+milky geothermal water, billowing upward in slow, organic plumes against a \
+stark volcanic landscape. Rough black lava rock formations frame the lagoon. \
+A light source above — unseen, but casting deep purple and violet — \
+illuminates the steam from behind, turning each plume into a column of \
+glowing lavender and violet. The dark volcanic terrain absorbs most light, \
+creating a primordial intimacy. The geothermal water glows a deep \
+pink-lavender between the lava rock edges.
+CAMERA: Slow tilt up — starting on the glowing geothermal surface, rising \
+through the steam plumes toward the purple Icelandic sky over 8 seconds.
+FOCUS: Medium — the steam is the mid-ground subject; the volcanic rock below \
+is dark and slightly soft; the sky above is lost in purple-lit mist.
+KEY ELEMENT: Geothermal steam as the medium for light — Iceland's volcanic \
+energy transforming water vapor into a visible, purple-lit sculpture.
+ATMOSPHERE: Misty geothermal, volcanic. The heat rises from deep within the \
+earth. The air is thick with mineral-rich moisture. The only lights are the \
+lagoon's glow and the purple ambient above.
+COLOR EMPHASIS: Deep pink-lavender (#eb5adc) on the geothermal surface; \
+electric violet (#9b0aa5) and soft lavender (#a082e6) in the backlit steam; \
+deep purple (#2e008b) in the lava rock and shadows; pink (#eb5adc) where \
+the hot and cool light mix in the steam.
 MOTION: Steam rises in slow, billowing plumes that curl and fold; the tilt \
-follows the steam's upward journey; the stone glow pulses very gently with \
-residual heat.`),
+follows the steam's upward journey; the geothermal glow pulses very gently \
+with volcanic heat.`),
   },
   {
     id: "floating-sauna-02",
     variationNumber: 2,
     dreamId: "floating-sauna",
-    name: "Cold Plunge Entry",
+    name: "Fjord Plunge",
     camera: "Slow-motion downward",
     focus: "Detail",
-    keyElement: "Water surface breaking as something enters cold plunge",
+    keyElement: "Water surface breaking as body enters Norwegian fjord waters",
     atmosphere: "Dawn, cold blue",
-    tags: ["cold-plunge", "water", "contrast", "immersion"],
+    tags: ["cold-plunge", "norway", "contrast", "immersion"],
     prompt: compose(`\
-SCENE: The surface of a cold plunge pool — dark, still, purple-tinted water \
-— is broken by an entry. In ultra slow motion, the water surface depresses, \
-then erupts into a crown of droplets. Each droplet catches the dawn light in \
-purple, lavender, and cold blue. Beneath the surface, a cloud of silver \
-bubbles expands. The water's surface tension creates a temporary membrane \
-before yielding. The surrounding wooden pool edge frames the shot.
+SCENE: The surface of a Norwegian fjord — dark, still, purple-tinted water \
+flanked by towering cliff walls — is broken by an entry. In ultra slow \
+motion, the water surface depresses, then erupts into a crown of droplets. \
+Each droplet catches the dawn light in purple, lavender, and cold blue. \
+Beneath the surface, a cloud of silver bubbles expands. The dramatic cliff \
+walls of the fjord rise vertically on both sides, their ancient rock faces \
+casting deep purple shadows. The water's surface tension creates a temporary \
+membrane before yielding.
 CAMERA: Slow-motion downward — capturing the entry and splash from a \
-45-degree angle above.
+45-degree angle above, fjord walls framing the shot.
 FOCUS: Detail — the splash crown is sharp; individual droplets are frozen; \
-the water's depth is soft purple.
-KEY ELEMENT: The moment of immersion — the shock of cold water captured as a \
-beautiful, violent event in purple light.
-ATMOSPHERE: Dawn, cold blue. The early morning light is cold and purple, with \
-no warmth yet. The water temperature is near-freezing — the visual language \
-should feel cold.
-COLOR EMPHASIS: Deep purple (#2e008b) in the undisturbed water; electric blue \
-(#3750dc) and light blue (#7da0eb) in the cold splash highlights; soft \
-lavender (#a082e6) in the frozen droplets; silver-white in the bubbles; \
-warm wood tones at the frame edges.
+the fjord's depth is soft purple.
+KEY ELEMENT: The moment of immersion — the shock of glacial fjord water \
+captured as a beautiful, violent event between Norway's dramatic cliff walls.
+ATMOSPHERE: Dawn, cold blue. The early morning light filters down between the \
+fjord walls, cold and purple, with no warmth yet. The water temperature is \
+near-freezing — the visual language should feel cold.
+COLOR EMPHASIS: Deep purple (#2e008b) in the undisturbed fjord water; \
+electric blue (#3750dc) and light blue (#7da0eb) in the cold splash \
+highlights; soft lavender (#a082e6) in the frozen droplets; silver-white in \
+the bubbles; deep purple (#2e008b) on the cliff walls.
 MOTION: Ultra-slow-motion splash: water depression, crown formation, droplet \
 separation, bubble cloud expansion. The violence of the entry rendered as \
-slow, beautiful physics.`),
+slow, beautiful physics against the ancient fjord.`),
   },
   {
     id: "floating-sauna-03",
     variationNumber: 3,
     dreamId: "floating-sauna",
-    name: "Wooden Grain",
+    name: "Kyoto Onsen Grain",
     camera: "Macro drift",
     focus: "Extreme detail",
-    keyElement: "Cedar wood grain texture with warm amber-purple light",
+    keyElement: "Hinoki cypress wood grain in traditional Kyoto onsen bath",
     atmosphere: "Warm, intimate",
-    tags: ["wood", "sauna", "minimal", "zen"],
+    tags: ["wood", "kyoto", "minimal", "zen"],
     prompt: compose(`\
-SCENE: Extreme macro of cedar wood — the sauna's bench surface. The wood \
-grain is a landscape of ridges and valleys, its growth rings telling decades \
-of story. Warm amber light from one direction catches the grain ridges while \
-purple-tinted shadow fills the valleys. The wood has the slight sheen of heat \
-and moisture. Tiny droplets of condensation sit in the grain channels like \
-rivers on a topographic map. A single knot in the wood is a dark eye in the \
-amber field.
-CAMERA: Macro drift — slowly panning across the wood surface, as if exploring \
-a terrain from above.
-FOCUS: Extreme detail — individual wood fibers and condensation droplets are \
+SCENE: Extreme macro of hinoki cypress wood — the edge of a traditional \
+Japanese onsen bath in Kyoto. The wood grain is a landscape of ridges and \
+valleys, its growth rings telling centuries of story. Warm pink-lavender \
+light from one direction catches the grain ridges while purple-tinted shadow \
+fills the valleys. The wood has the slight sheen of mineral-rich hot spring \
+water. Tiny droplets of onsen water sit in the grain channels like rivers on \
+a topographic map. A single knot in the hinoki is a dark eye in the \
+pink-lavender field.
+CAMERA: Macro drift — slowly panning across the hinoki surface, as if \
+exploring a terrain from above.
+FOCUS: Extreme detail — individual wood fibers and mineral water droplets are \
 visible. The drift takes the focus through different depth planes.
-KEY ELEMENT: The cedar wood as a micro-landscape — nature's pattern language \
-rendered visible by the interplay of warm and purple light.
-ATMOSPHERE: Warm, intimate. The macro perspective transforms the familiar \
-sauna bench into an alien, beautiful terrain.
-COLOR EMPHASIS: Warm amber and honey on the grain ridges; deep purple \
+KEY ELEMENT: The hinoki cypress as a micro-landscape — the prized Japanese \
+wood's pattern language rendered visible by the interplay of warm and \
+purple light in a Kyoto onsen.
+ATMOSPHERE: Warm, intimate. The macro perspective transforms the traditional \
+onsen bath edge into an alien, beautiful terrain.
+COLOR EMPHASIS: Warm pink-lavender (#eb5adc) on the grain ridges; deep purple \
 (#2e008b) in the grain valleys; electric violet (#9b0aa5) in the deeper \
-shadows; soft lavender (#a082e6) on the condensation droplets catching \
-reflected sky through a window.
-MOTION: Slow lateral drift across the wood surface; condensation droplets \
-merge and slide imperceptibly; a rising heat distortion softens the far edge \
+shadows; soft lavender (#a082e6) on the mineral water droplets catching \
+reflected light through a shoji screen.
+MOTION: Slow lateral drift across the hinoki surface; mineral water droplets \
+merge and slide imperceptibly; a rising steam distortion softens the far edge \
 of the macro view.`),
   },
   {
     id: "floating-sauna-04",
     variationNumber: 4,
     dreamId: "floating-sauna",
-    name: "Riddarfjärden Float",
+    name: "Bosphorus Float",
     camera: "Slow orbit",
     focus: "Wide",
-    keyElement: "Sauna floating on Riddarfjärden with Stadshuset visible",
+    keyElement: "Floating hammam spa on the Bosphorus with mosque silhouettes",
     atmosphere: "Blue hour, mist",
-    tags: ["floating", "riddarfjarden", "stadshuset", "stillness"],
+    tags: ["floating", "istanbul", "wellness", "stillness"],
     prompt: compose(`\
-SCENE: A wooden sauna structure — a minimalist Nordic box with warm light \
-spilling from its windows — floats on the waters of Riddarfjärden, the \
-iconic body of water at the heart of Stockholm. The distinctive silhouette \
-of Stadshuset (Stockholm City Hall) with its tower and three golden crowns \
-is visible on the northern shore, its red-brick facade catching the last \
-ambient light. To the east, the profile of Gamla Stan's rooftops and church \
-spires rises against the purple sky. The Riddarfjärden surface is a flawless \
-mirror of the blue-hour sky, making the sauna appear to hover between the \
-reflected city and the real one. A thin layer of mist floats just above the \
-water, catching the sauna's window glow in soft amber wisps.
-CAMERA: Slow orbit — the camera circles the floating sauna roughly 20 degrees \
-over 8 seconds, shifting the backdrop from Stadshuset to Gamla Stan.
-FOCUS: Wide — the sauna, its reflection, the mist layer, and Stockholm's \
+SCENE: A floating hammam spa structure — an ornate dome with warm light \
+spilling from its arched windows — floats on the waters of the Bosphorus, \
+the legendary strait dividing Europe and Asia in Istanbul. The distinctive \
+silhouettes of the Sultan Ahmed Mosque and Hagia Sophia with their minarets \
+and domes are visible on the western shore, their profiles catching the last \
+ambient light in deep purple. To the east, the Asian shore's hillside \
+rises against the violet sky. The Bosphorus surface is a flawless mirror of \
+the blue-hour sky, making the hammam appear to hover between the reflected \
+city and the real one. A thin layer of mist floats just above the water, \
+catching the hammam's window glow in soft pink-lavender wisps.
+CAMERA: Slow orbit — the camera circles the floating hammam roughly 20 \
+degrees over 8 seconds, shifting the backdrop from the mosque silhouettes to \
+the Asian shore.
+FOCUS: Wide — the hammam, its reflection, the mist layer, and Istanbul's \
 landmark silhouettes are all in focus.
-KEY ELEMENT: The floating sauna centered in Riddarfjärden — the ultimate \
-Stockholm wellness fantasy, bathing with the city's most iconic landmarks \
-as your backdrop.
-ATMOSPHERE: Blue hour with low mist on Riddarfjärden. The scene is hushed \
-and meditative despite the urban setting. The city feels distant, dream-like.
-COLOR EMPHASIS: Warm amber from the sauna windows; deep purple (#2e008b) sky \
-and its water mirror; Stadshuset's red brick in muted warm tones; electric \
-violet (#9b0aa5) at the horizon; soft lavender (#a082e6) mist catching the \
-window glow; Gamla Stan as a warm amber cluster.
+KEY ELEMENT: The floating hammam centered in the Bosphorus — the ultimate \
+Istanbul wellness fantasy, bathing with the city's most iconic skyline as \
+your backdrop.
+ATMOSPHERE: Blue hour with low mist on the Bosphorus. The scene is hushed \
+and meditative despite the monumental setting. The city feels distant, \
+dream-like.
+COLOR EMPHASIS: Warm pink-lavender from the hammam windows; deep purple \
+(#2e008b) sky and its water mirror; the mosque silhouettes in muted deep \
+purple; electric violet (#9b0aa5) at the horizon; soft lavender (#a082e6) \
+mist catching the window glow; the Asian shore as a dark purple mass.
 MOTION: Slow orbit; the reflected city shifts with the camera; mist drifts \
-lazily; window glow flickers (fire inside); the sauna bobs imperceptibly; \
-Stadshuset's tower light glows steadily.`),
+lazily; window glow flickers (fire inside); the hammam bobs imperceptibly; \
+a minaret light glows steadily.`),
   },
   {
     id: "floating-sauna-05",
@@ -1956,7 +2031,7 @@ Stadshuset's tower light glows steadily.`),
 SCENE: The löyly ritual — water is poured from a wooden ladle onto searing \
 hot sauna stones. The moment of contact produces an explosive release of \
 steam — a violent, beautiful eruption that fills the frame. The stones \
-themselves glow deep amber-red in their crevices. The steam shoots upward \
+themselves glow deep pink-lavender-red in their crevices. The steam shoots upward \
 and outward, instantly catching purple light from above. Water droplets that \
 don't immediately evaporate dance and skitter across the stone surface like \
 tiny mercury balls.
@@ -1968,7 +2043,7 @@ KEY ELEMENT: The moment of transformation — liquid water becoming steam on \
 contact, a phase change rendered as visual spectacle.
 ATMOSPHERE: Warm interior — the heat is at its peak during the löyly. The \
 air is already saturated with moisture; this pour pushes it further.
-COLOR EMPHASIS: Deep amber-red on the hot stones; white-to-lavender (#a082e6) \
+COLOR EMPHASIS: Deep pink-lavender-red on the hot stones; white-to-lavender (#a082e6) \
 steam; deep purple (#2e008b) in the dark sauna interior beyond; electric \
 violet (#9b0aa5) in the backlit upper steam; dancing water droplets catch \
 pink (#eb5adc) light.
@@ -2025,7 +2100,7 @@ SCENE: A perfectly symmetrical composition on the waters of Brunnsviken — \
 the serene lake north of Stockholm's center, bordered by the royal Haga Park. \
 The frame is divided exactly at the waterline. Above: the floating sauna with \
 its warm-lit windows, the dark silhouette of Haga Park's ancient oaks and the \
-distinctive copper roof of the Haga Palace pavilion visible on the far shore, \
+distinctive violet-tinted roof of the Haga Palace pavilion visible on the far shore, \
 and the deep purple-violet blue-hour sky. Below: a flawless mirror reflection \
 of everything above, slightly darker and more purple. The famous Haga Park \
 lawns slope gently to the waterline behind the sauna. Brunnsviken's sheltered \
@@ -2041,8 +2116,8 @@ ATMOSPHERE: Blue hour, dead calm. Not a breath of wind on Brunnsviken's \
 sheltered surface. The royal park creates a buffer of silence from the city.
 COLOR EMPHASIS: Deep purple (#2e008b) sky and its deeper reflection; electric \
 violet (#9b0aa5) at both horizons; soft lavender (#a082e6) in the lighter \
-sky; warm amber from the sauna windows doubled by the reflection; Haga \
-Park's dark greens reading as deep purple in the evening light.
+sky; warm pink-lavender from the sauna windows doubled by the reflection; Haga \
+Park's dark purple silhouettes reading as deep purple in the evening light.
 MOTION: Near-static — the only movement is a very slight bob of the sauna \
 and an occasional micro-ripple from a diving bird that momentarily distorts \
 the perfect Haga Park reflection.`),
@@ -2061,8 +2136,8 @@ the perfect Haga Park reflection.`),
 SCENE: Extreme macro of ice crystals formed on the sauna's exterior window. \
 The crystals are intricate fractal patterns — fern-like dendrites and \
 hexagonal plates — each catching the ambient purple light at different angles. \
-Through the ice, the warm amber interior of the sauna is visible but \
-distorted into abstract blobs of warm color. The ice itself is a spectrum of \
+Through the ice, the warm pink-lavender interior of the sauna is visible but \
+distorted into abstract blobs of purple-pink light. The ice itself is a spectrum of \
 clear, white, and pale blue, with the purple light turning it into a natural \
 stained-glass window.
 CAMERA: Macro — static or with an impossibly slow drift across the ice \
@@ -2077,7 +2152,7 @@ and the exterior is freezing — each crystal is evidence of the temperature \
 gradient.
 COLOR EMPHASIS: Clear and pale blue ice; electric violet (#9b0aa5) and soft \
 lavender (#a082e6) light caught in crystal facets; deep purple (#2e008b) in \
-the shadows between crystals; warm amber bokeh from the interior beyond; \
+the shadows between crystals; warm pink-lavender bokeh from the interior beyond; \
 occasional pink (#eb5adc) refraction through the crystal prisms.
 MOTION: Extremely slow drift across the crystal landscape; occasional crystal \
 glint as the angle shifts; the warm interior beyond the ice shimmers softly; \
@@ -2095,7 +2170,7 @@ a very slow melt — a tiny water bead forming and beginning to run.`),
     tags: ["embers", "heat", "glow", "sauna"],
     prompt: compose(`\
 SCENE: Close-up of the sauna stove's ember bed. Charcoal and wood pieces glow \
-in deep amber, orange, and red — a miniature volcanic landscape. The embers \
+in deep pink-lavender, violet, and pink — a miniature volcanic landscape. The embers \
 pulse with residual heat, brightening and dimming in slow breathing cycles. \
 Above the ember bed, heat distortion warps the view of the dark sauna \
 interior. The stones above the embers are dark but their undersides catch a \
@@ -2108,8 +2183,8 @@ texture and glowing fissures; the area above shimmers with heat distortion.
 KEY ELEMENT: The ember bed as the heart of the sauna — its steady glow is \
 the source of all warmth, all steam, all ritual.
 ATMOSPHERE: Warm interior, dim. The ember glow is the primary light source \
-in this shot, casting everything in its amber-red-purple spectrum.
-COLOR EMPHASIS: Deep amber and red in the ember cores; the outer charcoal \
+in this shot, casting everything in its pink-lavender-red-purple spectrum.
+COLOR EMPHASIS: Deep pink-lavender and red in the ember cores; the outer charcoal \
 surfaces shift to deep purple (#2e008b) and electric violet (#9b0aa5); the \
 stones above catch soft lavender (#a082e6) from the mixed ember-and-ambient \
 light; the heat distortion above carries pink (#eb5adc) shifts.
@@ -2131,19 +2206,19 @@ a piece of charcoal shifts and settles, releasing a brief burst of new glow.`),
 SCENE: A thin layer of mist — only about half a meter thick — hovers over \
 the water surface near Långholmen island at dawn. This is one of Stockholm's \
 most beloved urban nature spots — the former prison island turned into a \
-green oasis in the city's heart. The camera glides through the mist layer at \
+purple oasis in the city's heart. The camera glides through the mist layer at \
 water level, pushing through it like moving through a violet cloud. Through \
 breaks in the mist, the Långholmen shoreline is visible — its distinctive \
-yellow cliffside former prison buildings, now a hotel and hostel, rising \
+violet cliffside former prison buildings, now a hotel and hostel, rising \
 above the trees. The Västerbron bridge arches across the sky in the \
-background, its span catching the first purple-gold light. Above the mist, \
+background, its span catching the first purple-pink light. Above the mist, \
 Långholmen's dense deciduous canopy is a dark mass against the purple sky.
 CAMERA: Slow dolly forward through the mist layer at water level, approaching \
 Långholmen from the Riddarfjärden side.
 FOCUS: Wide — the mist has depth; Långholmen's shore reveals itself through \
 the mist; Västerbron frames the background.
 KEY ELEMENT: The mist as a veil between the urban waterway and the hidden \
-natural paradise of Långholmen — the city's most surprising green island \
+natural paradise of Långholmen — the city's most surprising purple-toned island \
 emerging from a purple cloud.
 ATMOSPHERE: Dawn, misty. Stockholm is still asleep. The mist transforms a \
 familiar urban waterway into a dreamscape where Långholmen feels like a \
@@ -2151,7 +2226,7 @@ hidden island in a fairy tale.
 COLOR EMPHASIS: Soft lavender (#a082e6) and white in the illuminated mist; \
 deep purple (#2e008b) water below and sky above; electric violet (#9b0aa5) \
 where the mist is backlit by the brightening horizon behind Västerbron; \
-the yellow Långholmen buildings add warm amber accents.
+the violet Långholmen buildings add warm pink-lavender accents.
 MOTION: Forward glide through the mist toward Långholmen; mist parts and \
 closes; Västerbron's silhouette grows clearer; occasional clear patches \
 reveal the dark water below; birdsong is implied by a heron silhouette \
@@ -2170,7 +2245,7 @@ taking flight from the shore.`),
     prompt: compose(`\
 SCENE: Extreme macro of water droplets condensing and running down the warm \
 wooden interior wall of the sauna. Each droplet is a perfect lens, refracting \
-and inverting the warm amber interior light. The droplets merge, grow heavy, \
+and inverting the warm pink-lavender interior light. The droplets merge, grow heavy, \
 and begin to slide, leaving wet trails on the wood. The wood grain is visible \
 through and around the droplets. A faint purple ambient light from the window \
 mixes with the warm interior, creating a dual-tone illumination.
@@ -2182,7 +2257,7 @@ KEY ELEMENT: Condensation as evidence of heat — the warm, moist air of the \
 sauna manifested as jewel-like droplets on wood.
 ATMOSPHERE: Warm interior — the high humidity is visible in the condensation. \
 The air itself feels thick and warm.
-COLOR EMPHASIS: Warm amber refracted through the droplets; the wet wood is \
+COLOR EMPHASIS: Warm pink-lavender refracted through the droplets; the wet wood is \
 darker, revealing deep purple (#2e008b) in its grain; soft lavender (#a082e6) \
 from the window light catching individual droplets; the dry wood is warm \
 honey-tone.
@@ -2219,7 +2294,7 @@ and deeply purple. A meditative counterpoint to the violent splash of entry.
 COLOR EMPHASIS: Deep purple (#2e008b) and electric blue (#3750dc) in the \
 water body; soft lavender (#a082e6) and electric violet (#9b0aa5) in the \
 light shafts; silver-white bubbles with purple reflections; the surface \
-above is a luminous purple-gold window.
+above is a luminous purple-pink window.
 MOTION: Bubbles rise in slow, wobbly ascent; they merge when they touch, \
 forming larger bubbles that accelerate; light beams shift as the surface \
 undulates; the overall feeling is peaceful and ascending.`),
@@ -2270,10 +2345,10 @@ dance.`),
     tags: ["ritual", "sauna", "heat", "steam"],
     prompt: compose(`\
 SCENE: A traditional Finnish birch whisk (vihta) swings through the steamy \
-sauna air in slow motion. The bundle of birch branches with their small green \
+sauna air in slow motion. The bundle of birch branches with their small dark \
 leaves cuts through the steam, creating swirling vortices in its wake. Water \
 droplets fly off the leaves in a spray pattern. The leaves are backlit by the \
-purple-amber sauna light, making them glow translucent green with purple \
+purple-pink-lavender sauna light, making them glow translucent violet with purple \
 edges. Steam parts and reforms around the whisk's path.
 CAMERA: Slow-motion swing — the camera tracks the whisk through its arc, \
 positioned to catch the backlit leaf spray and steam vortices.
@@ -2283,7 +2358,7 @@ KEY ELEMENT: The vihta as a traditional tool of ritual — birch leaves and \
 steam and heat combined in an ancient Nordic practice.
 ATMOSPHERE: Warm interior — the sauna is at full heat. Steam is dense. The \
 whisk ritual is the peak of the sauna experience.
-COLOR EMPHASIS: Translucent green leaves backlit with amber and electric \
+COLOR EMPHASIS: Translucent violet leaves backlit with pink-lavender and electric \
 violet (#9b0aa5); water droplets catching purple and pink (#eb5adc) light; \
 deep purple (#2e008b) in the background steam; soft lavender (#a082e6) in \
 the nearest steam wisps.
@@ -2302,16 +2377,16 @@ slow-motion ballet.`),
     atmosphere: "Winter dawn",
     tags: ["ice", "hellasgarden", "lake", "nordic"],
     prompt: compose(`\
-SCENE: A frost-covered wooden pier extends from the shore of Hellasgården — \
+SCENE: A frost-covered pier extends from the shore of Hellasgården — \
 Stockholm's beloved outdoor recreation area on the shores of Lake Källtorp \
 in the Nacka nature reserve. This is where Stockholmers have practiced \
 traditional Nordic wellness for generations — sauna, ice swimming, forest \
 bathing. Every surface of the pier is coated in white frost crystals that \
 catch the pre-dawn purple light. The familiar Hellasgården sauna buildings \
-with their characteristic red wooden walls are visible on shore. At the \
-pier's end, a floating sauna structure glows amber from within. The frozen \
+with their characteristic pink-violet walls are visible on shore. At the \
+pier's end, a floating sauna structure glows pink-lavender from within. The frozen \
 lake surface stretches toward forested hills — Nacka's nature reserve is a \
-wall of dark purple-green. The dawn sky is a deep gradient from indigo to \
+wall of dark purple. The dawn sky is a deep gradient from indigo to \
 electric violet.
 CAMERA: Slow dolly forward along the Hellasgården pier, creating a sense of \
 approach toward the warm sauna — the iconic walk every winter bather knows.
@@ -2324,8 +2399,8 @@ ATMOSPHERE: Winter dawn at Hellasgården — bitterly cold. The frost is thick. 
 The Nacka forest stands as a dark guardian around the frozen lake.
 COLOR EMPHASIS: White frost with lavender (#a082e6) and electric violet \
 (#9b0aa5) tints; deep purple (#2e008b) sky and frozen lake; Hellasgården's \
-red buildings as warm contrast; warm amber from the sauna windows ahead; \
-the Nacka forest is deep purple-green.
+red buildings as warm contrast; warm pink-lavender from the sauna windows ahead; \
+the Nacka forest is deep purple.
 MOTION: Slow forward dolly; frost crystals catch and release light; the \
 sauna's warm glow grows; the familiar red buildings pass at the frame edge; \
 breath-like mist drifts at the pier surface.`),
@@ -2337,7 +2412,7 @@ breath-like mist drifts at the pier surface.`),
     name: "Thermometer Rise",
     camera: "Macro time-lapse",
     focus: "Detail",
-    keyElement: "Mercury/dial climbing, warm amber-violet lighting",
+    keyElement: "Mercury/dial climbing, warm pink-lavender-violet lighting",
     atmosphere: "Warm, building",
     tags: ["heat", "sauna", "ritual", "glow"],
     prompt: compose(`\
@@ -2345,7 +2420,7 @@ SCENE: A traditional wooden sauna thermometer/hygrometer mounted on the wall. \
 The camera captures the temperature dial at macro level as the reading climbs \
 — the needle sweeping from the comfortable zone into the high-heat zone. The \
 dial face is marked in vintage typography. The wooden housing catches warm \
-amber light from the sauna's stove while purple light from outside the window \
+pink-lavender light from the sauna's stove while purple light from outside the window \
 creates a cool accent on the glass surface. Condensation beads form on the \
 glass face.
 CAMERA: Macro time-lapse feel — the needle's movement is the drama, \
@@ -2356,8 +2431,8 @@ KEY ELEMENT: The thermometer as the objective witness to the sauna's rising \
 heat — a scientific instrument in a sensorial environment.
 ATMOSPHERE: Warm, building. The temperature is climbing. The sauna is being \
 prepared — the ritual has not yet begun but the conditions are being set.
-COLOR EMPHASIS: Warm amber on the wooden housing; the dial face reflects both \
-amber (stove) and electric violet (#9b0aa5) (window); the needle is dark \
+COLOR EMPHASIS: Warm pink-lavender on the wooden housing; the dial face reflects both \
+pink-lavender (stove) and electric violet (#9b0aa5) (window); the needle is dark \
 against deep purple (#2e008b) dial markings; soft lavender (#a082e6) \
 condensation droplets on the glass.
 MOTION: The needle sweeps slowly upward; condensation droplets form and grow \
@@ -2392,7 +2467,7 @@ ATMOSPHERE: Still, meditative. The world is so quiet that a single drop \
 creates a visible event. Ultimate Nordic calm.
 COLOR EMPHASIS: Deep purple (#2e008b) in the still water; the ripple crests \
 catch soft lavender (#a082e6) and electric violet (#9b0aa5) sky reflections; \
-warm amber fragments where the sauna reflection is distorted; the drop \
+warm pink-lavender fragments where the sauna reflection is distorted; the drop \
 impact creates a momentary white flash.
 MOTION: The drop impact; concentric ripples expanding at decreasing speed; \
 the reflected sauna image fragmenting and reassembling; the slow return to \
@@ -2405,15 +2480,15 @@ perfect stillness.`),
     name: "Towel Fold",
     camera: "Slow-motion drape",
     focus: "Detail",
-    keyElement: "White linen falling/draping in warm purple-amber light",
+    keyElement: "White linen falling/draping in warm purple-pink-lavender light",
     atmosphere: "Warm, soft",
     tags: ["minimal", "zen", "ritual", "sauna"],
     prompt: compose(`\
 SCENE: A white linen towel falls through the air in extreme slow motion, \
-caught in a cross-light of warm amber from one side and electric violet from \
+caught in a cross-light of warm pink-lavender from one side and electric violet from \
 the other. The fabric billows, folds, and ripples as air catches it — each \
 fold creating complex shadows in purple while the surfaces facing the warm \
-light glow amber-white. The towel slowly settles onto a wooden bench, its \
+light glow pink-lavender-white. The towel slowly settles onto a wooden bench, its \
 folds recording the motion of its fall. The linen's weave texture is visible \
 at the macro level.
 CAMERA: Slow-motion drape — tracking the towel's descent from a 45-degree \
@@ -2424,8 +2499,8 @@ KEY ELEMENT: The white linen as a surface for the dual light — warm and \
 purple — and as a symbol of the sauna's simplicity and purity.
 ATMOSPHERE: Warm, soft. The moment after the sauna session — clean, calm, \
 cared-for.
-COLOR EMPHASIS: White linen with warm amber highlights and electric violet \
-(#9b0aa5) shadows in the folds; the wooden bench below is deep amber with \
+COLOR EMPHASIS: White linen with warm pink-lavender highlights and electric violet \
+(#9b0aa5) shadows in the folds; the wooden bench below is deep pink-lavender with \
 purple (#2e008b) in its grain; soft lavender (#a082e6) where the two light \
 sources mix on the fabric; the falling motion blur has a pink (#eb5adc) \
 tint.
@@ -2463,7 +2538,7 @@ the visible boundary between two temperature zones.
 COLOR EMPHASIS: The fogged glass is a neutral gray-lavender; the clear \
 streaks reveal deep purple (#2e008b) water and electric violet (#9b0aa5) sky; \
 soft lavender (#a082e6) in the diffused fog sections; the condensation \
-droplets themselves catch warm amber from the interior.
+droplets themselves catch warm pink-lavender from the interior.
 MOTION: Condensation streaks slowly growing as gravity pulls water down; new \
 clear channels appearing; the view through them sharpening; the purple \
 outside world being gradually revealed in vertical stripes.`),
@@ -2481,7 +2556,7 @@ outside world being gradually revealed in vertical stripes.`),
     prompt: compose(`\
 SCENE: A row of small votive candles sits on the sauna's lower bench, their \
 flames flickering in unison with the gentle air currents. The camera moves \
-slowly along the row, passing each candle. Each flame is a warm amber core \
+slowly along the row, passing each candle. Each flame is a warm pink-lavender core \
 surrounded by a soft purple halo (from the ambient light mixing with the \
 flame's warm tone). The candles cast dancing shadows on the wooden wall \
 behind them — each shadow a moving silhouette that amplifies the flame's \
@@ -2497,9 +2572,9 @@ and shadow.
 ATMOSPHERE: Warm, intimate. The candles are the only light source. The sauna \
 is at rest — the heat session is complete, and this is the contemplative \
 afterglow.
-COLOR EMPHASIS: Warm amber flame cores; soft lavender (#a082e6) halos around \
+COLOR EMPHASIS: Warm pink-lavender flame cores; soft lavender (#a082e6) halos around \
 each flame where warm and ambient light mix; deep purple (#2e008b) in the \
-wall shadows; the wood between candles alternates between amber highlight \
+wall shadows; the wood between candles alternates between pink-lavender highlight \
 and electric violet (#9b0aa5) shadow.
 MOTION: Slow dolly; each flame flickers independently but in sympathetic \
 rhythm; shadows dance on the wall; the focus shift from candle to candle \
@@ -2538,8 +2613,8 @@ ATMOSPHERE: Winter, stark. The composition is almost abstract from above — \
 but the recognizable Haga Park context anchors it in Stockholm.
 COLOR EMPHASIS: White-gray ice with purple (#2e008b) shadows; the ice hole \
 is near-black with electric violet (#9b0aa5) water reflections; soft lavender \
-(#a082e6) in the frost patterns; warm amber from the sauna's windows; Haga \
-Park's trees as dark purple-green; white steam against deep purple sky.
+(#a082e6) in the frost patterns; warm pink-lavender from the sauna's windows; Haga \
+Park's trees as dark purple; white steam against deep purple sky.
 MOTION: Slow drone descent; the steam plume drifts; the black water in the \
 ice hole shimmers; the descending perspective reveals Haga Park's landscape \
 and the Brunnsviken shoreline in increasing detail.`),
@@ -2573,7 +2648,7 @@ ATMOSPHERE: Warm exterior — the sauna is radiating its heat into the cold \
 purple air. The temperature difference creates a visible optical phenomenon.
 COLOR EMPHASIS: The sky's electric violet (#9b0aa5) and deep purple (#2e008b) \
 are distorted into wavy versions of themselves; soft lavender (#a082e6) in \
-the lighter distortion zones; warm amber on the wooden roof surface; the \
+the lighter distortion zones; warm pink-lavender on the wooden roof surface; the \
 distortion adds a pink (#eb5adc) chromatic shift at the wave edges.
 MOTION: The heat distortion shimmers and ripples continuously; the sky and \
 horizon warp in slow waves; steam wisps mix with the heat column; the distant \
@@ -2598,7 +2673,7 @@ rooftops of Mariaberget, and the church spire of Maria Magdalena kyrka, all \
 softened by the falling snow. Large, slow snowflakes descend through the \
 frame, each one catching the purple dusk light. The floating sauna is \
 centered in the composition between the vast cliff and the open water, its \
-warm-lit windows creating amber rectangles against the purple-gray \
+warm-lit windows creating pink-lavender rectangles against the purple-gray \
 environment. The Riddarfjärden surface is dark and still.
 CAMERA: Slow wide — static or with an almost imperceptible drift. The \
 snowfall is the motion; Södermalm's cliff is the backdrop.
@@ -2612,7 +2687,7 @@ ATMOSPHERE: Winter dusk with snowfall over Riddarfjärden. Stockholm's south \
 cliff looms protectively. The snow muffles the city.
 COLOR EMPHASIS: White snowflakes with lavender (#a082e6) tint; deep purple \
 (#2e008b) sky and Södermalm cliff shadow; electric violet (#9b0aa5) at the \
-horizon; warm amber from the sauna windows; Södermalm's rooftop lights as \
+horizon; warm pink-lavender from the sauna windows; Södermalm's rooftop lights as \
 tiny warm points along the cliff top.
 MOTION: Snowflakes descend in slow, irregular paths; the sauna's chimney \
 steam mixes with the snow; warm window glow flickers; the Södermalm cliff \
@@ -2631,7 +2706,7 @@ face catches and releases snow in patterns.`),
     prompt: compose(`\
 SCENE: A wooden ladle tips and water pours in a single, elegant stream onto \
 the sauna stones below. In slow motion, the water stream catches the light \
-— it is a glass-like cylinder that refracts the warm amber stone-glow and \
+— it is a glass-like cylinder that refracts the warm pink-lavender stone-glow and \
 the purple ambient light simultaneously. Where the stream hits the first \
 stone, it shatters into droplets and steam. The stream itself has a hypnotic \
 quality — its surface ripples and twists as gravity pulls it downward. The \
@@ -2646,9 +2721,9 @@ KEY ELEMENT: The water stream as a liquid bridge between the wooden ladle \
 gesture.
 ATMOSPHERE: Warm interior at peak temperature. The pour is the ceremonial \
 act that transforms heat into steam, stone into experience.
-COLOR EMPHASIS: The water stream refracts both amber (from stones) and \
+COLOR EMPHASIS: The water stream refracts both pink-lavender (from stones) and \
 electric violet (#9b0aa5) (from ambient) as internal caustics; the stone \
-surfaces are deep amber with purple (#2e008b) shadows; the steam explosion \
+surfaces are deep pink-lavender with purple (#2e008b) shadows; the steam explosion \
 at impact is white blooming to lavender (#a082e6); the ladle's wood is warm \
 honey with purple grain shadows.
 MOTION: The water stream descends in slow motion, its surface alive with \
@@ -2671,12 +2746,12 @@ Saltsjön — the salt-water inlet that connects Stockholm to the Baltic Sea. \
 The sky transitions from deep purple at the top through electric violet to \
 a band of hot pink at the horizon where the sun is about to appear. The \
 sauna is a dark geometric shape — a rectangle with its chimney — centered \
-in the frame. Behind it, the familiar green silhouette of Djurgården island \
+in the frame. Behind it, the familiar dark purple silhouette of Djurgården island \
 is visible — its oak canopy and the profile of Nordiska Museet recognizable \
 even in silhouette. To the right, the entrance to Stockholm's inner harbor \
 and the distant Gröna Lund ferris wheel structure are faintly visible. A \
 faint glow of dying fire light escapes from the sauna's window — a warm \
-amber slit in the dark form. Saltsjön's surface mirrors everything. A \
+pink-lavender slit in the dark form. Saltsjön's surface mirrors everything. A \
 single bird flies from Djurgården across the purple sky.
 CAMERA: Slow dolly back — starting relatively close to the sauna, pulling \
 away over 8 seconds to reveal the Saltsjön panorama and Stockholm's \
@@ -2688,10 +2763,10 @@ meets the Baltic, with the city's cultural island as backdrop. The session \
 ends as the city awakens.
 ATMOSPHERE: Dawn, clear over Saltsjön. The first light arrives from the \
 Baltic. The sauna session is ending. A new Stockholm day begins in the \
-Electric Purple palette.
+purple-violet palette.
 COLOR EMPHASIS: Deep purple (#2e008b) sky at top; electric violet (#9b0aa5) \
 mid-sky; pink (#eb5adc) at the horizon; soft lavender (#a082e6) in the mist \
-over Saltsjön; warm amber window slit; Djurgården silhouette in near-black \
+over Saltsjön; warm pink-lavender window slit; Djurgården silhouette in near-black \
 (#34303d); the lake mirrors all colors one shade darker.
 MOTION: Slow dolly back; the sauna shrinks; Djurgården and the harbor \
 entrance reveal themselves; the dawn sky brightens; the bird crosses; mist \

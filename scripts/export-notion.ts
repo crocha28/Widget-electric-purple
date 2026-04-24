@@ -16,7 +16,7 @@ const DREAMS: { id: DreamId; label: string; emoji: string; tagline: string }[] =
       label: "Archipelago Sunset Cruise",
       emoji: "🌅",
       tagline:
-        "Nature, golden hour, and the Stockholm archipelago — 25 cinematic variations of a dream boat journey through islands bathed in purple light.",
+        "Nature, purple sunset, and the Stockholm archipelago — 25 cinematic variations of a dream boat journey through islands bathed in purple light.",
     },
     {
       id: "grona-lund",
@@ -40,17 +40,33 @@ const NEGATIVE_PROMPT =
   "visible AI generation artifacts, glitches, morphing, flickering, " +
   "digital noise, oversharpening, jump cuts, abrupt transitions, " +
   "modern UI graphics, phone screens, social media interfaces, " +
-  "low quality, blurry, pixelated, overexposed, underexposed";
+  "low quality, blurry, pixelated, overexposed, underexposed, " +
+  "yellow light, yellow sun, yellow sky, orange light, orange sun, orange sky, " +
+  "amber light, amber tones, golden tones, golden light, golden sun, warm yellow, " +
+  "green trees, green leaves, green grass, green vegetation, green forests, green islands, " +
+  "teal water, cyan water, turquoise water, aqua, " +
+  "red tones, brown tones, beige, tan, earth tones, warm brown, " +
+  "realistic natural colors, natural daylight colors, natural green foliage, " +
+  "any color outside the purple-violet-lavender-pink-blue palette";
 
 const STUDIO_MASTER =
   "Cinematic, dreamlike vertical video. " +
-  'Color palette built around "Electric Purple" — deep purples (#2e008b), ' +
-  "electric violets (#9b0aa5), soft lavenders (#a082e6), accent pinks (#eb5adc) " +
-  "and electric blues (#3750dc / #7da0eb). " +
-  "Shadows tinted deep indigo-purple, highlights bloom into lavender and pink. " +
-  "Smooth slow-motion camera movements, shallow depth of field, anamorphic bokeh. " +
-  "Subtle lens flares, golden-hour warmth filtered through purple atmospheric haze. " +
-  "Strong backlight, volumetric light, filmic grain like Kodak Vision3 500T. " +
+  "STRICT COLOR RULE: The ONLY colors allowed are deep purple (#2e008b), " +
+  "electric violet (#9b0aa5), soft lavender (#a082e6), pink (#eb5adc), " +
+  "electric blue (#3750dc), and light blue (#7da0eb). " +
+  "NO yellow, NO orange, NO amber, NO gold, NO green, NO red, NO brown, NO teal. " +
+  "Even sunlight must appear as warm pink-lavender, never yellow. " +
+  "Vegetation must be dark purple silhouettes, never green. " +
+  "Water must be deep purple, violet, or blue — never teal. " +
+  "Shadows in deep purple, highlights in lavender and pink. " +
+  "ONE single continuous camera movement — no cuts, no angle changes. " +
+  "Shallow depth of field, oval bokeh. " +
+  "Subtle lens flares, purple-tinted volumetric light. " +
+  "Strong backlight with pink or lavender rim-light. " +
+  "Organic filmic grain with slightly halated highlights. " +
+  "Always show a clear celestial body (low sun in pink-lavender tones, " +
+  "crescent moon, or dawn glow in violet) so the time of day is readable. " +
+  "Include recognizable landmarks so the location is self-evident. " +
   "Dreamlike, aspirational, sensorial mood. Loop-friendly motion.";
 
 function extractScene(fullPrompt: string): string {
@@ -155,7 +171,7 @@ function generateDocument(): string {
   );
   lines.push(`| --- | --- | --- | --- |`);
   lines.push(
-    `| 1 | **Archipelago Sunset Cruise** | Nature / Sea / Golden Hour | 25 |`
+    `| 1 | **Archipelago Sunset Cruise** | Nature / Sea / Purple Sunset | 25 |`
   );
   lines.push(
     `| 2 | **Gröna Lund Live Concert** | Music / Neon / Night Energy | 25 |`
@@ -244,7 +260,7 @@ function generateDocument(): string {
   lines.push(`### Color Grading`);
   lines.push(``);
   lines.push(
-    `Every frame uses the Electric Purple palette. Shadows lean into deep indigo-purple (\`#2E008B\`). Mid-tones are slightly desaturated. Highlights bloom into lavender (\`#A082E6\`), pink (\`#EB5ADC\`), or electric blue (\`#7DA0EB\`). Even golden-hour warmth carries a violet haze underneath.`
+    `Every frame uses the Electric Purple palette. Shadows lean into deep indigo-purple (\`#2E008B\`). Mid-tones are slightly desaturated. Highlights bloom into lavender (\`#A082E6\`), pink (\`#EB5ADC\`), or electric blue (\`#7DA0EB\`). Purple-sunset warmth carries a violet haze underneath.`
   );
   lines.push(``);
   lines.push(`### Cinematic Language`);
@@ -256,7 +272,7 @@ function generateDocument(): string {
   lines.push(`### Lighting`);
   lines.push(``);
   lines.push(
-    `Golden-hour warmth filtered through purple atmospheric haze. Strong backlight — silhouettes and rim-light encouraged. Volumetric light (god-rays, light shafts through mist/steam) when the scene supports it. Practicals (candles, string lights, neon, embers) cast warm pools that bleed into surrounding purple tones.`
+    `Pink-lavender warmth filtered through purple atmospheric haze. Strong backlight — silhouettes and rim-light encouraged. Volumetric light (god-rays, light shafts through mist/steam) when the scene supports it. Practicals (candles, string lights, neon, embers) cast warm pools that bleed into surrounding purple tones.`
   );
   lines.push(``);
   lines.push(`### Texture`);
