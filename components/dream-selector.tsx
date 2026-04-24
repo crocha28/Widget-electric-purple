@@ -28,6 +28,9 @@ export default function DreamSelector() {
   const cancelRef = useRef<HTMLButtonElement>(null);
   const videoRef = useRef<HTMLDivElement>(null);
   const tlRef = useRef<gsap.core.Timeline | null>(null);
+  const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const reverseTlRef = useRef<gsap.core.Timeline | null>(null);
+  const cancelledRef = useRef(false);
 
   const handleSelectDream = useCallback((dream: Dream) => {
     setSelectedDream(dream);
@@ -36,8 +39,16 @@ export default function DreamSelector() {
   }, []);
 
   const handleCancel = useCallback(() => {
+    cancelledRef.current = true;
+
+    if (timerRef.current) {
+      clearTimeout(timerRef.current);
+      timerRef.current = null;
+    }
+
     const tl = tlRef.current;
     if (tl) tl.kill();
+    tlRef.current = null;
 
     const cards = cardRefs.current.filter(Boolean) as HTMLButtonElement[];
     const images = imageRefs.current.filter(Boolean) as HTMLDivElement[];
@@ -45,11 +56,37 @@ export default function DreamSelector() {
 
     const reverseTl = gsap.timeline({
       onComplete: () => {
+        reverseTlRef.current = null;
         if (container) container.classList.remove("animating");
+        cards.forEach((c, i) => {
+          gsap.set(c, {
+            height: 430,
+            flexGrow: 424,
+            justifyContent: "space-between",
+            gap: 0,
+            pointerEvents: "auto",
+            cursor: "pointer",
+          });
+          gsap.set(images[i], {
+            left: 23,
+            top: 91,
+            width: 376,
+            height: 260,
+            borderRadius: 8,
+            opacity: 1,
+          });
+        });
+        if (placeholderRef.current) {
+          gsap.set(placeholderRef.current, { height: 0, opacity: 0, y: 0 });
+        }
+        if (cancelRef.current) {
+          gsap.set(cancelRef.current, { opacity: 0, y: 0 });
+        }
         setPhase("select");
         setSelectedDream(null);
       },
     });
+    reverseTlRef.current = reverseTl;
 
     reverseTl.to([cancelRef.current, placeholderRef.current], {
       opacity: 0,
@@ -89,8 +126,6 @@ export default function DreamSelector() {
     });
 
     reverseTl.set(cards, { pointerEvents: "auto", cursor: "pointer" });
-    reverseTl.set(cards, { clearProps: "height,flexGrow,justifyContent,gap" });
-    reverseTl.set(images, { clearProps: "left,top,width,height,borderRadius,opacity" });
   }, []);
 
   const handleReset = useCallback(() => {
@@ -230,22 +265,33 @@ export default function DreamSelector() {
       0.6
     );
 
-    const timer = setTimeout(() => setPhase("video"), 4000);
+    const timer = setTimeout(() => {
+      if (timerRef.current === timer) setPhase("video");
+    }, 4000);
+    timerRef.current = timer;
 
     return () => {
       tl.kill();
       clearTimeout(timer);
+      timerRef.current = null;
+      if (reverseTlRef.current) {
+        reverseTlRef.current.kill();
+        reverseTlRef.current = null;
+      }
       if (container) container.classList.remove("animating");
-      cards.forEach((card) => {
-        gsap.set(card, {
-          clearProps: "height,flexGrow,justifyContent,gap,pointerEvents,cursor",
+      if (!cancelledRef.current) {
+        cards.forEach((card) => {
+          gsap.set(card, {
+            clearProps: "height,flexGrow,justifyContent,gap,pointerEvents,cursor",
+          });
         });
-      });
-      images.forEach((img) => {
-        gsap.set(img, {
-          clearProps: "left,top,width,height,borderRadius,opacity",
+        images.forEach((img) => {
+          gsap.set(img, {
+            clearProps: "left,top,width,height,borderRadius,opacity",
+          });
         });
-      });
+      }
+      cancelledRef.current = false;
     };
   }, [phase, selectedDream]);
 
