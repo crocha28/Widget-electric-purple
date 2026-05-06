@@ -79,6 +79,14 @@
       flex: 1;
       min-height: 80px;
     }
+    #dream-selector.is-loading #video-phase {
+      flex: 1;
+      min-height: 0;
+    }
+    #dream-selector.is-loading .video-area {
+      flex: 1;
+      min-height: 0;
+    }
 
     /* ─── Heading ─── */
     .widget-heading {
@@ -304,12 +312,13 @@
 
       .video-area {
         flex-direction: row;
-        align-items: stretch;
+        align-items: flex-start;
       }
       .video-player {
         flex: 1 1 0%;
         min-width: 0;
-        aspect-ratio: auto;
+        aspect-ratio: 16 / 9;
+        max-height: calc(100vh - 240px);
       }
       .video-sidebar {
         width: 370px;
@@ -317,7 +326,6 @@
       }
       .video-sidebar-inner {
         padding: 24px 40px;
-        height: 100%;
         box-sizing: border-box;
       }
       .video-title-text { font-size: 30px; }
