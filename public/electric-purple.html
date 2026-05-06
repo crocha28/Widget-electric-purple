@@ -152,6 +152,101 @@
       letter-spacing: 0.22px;
     }
 
+    /* ─── Video phase ─── */
+    .video-area {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+      width: 100%;
+    }
+    .video-player {
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      background: #d9d9d9;
+      border-radius: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+    }
+    .video-play-btn { opacity: 0.6; }
+    .video-sidebar-inner {
+      background: rgba(255,253,251,0.1);
+      border: 1px solid rgba(255,253,251,0.1);
+      border-radius: 12px;
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+    .video-meta {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .video-title-text {
+      font-size: 24px;
+      font-weight: 700;
+      color: #fffdfb;
+      line-height: 1.4;
+      margin: 0;
+    }
+    .video-subtitle {
+      font-size: 12px;
+      color: #fffdfb;
+      opacity: 0.5;
+      line-height: 1.5;
+      letter-spacing: 0.24px;
+      margin: 0;
+    }
+    .video-divider {
+      height: 1px;
+      background: rgba(199,199,199,0.5);
+      width: 100%;
+    }
+    .video-buttons {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+    .video-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      padding: 12px 32px;
+      font-size: 18px;
+      font-family: 'IQOS Sans', sans-serif;
+      line-height: 1.5;
+      border-radius: 64px;
+      cursor: pointer;
+      transition: opacity 0.2s;
+    }
+    .video-btn:hover { opacity: 0.85; }
+    .video-btn-filled {
+      background: #9b0aa5;
+      color: #fffdfb;
+      border: none;
+    }
+    .video-btn-outlined {
+      background: transparent;
+      color: #fffdfb;
+      border: 1px solid #fffdfb;
+    }
+    .video-try-another {
+      font-size: 14px;
+      color: #fffdfb;
+      line-height: 1.5;
+      background: none;
+      border: none;
+      padding: 0;
+      text-align: left;
+      cursor: pointer;
+      font-family: 'IQOS Sans', sans-serif;
+      transition: opacity 0.2s;
+    }
+    .video-try-another:hover { opacity: 0.7; }
+
     /* ─── TABLET (768px – 1023px) ─── */
     @media (min-width: 768px) and (max-width: 1023px) {
       .widget-inner { padding: 48px 40px; gap: 32px; }
@@ -207,10 +302,25 @@
       .card-title { font-size: 21px; letter-spacing: 0.105px; }
       .card-desc { font-size: 12px; letter-spacing: 0.24px; }
 
-      .video-phase-wrap { flex-direction: row; }
-      .video-sidebar { width: 370px; flex-shrink: 0; }
-      .video-sidebar-inner { padding: 40px; }
-      .video-title { font-size: 30px; }
+      .video-area {
+        flex-direction: row;
+        align-items: stretch;
+      }
+      .video-player {
+        flex: 1 1 0%;
+        min-width: 0;
+        aspect-ratio: auto;
+      }
+      .video-sidebar {
+        width: 370px;
+        flex-shrink: 0;
+      }
+      .video-sidebar-inner {
+        padding: 24px 40px;
+        height: 100%;
+        box-sizing: border-box;
+      }
+      .video-title-text { font-size: 30px; }
     }
   </style>
 </head>
@@ -299,25 +409,29 @@
         </div>
       </div>
 
-      <div id="video-phase" class="video-phase-wrap flex flex-col gap-6 w-full" style="display:none;opacity:0">
-        <div class="flex-1 min-h-0">
-          <div class="w-full aspect-video bg-white/10 rounded-[12px] flex items-center justify-center">
-            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" class="opacity-40"><path d="M6.5 4.8v14.4L19 12 6.5 4.8z" stroke="#fffdfb" stroke-width="1.2" stroke-linecap="square" stroke-linejoin="round"/></svg>
+      <div id="video-phase" class="video-phase-wrap flex flex-col w-full" style="display:none;opacity:0">
+        <div class="video-area">
+          <div class="video-player">
+            <svg width="70" height="70" viewBox="0 0 70 70" fill="none" class="video-play-btn">
+              <circle cx="35" cy="35" r="35" fill="rgba(255,255,255,0.3)"/>
+              <circle cx="35" cy="35" r="22" fill="rgba(255,255,255,0.5)"/>
+              <path d="M29 22L47 35L29 48V22Z" fill="#fffdfb"/>
+            </svg>
           </div>
-        </div>
-        <div class="video-sidebar w-full shrink-0">
-          <div class="video-sidebar-inner bg-white/5 border border-card-border rounded-[12px] p-6 flex flex-col gap-4">
-            <div class="flex flex-col gap-2">
-              <h3 id="video-title" class="video-title text-2xl font-bold text-text-light leading-[1.4]"></h3>
-              <p class="text-xs text-text-light/40 tracking-wide">Duration: 8s &middot; Format: 9:16 &middot; Quality: 750p</p>
+          <div class="video-sidebar">
+            <div class="video-sidebar-inner">
+              <div class="video-meta">
+                <h3 id="video-title" class="video-title-text"></h3>
+                <p class="video-subtitle">Duration: 8s &middot; Format: 9:16 &middot; Quality: 750p</p>
+              </div>
+              <div class="video-divider"></div>
+              <div class="video-buttons">
+                <button class="video-btn video-btn-filled">Download my video</button>
+                <button class="video-btn video-btn-outlined">Join the competition</button>
+              </div>
+              <div class="video-divider"></div>
+              <button id="try-another" class="video-try-another">Try another dream</button>
             </div>
-            <div class="h-px bg-white/10"></div>
-            <div class="flex flex-col gap-6">
-              <button class="inline-flex items-center justify-center w-full px-7 py-3.5 text-sm rounded-full border-2 border-text-light text-text-light bg-transparent hover:bg-white/10 transition-all cursor-pointer">Download my video</button>
-              <button class="inline-flex items-center justify-center w-full px-7 py-3.5 text-sm rounded-full bg-text-light text-surface-dark hover:bg-text-light/90 transition-all cursor-pointer">Join the competition</button>
-            </div>
-            <div class="h-px bg-white/10"></div>
-            <button id="try-another" class="text-sm text-text-light/50 hover:text-text-light transition-colors text-left cursor-pointer">Try another dream</button>
           </div>
         </div>
       </div>
