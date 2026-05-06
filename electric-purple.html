@@ -372,22 +372,26 @@ cards.forEach((card, ci) => {
           tl.to(desktopImages[i], { opacity: 0, duration: 0.5, ease: 'power2.out' }, 0.15);
         }
       });
+      const ratio16x9 = placeholder.offsetWidth * 9 / 16;
       const sectionH = document.getElementById('dream-selector').offsetHeight;
       const innerEl = document.querySelector('.widget-inner');
       const usedH = innerEl.scrollHeight;
-      const availH = Math.max(100, sectionH - usedH - 40);
-      tl.fromTo(placeholder, { height: 0, opacity: 0 }, { height: availH, opacity: 1, duration: 0.7, ease: 'power3.out' }, 0.25);
+      const availH = sectionH - usedH - 40;
+      const targetH = Math.max(100, Math.min(ratio16x9, availH));
+      tl.fromTo(placeholder, { height: 0, opacity: 0 }, { height: targetH, opacity: 1, duration: 0.7, ease: 'power3.out' }, 0.25);
       tl.fromTo(cancelBtn, { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: 0.4, ease: 'power2.out' }, 0.6);
     } else {
       gsap.set(cancelBtn, { opacity: 0, y: 0 });
       gsap.set(placeholder, { height: 0, opacity: 0 });
       const tl = gsap.timeline();
       currentTl = tl;
+      const ratio16x9 = placeholder.offsetWidth * 9 / 16;
       const sectionH = document.getElementById('dream-selector').offsetHeight;
       const innerEl = document.querySelector('.widget-inner');
       const usedH = innerEl.scrollHeight;
-      const availH = Math.max(80, sectionH - usedH - 20);
-      tl.fromTo(placeholder, { height: 0, opacity: 0 }, { height: availH, opacity: 1, duration: 0.7, ease: 'power3.out' }, 0);
+      const availH = sectionH - usedH - 20;
+      const targetH = Math.max(80, Math.min(ratio16x9, availH));
+      tl.fromTo(placeholder, { height: 0, opacity: 0 }, { height: targetH, opacity: 1, duration: 0.7, ease: 'power3.out' }, 0);
       tl.fromTo(cancelBtn, { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: 0.4, ease: 'power2.out' }, 0.4);
     }
 
