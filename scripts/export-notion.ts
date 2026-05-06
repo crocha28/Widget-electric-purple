@@ -16,21 +16,21 @@ const DREAMS: { id: DreamId; label: string; emoji: string; tagline: string }[] =
       label: "Archipelago Sunset Cruise",
       emoji: "🌅",
       tagline:
-        "Nature, purple sunset, and the Stockholm archipelago — 25 cinematic variations of a dream boat journey through islands bathed in purple light.",
+        "Nature, purple sunset, and iconic worldwide waterways — 25 cinematic variations of a dream boat journey through the world's most beautiful destinations bathed in purple light.",
     },
     {
       id: "grona-lund",
       label: "Gröna Lund Live Concert",
       emoji: "🎸",
       tagline:
-        "Music, neon, and electric energy — 25 cinematic variations of a dream concert night at Stockholm's iconic amusement park.",
+        "Music, neon, and electric energy — 25 cinematic variations of a dream concert night at the world's most iconic entertainment venues.",
     },
     {
       id: "floating-sauna",
       label: "Floating Sauna Experience",
       emoji: "🧖",
       tagline:
-        "Wellness, steam, and stillness — 25 cinematic variations of a dream sauna ritual floating on Stockholm's waters.",
+        "Wellness, steam, and stillness — 25 cinematic variations of a dream wellness ritual at the world's most breathtaking natural and thermal destinations.",
     },
   ];
 
@@ -148,7 +148,7 @@ function generateDocument(): string {
   lines.push(`| **Client** | PMI / IQOS |`);
   lines.push(`| **Agency** | VML |`);
   lines.push(`| **Campaign** | Electric Purple — Electric Dreams |`);
-  lines.push(`| **Market** | Sweden (Stockholm) |`);
+  lines.push(`| **Market** | Global (Worldwide Destinations) |`);
   lines.push(`| **Deliverable** | 75 AI-generated videos (25 per dream) |`);
   lines.push(`| **Duration** | 8 seconds each |`);
   lines.push(`| **Aspect Ratio** | 9:16 (vertical / mobile-first) |`);
@@ -171,7 +171,7 @@ function generateDocument(): string {
   );
   lines.push(`| --- | --- | --- | --- |`);
   lines.push(
-    `| 1 | **Archipelago Sunset Cruise** | Nature / Sea / Purple Sunset | 25 |`
+    `| 1 | **Archipelago Sunset Cruise** | Nature / Sea / Purple Sunset / Worldwide | 25 |`
   );
   lines.push(
     `| 2 | **Gröna Lund Live Concert** | Music / Neon / Night Energy | 25 |`
