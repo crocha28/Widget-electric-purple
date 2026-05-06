@@ -195,7 +195,7 @@
 </head>
 <body>
 
-  <section id="dream-selector" class="relative w-full min-h-screen overflow-hidden">
+  <section id="dream-selector" class="relative w-full overflow-hidden" style="height:100vh;display:flex;align-items:center;justify-content:center">
     <div class="absolute inset-0 w-full h-full">
       <img src="public/images/mesh-gradient.svg" alt="" class="absolute inset-0 w-full h-full object-cover pointer-events-none" />
     </div>
@@ -372,14 +372,22 @@ cards.forEach((card, ci) => {
           tl.to(desktopImages[i], { opacity: 0, duration: 0.5, ease: 'power2.out' }, 0.15);
         }
       });
-      tl.fromTo(placeholder, { height: 0, opacity: 0 }, { height: 516, opacity: 1, duration: 0.7, ease: 'power3.out' }, 0.25);
+      const sectionH = document.getElementById('dream-selector').offsetHeight;
+      const innerEl = document.querySelector('.widget-inner');
+      const usedH = innerEl.scrollHeight;
+      const availH = Math.max(100, sectionH - usedH - 40);
+      tl.fromTo(placeholder, { height: 0, opacity: 0 }, { height: availH, opacity: 1, duration: 0.7, ease: 'power3.out' }, 0.25);
       tl.fromTo(cancelBtn, { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: 0.4, ease: 'power2.out' }, 0.6);
     } else {
       gsap.set(cancelBtn, { opacity: 0, y: 0 });
       gsap.set(placeholder, { height: 0, opacity: 0 });
       const tl = gsap.timeline();
       currentTl = tl;
-      tl.fromTo(placeholder, { height: 0, opacity: 0 }, { height: 300, opacity: 1, duration: 0.7, ease: 'power3.out' }, 0);
+      const sectionH = document.getElementById('dream-selector').offsetHeight;
+      const innerEl = document.querySelector('.widget-inner');
+      const usedH = innerEl.scrollHeight;
+      const availH = Math.max(80, sectionH - usedH - 20);
+      tl.fromTo(placeholder, { height: 0, opacity: 0 }, { height: availH, opacity: 1, duration: 0.7, ease: 'power3.out' }, 0);
       tl.fromTo(cancelBtn, { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: 0.4, ease: 'power2.out' }, 0.4);
     }
 
