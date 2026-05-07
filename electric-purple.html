@@ -258,31 +258,79 @@
       flex-direction: column;
       gap: 24px;
     }
-    .video-btn {
-      display: flex;
+    /* ─── CTA buttons (IQOS-style sweep hover) ─── */
+    .cta {
+      position: relative;
+      overflow: hidden;
+      isolation: isolate;
+      display: inline-flex;
       align-items: center;
       justify-content: center;
+      font-family: 'IQOS Sans', sans-serif;
+      cursor: pointer;
+      user-select: none;
+      white-space: nowrap;
+      letter-spacing: 0.5px;
+      text-decoration: none;
+      box-shadow: inset 0 0 0 1px var(--cta-border-color, transparent);
+      transition: background 0.2s, box-shadow 0.3s ease-out, color 0.2s;
+      will-change: background, box-shadow, color;
+    }
+    .cta::after {
+      content: "";
+      position: absolute;
+      top: 50%;
+      left: 0;
+      width: 120%;
+      height: 120%;
+      z-index: -1;
+      background: var(--cta-sweep-color, #fffdfb);
+      transform: translate(-101%, -50%) skew(0deg);
+      transition: transform 0.25s ease-out;
+    }
+    .cta:hover::after,
+    .cta:focus-visible::after {
+      transform: translate(-10%, -50%) skew(-30deg);
+    }
+
+    .cta-pill {
       width: 100%;
       padding: 12px 32px;
       font-size: 18px;
-      font-family: 'IQOS Sans', sans-serif;
       line-height: 1.5;
       border-radius: 64px;
-      cursor: pointer;
-      transition: opacity 0.2s;
-    }
-    .video-btn:hover { opacity: 0.85; }
-    .video-btn-filled {
-      background: #9b0aa5;
-      color: #fffdfb;
       border: none;
     }
-    .video-btn-outlined {
+
+    .cta-filled {
+      background: #9b0aa5;
+      color: #fffdfb;
+      --cta-sweep-color: #fffdfb;
+      --cta-border-color: transparent;
+    }
+    .cta-filled:hover,
+    .cta-filled:focus-visible {
+      color: #9b0aa5;
+      background: transparent;
+      --cta-border-color: #9b0aa5;
+    }
+
+    .cta-outlined {
       background: transparent;
       color: #fffdfb;
-      border: 1px solid #fffdfb;
+      --cta-sweep-color: #fffdfb;
+      --cta-border-color: #fffdfb;
     }
-    .video-try-another {
+    .cta-outlined:hover,
+    .cta-outlined:focus-visible {
+      color: #1c0053;
+      background: transparent;
+      --cta-border-color: #fffdfb;
+    }
+
+    #cancel-btn { width: auto; }
+
+    .cta-link {
       font-size: 14px;
       color: #fffdfb;
       line-height: 1.5;
@@ -290,11 +338,20 @@
       border: none;
       padding: 0;
       text-align: left;
-      cursor: pointer;
-      font-family: 'IQOS Sans', sans-serif;
-      transition: opacity 0.2s;
+      gap: 6px;
+      letter-spacing: normal;
+      transition: color 0.2s;
     }
-    .video-try-another:hover { opacity: 0.7; }
+    .cta-link::after { content: none; }
+    .cta-link .cta-link-arrow {
+      display: inline-block;
+      transition: transform 0.2s ease;
+      will-change: transform;
+    }
+    .cta-link:hover .cta-link-arrow,
+    .cta-link:focus-visible .cta-link-arrow {
+      transform: translateX(5px);
+    }
 
     /* ─── TABLET (768px – 1023px) ─── */
     @media (min-width: 768px) and (max-width: 1023px) {
@@ -464,7 +521,7 @@
           </div>
         </div>
         <div class="flex justify-center mt-6">
-          <button id="cancel-btn" class="border border-card-border rounded-full px-6 py-2 text-base text-text-light bg-white/5 hover:bg-white/10 transition-colors cursor-pointer" style="opacity:0">Cancel</button>
+          <button id="cancel-btn" class="cta cta-pill cta-outlined" style="opacity:0">Cancel</button>
         </div>
       </div>
 
@@ -485,11 +542,11 @@
               </div>
               <div class="video-divider"></div>
               <div class="video-buttons">
-                <button class="video-btn video-btn-filled">Download my video</button>
-                <button class="video-btn video-btn-outlined">Join the competition</button>
+                <button class="cta cta-pill cta-filled">Download my video</button>
+                <button class="cta cta-pill cta-outlined">Join the competition</button>
               </div>
               <div class="video-divider"></div>
-              <button id="try-another" class="video-try-another">Try another dream</button>
+              <button id="try-another" class="cta cta-link">Try another dream<span class="cta-link-arrow" aria-hidden="true">→</span></button>
             </div>
           </div>
         </div>
