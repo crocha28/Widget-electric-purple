@@ -69,9 +69,9 @@ export default function DreamSelector() {
           });
           gsap.set(images[i], {
             left: 23,
-            top: 91,
+            top: 96,
             width: 376,
-            height: 260,
+            height: 238,
             borderRadius: 8,
             opacity: 1,
           });
@@ -113,9 +113,9 @@ export default function DreamSelector() {
         images[i],
         {
           left: 23,
-          top: 91,
+          top: 96,
           width: 376,
-          height: 260,
+          height: 238,
           borderRadius: 8,
           opacity: 1,
           duration: 0.75,
@@ -349,8 +349,8 @@ export default function DreamSelector() {
                     ? hoverState === "hovered"
                       ? { left: 0, top: 0, width: "100%", height: "100%" }
                       : hoverState === "sibling"
-                        ? { left: 23, top: 91, width: 322, height: 242 }
-                        : { left: 23, top: 91, width: 376, height: 260 }
+                        ? { left: 23, top: 96, width: 322, height: 220 }
+                        : { left: 23, top: 96, width: 376, height: 238 }
                     : {};
 
                 return (
@@ -371,14 +371,14 @@ export default function DreamSelector() {
                       style={isInteractive ? imageStyle : undefined}
                     />
 
-                    <div className="relative z-10 flex flex-col gap-3">
+                    <div className="relative z-10 flex flex-col gap-2">
                       {CATEGORY_ICON[dream.category]}
-                      <h3 className="text-[21px] font-bold text-dark tracking-[0.105px] leading-none">
+                      <h3 className="text-[24px] font-bold text-dark tracking-[0.105px] leading-none">
                         {dream.title}
                       </h3>
                     </div>
 
-                    <p className="relative z-10 text-[12px] text-[#666] leading-[1.5] tracking-[0.24px]">
+                    <p className="relative z-10 text-[16px] text-[#666] leading-[1.5] tracking-[0.24px]">
                       {dream.description}
                     </p>
                   </button>
