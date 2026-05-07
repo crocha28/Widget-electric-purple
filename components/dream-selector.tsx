@@ -2,7 +2,33 @@
 
 import { useState, useRef, useCallback, useEffect } from "react";
 import gsap from "gsap";
-import { Leaf, Music, Waves } from "lucide-react";
+import { Music, Waves } from "lucide-react";
+
+const LeafIcon = ({ className }: { className?: string }) => (
+  <svg
+    width="20"
+    height="20"
+    viewBox="0 0 16 16"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+    className={className}
+  >
+    <path
+      d="M7.33334 13.3333C6.16271 13.3369 5.03351 12.9003 4.16968 12.1103C3.30586 11.3202 2.77052 10.2344 2.66983 9.06807C2.56914 7.90178 2.91047 6.74024 3.62611 5.81383C4.34175 4.88741 5.37943 4.2638 6.53334 4.06667C10.3333 3.33333 11.3333 2.98667 12.6667 1.33333C13.3333 2.66667 14 4.12 14 6.66667C14 10.3333 10.8133 13.3333 7.33334 13.3333Z"
+      stroke="currentColor"
+      strokeWidth="1.2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+    <path
+      d="M1.33331 14C1.33331 12 2.56665 10.4267 4.71998 10C6.33331 9.68 7.99998 8.66667 8.66665 8"
+      stroke="currentColor"
+      strokeWidth="1.2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+  </svg>
+);
 import { Button } from "@/components/ui/button";
 import { dreams, type Dream } from "@/lib/dreams-data";
 import { useFadeUp, useStaggerChildren } from "@/lib/gsap-animations";
@@ -10,7 +36,7 @@ import { useFadeUp, useStaggerChildren } from "@/lib/gsap-animations";
 type Phase = "select" | "loading" | "video";
 
 const CATEGORY_ICON: Record<string, React.ReactNode> = {
-  Nature: <Leaf className="w-5 h-5 text-[#9e9e9e]" />,
+  Nature: <LeafIcon className="w-5 h-5 text-[#9e9e9e]" />,
   Music: <Music className="w-5 h-5 text-[#9e9e9e]" />,
   Wellness: <Waves className="w-5 h-5 text-[#9e9e9e]" />,
 };
