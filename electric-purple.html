@@ -613,6 +613,8 @@ cancelBtn.addEventListener('click', () => {
 tryAnother.addEventListener('click', () => {
   videoPhase.style.display = 'none';
   videoPhase.style.opacity = 0;
+  gsap.set(placeholder, { opacity: 0 });
+  gsap.set(cancelBtn, { opacity: 0 });
   cardsPhase.style.display = 'block';
   resetToSelect();
   if (isDesktop()) {
