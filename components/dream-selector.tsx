@@ -309,10 +309,10 @@ export default function DreamSelector() {
 
   return (
     <section className="bg-white w-full">
-      <div className="max-w-[1440px] mx-auto flex flex-col items-center gap-10 px-6 lg:px-16 py-16 overflow-hidden">
+      <div className="max-w-[1440px] mx-auto flex flex-col items-center gap-8 lg:gap-10 px-6 lg:px-16 py-16 overflow-hidden">
         {/* Header */}
         <div ref={headerRef} className="w-full">
-          <h2 className="text-3xl md:text-[40px] font-bold leading-[1.35] text-dark">
+          <h2 className="text-[32px] md:text-[40px] font-bold leading-[1.35] text-dark">
             {phase === "select"
               ? "Choose the dream that calls to you."
               : "Your Electric Dream awaits."}
@@ -363,7 +363,7 @@ export default function DreamSelector() {
                     style={{
                       flexGrow: flexGrow ?? undefined,
                     }}
-                    className="dream-card relative bg-white border border-[rgba(199,199,199,0.6)] rounded-[8px] overflow-hidden flex flex-col h-[430px] justify-between p-[24px] text-left cursor-pointer md:shrink-0 md:basis-0 md:min-w-0"
+                    className="dream-card relative bg-white border border-[rgba(199,199,199,0.6)] rounded-[8px] overflow-hidden flex flex-col h-[430px] justify-between p-3 lg:p-[24px] text-left cursor-pointer md:shrink-0 md:basis-0 md:min-w-0"
                   >
                     <div
                       ref={(el) => { imageRefs.current[i] = el; }}
@@ -373,12 +373,12 @@ export default function DreamSelector() {
 
                     <div className="relative z-10 flex flex-col gap-2">
                       {CATEGORY_ICON[dream.category]}
-                      <h3 className="text-[24px] font-bold text-dark tracking-[0.105px] leading-none">
+                      <h3 className="text-[18px] lg:text-[24px] font-bold text-dark tracking-[0.105px] leading-none">
                         {dream.title}
                       </h3>
                     </div>
 
-                    <p className="relative z-10 text-[16px] text-[#666] leading-[1.5] tracking-[0.24px]">
+                    <p className="relative z-10 text-[14px] lg:text-[16px] text-[#666] leading-[1.5] tracking-[0.24px]">
                       {dream.description}
                     </p>
                   </button>
