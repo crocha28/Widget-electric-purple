@@ -662,6 +662,8 @@ cards.forEach((card, ci) => {
       tl.fromTo(cancelBtn, { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: 0.4, ease: 'power2.out' }, 0.4);
     }
 
+    scrollLoadingIntoView();
+
     setTimeout(() => {
       if (phase !== 'loading') return;
       phase = 'video';
@@ -669,9 +671,30 @@ cards.forEach((card, ci) => {
       cardsPhase.style.display = 'none';
       videoPhase.style.display = 'flex';
       gsap.fromTo(videoPhase, { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.6, ease: 'power3.out' });
+      scrollSectionIntoView();
     }, 8000);
   });
 });
+
+function scrollLoadingIntoView() {
+  requestAnimationFrame(() => {
+    const rect = cancelBtn.getBoundingClientRect();
+    const margin = 16;
+    if (rect.bottom > window.innerHeight - margin || rect.top < margin) {
+      const targetY = window.scrollY + rect.bottom - window.innerHeight + margin;
+      window.scrollTo({ top: Math.max(0, targetY), behavior: 'smooth' });
+    }
+  });
+}
+
+function scrollSectionIntoView() {
+  requestAnimationFrame(() => {
+    const rect = section.getBoundingClientRect();
+    if (rect.top < 0 || rect.top > 16) {
+      window.scrollTo({ top: window.scrollY + rect.top, behavior: 'smooth' });
+    }
+  });
+}
 
 cancelBtn.addEventListener('click', () => {
   if (currentTl) currentTl.kill();
@@ -720,6 +743,7 @@ function resetToSelect() {
       desktopImages[i].style.cssText = 'left:23px;top:96px;width:376px;height:238px';
     });
   }
+  scrollSectionIntoView();
 }
 </script>
 </body>
