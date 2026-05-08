@@ -46,16 +46,6 @@
     }
     ::selection { background-color: #a082e6; color: white; }
 
-    /* ─── Mobile: free up section so loader/cancel are visible below cards ─── */
-    @media (max-width: 767px) {
-      #dream-selector {
-        height: auto !important;
-        min-height: 100vh;
-        overflow: visible !important;
-        align-items: flex-start !important;
-      }
-    }
-
     /* ─── Section wrapper ─── */
     .widget-inner {
       position: relative;
@@ -66,7 +56,7 @@
       flex-direction: column;
       align-items: center;
       gap: 32px;
-      padding: 60px 24px 40px;
+      padding: 144px 24px 40px;
       width: 100%;
       box-sizing: border-box;
     }
@@ -130,7 +120,7 @@
       gap: 16px;
     }
 
-    @media (max-width: 1024px) {
+    @media (max-width: 1023px) {
       .dream-card { flex-grow: 0 !important; }
     }
 
@@ -370,8 +360,8 @@
       transform: translateX(5px);
     }
 
-    /* ─── TABLET (768px – 1024px) ─── */
-    @media (min-width: 768px) and (max-width: 1024px) {
+    /* ─── TABLET (768px – 1023px) ─── */
+    @media (min-width: 768px) and (max-width: 1023px) {
       .widget-inner { padding: 48px 40px; gap: 32px; }
       .widget-heading { font-size: 32px; }
       .dream-card { align-items: center; gap: 24px; }
@@ -383,14 +373,14 @@
       }
     }
 
-    /* ─── DESKTOP (1025px – 1439px) ─── */
-    @media (min-width: 1025px) {
+    /* ─── DESKTOP (1024px+) ─── */
+    @media (min-width: 1024px) {
       .widget-inner { padding: 64px; gap: 56px; }
       .widget-heading { font-size: 40px; }
       .dream-cards { flex-direction: row; }
       .dream-card {
         flex-direction: column;
-        height: 500px;
+        height: 430px;
         justify-content: space-between;
         padding: 24px;
         gap: 0;
@@ -403,8 +393,6 @@
       .dream-image-desktop {
         display: block;
         position: absolute;
-        top: 120px;
-        height: 238px;
         z-index: 0;
         border-radius: 8px;
         overflow: hidden;
@@ -447,24 +435,6 @@
       }
       .video-title-text { font-size: 32px; }
     }
-
-    /* ─── XL DESKTOP (1440px+) ─── */
-    @media (min-width: 1440px) {
-      .widget-inner { padding: 80px 64px; gap: 64px; }
-      .widget-heading { font-size: 48px; }
-      .dream-card { height: 480px; }
-      .dream-image-desktop { top: 100px; height: 258px; }
-      .card-title { font-size: 28px; }
-      .card-desc {
-        font-size: 16px;
-        position: absolute;
-        left: 0;
-        right: 0;
-        top: 358px;
-      }
-      .video-title-text { font-size: 40px; }
-      .video-sidebar { width: 420px; }
-    }
   </style>
 </head>
 <body>
@@ -484,7 +454,7 @@
 
           <!-- Card 1: Archipelago -->
           <button data-dream="archipelago" data-cat="Nature" class="dream-card" style="flex-grow:424">
-            <div class="dream-image-desktop" style="left:23px;width:calc(100% - 46px)">
+            <div class="dream-image-desktop" style="left:23px;top:96px;width:376px;height:238px">
               <img src="images/dream-archipelago.png" alt="" class="w-full h-full object-cover" />
             </div>
             <div class="card-image">
@@ -504,7 +474,7 @@
 
           <!-- Card 2: Gröna Lund -->
           <button data-dream="grona-lund" data-cat="Music" class="dream-card" style="flex-grow:424">
-            <div class="dream-image-desktop" style="left:23px;width:calc(100% - 46px)">
+            <div class="dream-image-desktop" style="left:23px;top:96px;width:376px;height:238px">
               <img src="images/dream-grona-lund.png" alt="" class="w-full h-full object-cover" />
             </div>
             <div class="card-image">
@@ -525,7 +495,7 @@
 
           <!-- Card 3: Floating Sauna -->
           <button data-dream="floating-sauna" data-cat="Wellness" class="dream-card" style="flex-grow:424">
-            <div class="dream-image-desktop" style="left:23px;width:calc(100% - 46px)">
+            <div class="dream-image-desktop" style="left:23px;top:96px;width:376px;height:238px">
               <img src="images/dream-floating-sauna.png" alt="" class="w-full h-full object-cover" />
             </div>
             <div class="card-image">
@@ -592,11 +562,7 @@
   </section>
 
 <script>
-const isDesktop = () => window.innerWidth >= 1025;
-const isXLDesktop = () => window.innerWidth >= 1440;
-const idleImgTop = () => isXLDesktop() ? 100 : 120;
-const idleImgHeight = () => isXLDesktop() ? 258 : 238;
-const hoverOutImgHeight = () => isXLDesktop() ? 240 : 220;
+const isDesktop = () => window.innerWidth >= 1024;
 
 const dreams = {
   archipelago: { title: 'Archipelago Sunset Cruise' },
@@ -615,22 +581,19 @@ const heading = document.getElementById('dream-heading');
 const tryAnother = document.getElementById('try-another');
 let currentTl = null;
 let phase = 'select';
-let _idleCardHeights = []; // captured at click time, used by cancel
 
 cards.forEach((card, i) => {
   card.addEventListener('mouseenter', () => {
     if (phase !== 'select' || !isDesktop()) return;
     cards.forEach((c, j) => {
       if (j === i) { c.style.flexGrow = 524; desktopImages[j].style.cssText = 'left:0;top:0;width:100%;height:100%'; }
-      else { c.style.flexGrow = 370; desktopImages[j].style.cssText = `left:23px;top:${idleImgTop()}px;width:calc(100% - 46px);height:${hoverOutImgHeight()}px`; }
+      else { c.style.flexGrow = 370; desktopImages[j].style.cssText = 'left:23px;top:96px;width:322px;height:220px'; }
     });
-    requestAnimationFrame(equalizeCardHeights);
   });
 });
 dreamCardsContainer.addEventListener('mouseleave', () => {
   if (phase !== 'select' || !isDesktop()) return;
-  cards.forEach((c, j) => { c.style.flexGrow = 424; desktopImages[j].style.cssText = 'left:23px;width:calc(100% - 46px)'; });
-  requestAnimationFrame(equalizeCardHeights);
+  cards.forEach((c, j) => { c.style.flexGrow = 424; desktopImages[j].style.cssText = 'left:23px;top:96px;width:376px;height:238px'; });
 });
 
 const section = document.getElementById('dream-selector');
@@ -645,16 +608,15 @@ cards.forEach((card, ci) => {
 
     if (isDesktop()) {
       dreamCardsContainer.classList.add('animating');
-      _idleCardHeights = cards.map(c => c.offsetHeight);
       const imgPos = desktopImages.map(img => ({ left: img.offsetLeft, top: img.offsetTop, width: img.offsetWidth, height: img.offsetHeight }));
       const cardFG = cards.map(c => parseFloat(getComputedStyle(c).flexGrow) || 424);
 
       desktopImages.forEach((img, i) => gsap.set(img, { left: imgPos[i].left, top: imgPos[i].top, width: imgPos[i].width, height: imgPos[i].height, opacity: 1 }));
-      cards.forEach((c, i) => gsap.set(c, { pointerEvents: 'none', cursor: 'default', height: _idleCardHeights[i], flexGrow: cardFG[i] }));
+      cards.forEach((c, i) => gsap.set(c, { pointerEvents: 'none', cursor: 'default', height: 430, flexGrow: cardFG[i] }));
 
       cards.forEach((c, i) => gsap.set(c, { height: 'auto', flexGrow: i === ci ? 524 : 370, justifyContent: 'flex-start', gap: 16 }));
       const uniH = Math.max(...cards.map(c => c.offsetHeight));
-      cards.forEach((c, i) => gsap.set(c, { height: _idleCardHeights[i], flexGrow: cardFG[i], justifyContent: 'space-between', gap: 0 }));
+      cards.forEach((c, i) => gsap.set(c, { height: 430, flexGrow: cardFG[i], justifyContent: 'space-between', gap: 0 }));
 
       gsap.set(placeholder, { opacity: 0 });
       gsap.set(cancelBtn, { opacity: 0, y: 0 });
@@ -676,76 +638,10 @@ cards.forEach((card, ci) => {
     } else {
       gsap.set(cancelBtn, { opacity: 0, y: 0 });
       gsap.set(placeholder, { opacity: 0 });
-      const tl = gsap.timeline({ defaults: { ease: 'power2.out' } });
+      const tl = gsap.timeline();
       currentTl = tl;
-
-      const cardsData = cards.map((c) => {
-        const cardImage = c.querySelector('.card-image');
-        const cardText = c.querySelector('.card-text');
-        const cardRect = c.getBoundingClientRect();
-        const imgRect = cardImage.getBoundingClientRect();
-        return {
-          card: c,
-          cardImage,
-          cardText,
-          offsetX: imgRect.left - cardRect.left,
-          offsetY: imgRect.top - cardRect.top,
-          imgWidth: imgRect.width,
-          imgHeight: imgRect.height,
-          cardH: c.offsetHeight,
-        };
-      });
-
-      cardsData.forEach((d, i) => {
-        gsap.set(d.card, { pointerEvents: 'none', cursor: 'default' });
-
-        if (i === ci) {
-          tl.to(d.cardText, { opacity: 0, duration: 0.18, ease: 'sine.in' }, 0);
-
-          tl.call(() => {
-            gsap.set(d.card, { height: d.cardH, willChange: 'height' });
-            gsap.set(d.cardText, { position: 'relative', zIndex: 10 });
-            gsap.set(d.cardImage, {
-              position: 'absolute',
-              left: d.offsetX,
-              top: d.offsetY,
-              width: d.imgWidth,
-              height: d.imgHeight,
-              flex: 'none',
-              zIndex: 0,
-              willChange: 'left, top, width, height',
-            });
-          }, null, 0.18);
-
-          tl.to(d.cardImage, {
-            left: 0, top: 0, width: '100%', height: '100%',
-            duration: 0.95, ease: 'expo.out',
-          }, 0.18);
-
-          tl.to(d.cardText, {
-            opacity: 1,
-            duration: 0.5,
-            ease: 'sine.out',
-          }, 0.7);
-        } else {
-          const stagger = Math.abs(i - ci) * 0.07;
-          tl.to(d.cardImage, { opacity: 0, duration: 0.45, ease: 'sine.out' }, stagger);
-          tl.to(d.cardImage, {
-            width: 0, height: 0, flex: '0 0 0px',
-            duration: 0.85, ease: 'power2.inOut',
-          }, stagger);
-          tl.to(d.card, { gap: 0, duration: 0.85, ease: 'power2.inOut' }, stagger);
-        }
-      });
-
-      tl.fromTo(placeholder,
-        { opacity: 0, y: 8 },
-        { opacity: 1, y: 0, duration: 0.55, ease: 'sine.out' },
-        0.85);
-      tl.fromTo(cancelBtn,
-        { opacity: 0, y: 12 },
-        { opacity: 1, y: 0, duration: 0.45, ease: 'sine.out' },
-        1.0);
+      tl.fromTo(placeholder, { opacity: 0 }, { opacity: 1, duration: 0.7, ease: 'power3.out' }, 0);
+      tl.fromTo(cancelBtn, { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: 0.4, ease: 'power2.out' }, 0.4);
     }
 
     setTimeout(() => {
@@ -765,39 +661,16 @@ cancelBtn.addEventListener('click', () => {
     section.classList.remove('is-loading');
     const rev = gsap.timeline({ onComplete: resetToSelect });
     rev.to([cancelBtn, placeholder], { opacity: 0, y: 12, duration: 0.35, ease: 'power2.in' });
-    const targetImgW = (dreamCardsContainer.offsetWidth - 48) / 3 - 46;
-    const idleTop = idleImgTop();
-    const idleH = idleImgHeight();
     cards.forEach((c, i) => {
-      rev.to(c, { height: _idleCardHeights[i] || 500, flexGrow: 424, justifyContent: 'space-between', gap: 0, duration: 0.75, ease: 'power3.inOut' }, 0.1);
-      rev.to(desktopImages[i], { left: 23, top: idleTop, width: targetImgW, height: idleH, borderRadius: 8, opacity: 1, duration: 0.75, ease: 'power3.inOut' }, 0.1);
+      rev.to(c, { height: 430, flexGrow: 424, justifyContent: 'space-between', gap: 0, duration: 0.75, ease: 'power3.inOut' }, 0.1);
+      rev.to(desktopImages[i], { left: 23, top: 96, width: 376, height: 238, borderRadius: 8, opacity: 1, duration: 0.75, ease: 'power3.inOut' }, 0.1);
     });
     rev.set(cards, { pointerEvents: 'auto', cursor: 'pointer' });
     rev.set(cards, { clearProps: 'height,flexGrow,justifyContent,gap' });
     rev.set(desktopImages, { clearProps: 'left,top,width,height,borderRadius,opacity' });
-    rev.call(() => {
-      desktopImages.forEach(img => {
-        img.style.cssText = 'left:23px;width:calc(100% - 46px)';
-      });
-    });
   } else {
-    section.classList.remove('is-loading');
-    const rev = gsap.timeline({
-      defaults: { ease: 'power2.out' },
-      onComplete: resetToSelect,
-    });
-    rev.to([cancelBtn, placeholder], { opacity: 0, y: 8, duration: 0.3, ease: 'power2.in' });
-
-    cards.forEach((c) => {
-      const cardImage = c.querySelector('.card-image');
-      const cardText = c.querySelector('.card-text');
-      rev.to(cardImage, { opacity: 1, duration: 0.4 }, 0.05);
-      rev.to(cardText, { opacity: 1, duration: 0.3 }, 0.05);
-      rev.set(cardImage, { clearProps: 'position,left,top,width,height,flex,zIndex,opacity,willChange,transform' });
-      rev.set(cardText, { clearProps: 'position,zIndex,opacity' });
-      rev.set(c, { clearProps: 'gap,height,willChange' });
-    });
-    rev.set(cards, { pointerEvents: 'auto', cursor: 'pointer' });
+    const rev = gsap.timeline({ onComplete: resetToSelect });
+    rev.to([cancelBtn, placeholder], { opacity: 0, y: 12, duration: 0.35, ease: 'power2.in' });
   }
 });
 
@@ -813,15 +686,7 @@ tryAnother.addEventListener('click', () => {
       gsap.set(c, { clearProps: 'height,flexGrow,justifyContent,gap,pointerEvents,cursor' });
       gsap.set(desktopImages[i], { clearProps: 'left,top,width,height,borderRadius,opacity' });
       c.style.flexGrow = 424;
-      desktopImages[i].style.cssText = 'left:23px;width:calc(100% - 46px)';
-    });
-  } else {
-    cards.forEach((c) => {
-      const cardImage = c.querySelector('.card-image');
-      const cardText = c.querySelector('.card-text');
-      gsap.set(cardImage, { clearProps: 'position,left,top,width,height,flex,zIndex,opacity,willChange,transform' });
-      gsap.set(cardText, { clearProps: 'position,zIndex,opacity' });
-      gsap.set(c, { clearProps: 'pointerEvents,cursor,gap,height,willChange' });
+      desktopImages[i].style.cssText = 'left:23px;top:96px;width:376px;height:238px';
     });
   }
 });
@@ -834,70 +699,10 @@ function resetToSelect() {
   if (isDesktop()) {
     cards.forEach((c, i) => {
       c.style.flexGrow = 424;
-      desktopImages[i].style.cssText = 'left:23px;width:calc(100% - 46px)';
+      desktopImages[i].style.cssText = 'left:23px;top:96px;width:376px;height:238px';
     });
   }
-  requestAnimationFrame(equalizeCardHeights);
 }
-
-function equalizeCardHeights() {
-  cards.forEach(c => { c.style.height = ''; });
-  if (phase !== 'select') return;
-
-  if (isXLDesktop()) {
-    const flexGrows = cards.map(c => parseFloat(c.style.flexGrow) || 424);
-    const isHovering = flexGrows.some(g => g !== 424);
-    const hoveredIdx = isHovering ? flexGrows.findIndex(g => g > 424) : -1;
-
-    let maxTitleH = 0;
-    let maxDescH = 0;
-    cards.forEach((c, i) => {
-      if (i === hoveredIdx) return;
-      const tb = c.querySelector('.card-text > .flex.flex-col.gap-2');
-      const desc = c.querySelector('.card-desc');
-      if (tb && tb.offsetHeight > maxTitleH) maxTitleH = tb.offsetHeight;
-      if (desc && desc.offsetHeight > maxDescH) maxDescH = desc.offsetHeight;
-    });
-    if (maxTitleH === 0) maxTitleH = 52;
-    if (maxDescH === 0) maxDescH = 24;
-
-    const imgH = isHovering ? 240 : 258;
-    const imgTop = 48 + maxTitleH;
-    const descTopInCardText = imgTop + imgH;
-    const cardH = 96 + maxTitleH + imgH + maxDescH;
-
-    cards.forEach((c, i) => {
-      c.style.height = cardH + 'px';
-      if (i === hoveredIdx) return;
-      const img = c.querySelector('.dream-image-desktop');
-      const desc = c.querySelector('.card-desc');
-      if (img) {
-        img.style.top = imgTop + 'px';
-        img.style.height = imgH + 'px';
-      }
-      if (desc) {
-        desc.style.top = descTopInCardText + 'px';
-      }
-    });
-    return;
-  }
-
-  if (isDesktop()) return;
-
-  let maxH = 0;
-  cards.forEach(c => { if (c.offsetHeight > maxH) maxH = c.offsetHeight; });
-  cards.forEach(c => { c.style.height = maxH + 'px'; });
-}
-
-window.addEventListener('load', () => requestAnimationFrame(equalizeCardHeights));
-if (document.fonts && document.fonts.ready) {
-  document.fonts.ready.then(() => requestAnimationFrame(equalizeCardHeights));
-}
-let _resizeT;
-window.addEventListener('resize', () => {
-  clearTimeout(_resizeT);
-  _resizeT = setTimeout(equalizeCardHeights, 120);
-});
 </script>
 </body>
 </html>

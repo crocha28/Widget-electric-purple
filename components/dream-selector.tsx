@@ -79,9 +79,6 @@ export default function DreamSelector() {
     const cards = cardRefs.current.filter(Boolean) as HTMLButtonElement[];
     const images = imageRefs.current.filter(Boolean) as HTMLDivElement[];
     const container = cards[0]?.parentElement;
-    const isMobile =
-      typeof window !== "undefined" &&
-      window.matchMedia("(max-width: 767px)").matches;
 
     const reverseTl = gsap.timeline({
       onComplete: () => {
@@ -125,20 +122,18 @@ export default function DreamSelector() {
     });
 
     cards.forEach((card, i) => {
-      if (!isMobile) {
-        reverseTl.to(
-          card,
-          {
-            height: 430,
-            flexGrow: 424,
-            justifyContent: "space-between",
-            gap: 0,
-            duration: 0.75,
-            ease: "power3.inOut",
-          },
-          0.1
-        );
-      }
+      reverseTl.to(
+        card,
+        {
+          height: 430,
+          flexGrow: 424,
+          justifyContent: "space-between",
+          gap: 0,
+          duration: 0.75,
+          ease: "power3.inOut",
+        },
+        0.1
+      );
 
       reverseTl.to(
         images[i],
@@ -149,7 +144,7 @@ export default function DreamSelector() {
           height: 238,
           borderRadius: 8,
           opacity: 1,
-          duration: isMobile ? 0.45 : 0.75,
+          duration: 0.75,
           ease: "power3.inOut",
         },
         0.1
@@ -171,179 +166,130 @@ export default function DreamSelector() {
     const images = imageRefs.current.filter(Boolean) as HTMLDivElement[];
     const container = cards[0]?.parentElement;
     const selectedIndex = dreams.findIndex((d) => d.id === selectedDream?.id);
-    const isMobile =
-      typeof window !== "undefined" &&
-      window.matchMedia("(max-width: 767px)").matches;
 
     const tl = gsap.timeline();
     tlRef.current = tl;
 
     if (container) container.classList.add("animating");
 
-    if (isMobile) {
-      cards.forEach((c, i) => {
-        gsap.set(c, { pointerEvents: "none", cursor: "default" });
-        const isSelected = i === selectedIndex;
-        if (isSelected) {
-          tl.to(
-            images[i],
-            {
-              left: 0,
-              top: 0,
-              width: "100%",
-              height: "100%",
-              borderRadius: 8,
-              duration: 0.6,
-              ease: "power3.inOut",
-            },
-            0
-          );
-        } else {
-          tl.to(
-            images[i],
-            {
-              opacity: 0,
-              duration: 0.4,
-              ease: "power2.out",
-            },
-            0
-          );
-        }
-      });
+    const imgPos = images.map((img) => ({
+      left: img.offsetLeft,
+      top: img.offsetTop,
+      width: img.offsetWidth,
+      height: img.offsetHeight,
+    }));
+    const cardFG = cards.map(
+      (c) => parseFloat(getComputedStyle(c).flexGrow) || 424
+    );
 
-      tl.fromTo(
-        placeholderRef.current,
-        { height: 0, opacity: 0 },
-        { height: 240, opacity: 1, duration: 0.5, ease: "power3.out" },
-        0.2
-      );
+    images.forEach((img, i) =>
+      gsap.set(img, {
+        left: imgPos[i].left,
+        top: imgPos[i].top,
+        width: imgPos[i].width,
+        height: imgPos[i].height,
+        opacity: 1,
+      })
+    );
+    cards.forEach((c, i) =>
+      gsap.set(c, {
+        pointerEvents: "none",
+        cursor: "default",
+        height: 430,
+        flexGrow: cardFG[i],
+      })
+    );
 
-      tl.fromTo(
-        cancelRef.current,
-        { opacity: 0, y: 10 },
-        { opacity: 1, y: 0, duration: 0.4, ease: "power2.out" },
-        0.4
-      );
-    } else {
-      const imgPos = images.map((img) => ({
-        left: img.offsetLeft,
-        top: img.offsetTop,
-        width: img.offsetWidth,
-        height: img.offsetHeight,
-      }));
-      const cardFG = cards.map(
-        (c) => parseFloat(getComputedStyle(c).flexGrow) || 424
-      );
+    cards.forEach((c, i) =>
+      gsap.set(c, {
+        height: "auto",
+        flexGrow: i === selectedIndex ? 524 : 370,
+        justifyContent: "flex-start",
+        gap: 16,
+      })
+    );
+    const uniH = Math.max(...cards.map((c) => c.offsetHeight));
 
-      images.forEach((img, i) =>
-        gsap.set(img, {
-          left: imgPos[i].left,
-          top: imgPos[i].top,
-          width: imgPos[i].width,
-          height: imgPos[i].height,
-          opacity: 1,
-        })
-      );
-      cards.forEach((c, i) =>
-        gsap.set(c, {
-          pointerEvents: "none",
-          cursor: "default",
-          height: 430,
-          flexGrow: cardFG[i],
-        })
-      );
+    cards.forEach((c, i) =>
+      gsap.set(c, {
+        height: 430,
+        flexGrow: cardFG[i],
+        justifyContent: "space-between",
+        gap: 0,
+      })
+    );
 
-      cards.forEach((c, i) =>
-        gsap.set(c, {
-          height: "auto",
-          flexGrow: i === selectedIndex ? 524 : 370,
+    gsap.set(placeholderRef.current, { height: 0, opacity: 0 });
+    gsap.set(cancelRef.current, { opacity: 0, y: 0 });
+
+    cards.forEach((c, i) => {
+      const isSelected = i === selectedIndex;
+
+      tl.to(
+        c,
+        {
+          height: uniH,
+          flexGrow: isSelected ? 524 : 370,
           justifyContent: "flex-start",
           gap: 16,
-        })
-      );
-      const uniH = Math.max(...cards.map((c) => c.offsetHeight));
-
-      cards.forEach((c, i) =>
-        gsap.set(c, {
-          height: 430,
-          flexGrow: cardFG[i],
-          justifyContent: "space-between",
-          gap: 0,
-        })
+          duration: 0.85,
+          ease: "power3.inOut",
+        },
+        0
       );
 
-      gsap.set(placeholderRef.current, { height: 0, opacity: 0 });
-      gsap.set(cancelRef.current, { opacity: 0, y: 0 });
-
-      cards.forEach((c, i) => {
-        const isSelected = i === selectedIndex;
-
+      if (isSelected) {
         tl.to(
-          c,
+          images[i],
           {
-            height: uniH,
-            flexGrow: isSelected ? 524 : 370,
-            justifyContent: "flex-start",
-            gap: 16,
+            left: 0,
+            top: 0,
+            width: "100%",
+            height: "100%",
+            borderRadius: 8,
             duration: 0.85,
             ease: "power3.inOut",
           },
           0
         );
+      } else {
+        tl.to(
+          images[i],
+          {
+            width: 160,
+            height: 110,
+            left: 16,
+            top: 50,
+            duration: 0.85,
+            ease: "power3.inOut",
+          },
+          0
+        );
+        tl.to(
+          images[i],
+          {
+            opacity: 0,
+            duration: 0.5,
+            ease: "power2.out",
+          },
+          0.15
+        );
+      }
+    });
 
-        if (isSelected) {
-          tl.to(
-            images[i],
-            {
-              left: 0,
-              top: 0,
-              width: "100%",
-              height: "100%",
-              borderRadius: 8,
-              duration: 0.85,
-              ease: "power3.inOut",
-            },
-            0
-          );
-        } else {
-          tl.to(
-            images[i],
-            {
-              width: 160,
-              height: 110,
-              left: 16,
-              top: 50,
-              duration: 0.85,
-              ease: "power3.inOut",
-            },
-            0
-          );
-          tl.to(
-            images[i],
-            {
-              opacity: 0,
-              duration: 0.5,
-              ease: "power2.out",
-            },
-            0.15
-          );
-        }
-      });
+    tl.fromTo(
+      placeholderRef.current,
+      { height: 0, opacity: 0 },
+      { height: 516, opacity: 1, duration: 0.7, ease: "power3.out" },
+      0.25
+    );
 
-      tl.fromTo(
-        placeholderRef.current,
-        { height: 0, opacity: 0 },
-        { height: 516, opacity: 1, duration: 0.7, ease: "power3.out" },
-        0.25
-      );
-
-      tl.fromTo(
-        cancelRef.current,
-        { opacity: 0, y: 10 },
-        { opacity: 1, y: 0, duration: 0.4, ease: "power2.out" },
-        0.6
-      );
-    }
+    tl.fromTo(
+      cancelRef.current,
+      { opacity: 0, y: 10 },
+      { opacity: 1, y: 0, duration: 0.4, ease: "power2.out" },
+      0.6
+    );
 
     const timer = setTimeout(() => {
       if (timerRef.current === timer) setPhase("video");
