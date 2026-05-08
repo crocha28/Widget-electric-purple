@@ -790,11 +790,34 @@ tryAnother.addEventListener('click', () => {
   }
 });
 
+function equalizeCardHeights() {
+  if (isDesktop()) {
+    cards.forEach(c => { c.style.height = ''; });
+    return;
+  }
+  if (phase !== 'select') return;
+  cards.forEach(c => { c.style.height = ''; });
+  let maxH = 0;
+  cards.forEach(c => { if (c.offsetHeight > maxH) maxH = c.offsetHeight; });
+  cards.forEach(c => { c.style.height = maxH + 'px'; });
+}
+
+window.addEventListener('load', () => requestAnimationFrame(equalizeCardHeights));
+if (document.fonts && document.fonts.ready) {
+  document.fonts.ready.then(() => requestAnimationFrame(equalizeCardHeights));
+}
+let _resizeT;
+window.addEventListener('resize', () => {
+  clearTimeout(_resizeT);
+  _resizeT = setTimeout(equalizeCardHeights, 120);
+});
+
 function resetToSelect() {
   phase = 'select';
   section.classList.remove('is-loading');
   heading.textContent = 'Choose the dream that calls to you.';
   dreamCardsContainer.classList.remove('animating');
+  if (!isDesktop()) requestAnimationFrame(equalizeCardHeights);
   if (isDesktop()) {
     cards.forEach((c, i) => {
       c.style.flexGrow = 424;

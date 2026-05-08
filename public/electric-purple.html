@@ -800,8 +800,32 @@ function resetToSelect() {
       c.style.flexGrow = 424;
       desktopImages[i].style.cssText = 'left:23px;top:96px;width:376px;height:238px';
     });
+  } else {
+    requestAnimationFrame(equalizeCardHeights);
   }
 }
+
+function equalizeCardHeights() {
+  if (isDesktop()) {
+    cards.forEach(c => { c.style.height = ''; });
+    return;
+  }
+  if (phase !== 'select') return;
+  cards.forEach(c => { c.style.height = ''; });
+  let maxH = 0;
+  cards.forEach(c => { if (c.offsetHeight > maxH) maxH = c.offsetHeight; });
+  cards.forEach(c => { c.style.height = maxH + 'px'; });
+}
+
+window.addEventListener('load', () => requestAnimationFrame(equalizeCardHeights));
+if (document.fonts && document.fonts.ready) {
+  document.fonts.ready.then(() => requestAnimationFrame(equalizeCardHeights));
+}
+let _resizeT;
+window.addEventListener('resize', () => {
+  clearTimeout(_resizeT);
+  _resizeT = setTimeout(equalizeCardHeights, 120);
+});
 </script>
 </body>
 </html>
