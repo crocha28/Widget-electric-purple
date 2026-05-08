@@ -174,8 +174,12 @@
 
     /* ─── Loading placeholder ─── */
     .video-loading-placeholder {
-      width: 100%;
+      /* Cap height at 35vh so placeholder + CTA always fit in the viewport.
+         Width derived from aspect-ratio (16/9), capped at 100% of parent. */
+      width: min(100%, calc(35vh * 16 / 9));
       aspect-ratio: 16 / 9;
+      margin-left: auto;
+      margin-right: auto;
       background: linear-gradient(
         110deg,
         rgba(255,253,251,0.06) 0%,
