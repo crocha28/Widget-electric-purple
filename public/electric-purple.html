@@ -672,27 +672,27 @@ cards.forEach((card, ci) => {
           gsap.set(cardText, { position: 'relative', zIndex: 10 });
           tl.to(cardImage, {
             left: 0, top: 0, width: '100%', height: '100%',
-            duration: 0.45, ease: 'expo.out',
+            duration: 0.55, ease: 'power2.inOut',
           }, 0);
         } else {
-          const stagger = Math.abs(i - ci) * 0.04;
-          tl.to(cardImage, { opacity: 0, duration: 0.22 }, stagger);
+          const stagger = Math.abs(i - ci) * 0.05;
+          tl.to(cardImage, { opacity: 0, duration: 0.3, ease: 'power2.out' }, stagger);
           tl.to(cardImage, {
             width: 0, height: 0, flex: '0 0 0px',
-            duration: 0.35, ease: 'power2.inOut',
+            duration: 0.55, ease: 'power2.inOut',
           }, stagger);
-          tl.to(c, { gap: 0, duration: 0.35, ease: 'power2.inOut' }, stagger);
+          tl.to(c, { gap: 0, duration: 0.55, ease: 'power2.inOut' }, stagger);
         }
       });
 
       tl.fromTo(placeholder,
         { opacity: 0, y: 6 },
         { opacity: 1, y: 0, duration: 0.4, ease: 'power2.out' },
-        0.25);
+        0.35);
       tl.fromTo(cancelBtn,
         { opacity: 0, y: 10 },
         { opacity: 1, y: 0, duration: 0.3, ease: 'power2.out' },
-        0.35);
+        0.5);
     }
 
     setTimeout(() => {
