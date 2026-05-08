@@ -124,12 +124,14 @@
       .dream-card { flex-grow: 0 !important; }
     }
 
-    /* Mobile: allow content to grow beyond viewport so title is never clipped */
+    /* All breakpoints: allow content to grow beyond viewport so title is never clipped */
+    #dream-selector {
+      height: auto !important;
+      min-height: 100vh;
+      overflow: visible !important;
+    }
     @media (max-width: 767px) {
       #dream-selector {
-        height: auto !important;
-        min-height: 100vh;
-        overflow: visible !important;
         align-items: flex-start !important;
       }
     }
