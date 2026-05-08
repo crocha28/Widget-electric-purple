@@ -648,7 +648,7 @@ cards.forEach((card, ci) => {
     } else {
       gsap.set(cancelBtn, { opacity: 0, y: 0 });
       gsap.set(placeholder, { opacity: 0 });
-      const tl = gsap.timeline();
+      const tl = gsap.timeline({ defaults: { ease: 'power2.out' } });
       currentTl = tl;
 
       cards.forEach((c, i) => {
@@ -667,21 +667,32 @@ cards.forEach((card, ci) => {
             height: rect.height,
             flex: 'none',
             zIndex: 0,
+            willChange: 'transform, width, height',
           });
           gsap.set(cardText, { position: 'relative', zIndex: 10 });
           tl.to(cardImage, {
             left: 0, top: 0, width: '100%', height: '100%',
-            duration: 0.6, ease: 'power3.inOut',
+            duration: 0.7, ease: 'expo.out',
           }, 0);
         } else {
-          tl.to(cardImage, { opacity: 0, duration: 0.3, ease: 'power2.out' }, 0);
-          tl.to(cardImage, { width: 0, height: 0, flex: '0 0 0px', duration: 0.5, ease: 'power3.inOut' }, 0);
-          tl.to(c, { gap: 0, duration: 0.5, ease: 'power3.inOut' }, 0);
+          const stagger = Math.abs(i - ci) * 0.06;
+          tl.to(cardImage, { opacity: 0, duration: 0.35 }, stagger);
+          tl.to(cardImage, {
+            width: 0, height: 0, flex: '0 0 0px',
+            duration: 0.55, ease: 'power2.inOut',
+          }, stagger);
+          tl.to(c, { gap: 0, duration: 0.55, ease: 'power2.inOut' }, stagger);
         }
       });
 
-      tl.fromTo(placeholder, { opacity: 0 }, { opacity: 1, duration: 0.7, ease: 'power3.out' }, 0.25);
-      tl.fromTo(cancelBtn, { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: 0.4, ease: 'power2.out' }, 0.5);
+      tl.fromTo(placeholder,
+        { opacity: 0, y: 6 },
+        { opacity: 1, y: 0, duration: 0.55, ease: 'power2.out' },
+        0.4);
+      tl.fromTo(cancelBtn,
+        { opacity: 0, y: 12 },
+        { opacity: 1, y: 0, duration: 0.45, ease: 'power2.out' },
+        0.55);
     }
 
     setTimeout(() => {
@@ -710,14 +721,17 @@ cancelBtn.addEventListener('click', () => {
     rev.set(desktopImages, { clearProps: 'left,top,width,height,borderRadius,opacity' });
   } else {
     section.classList.remove('is-loading');
-    const rev = gsap.timeline({ onComplete: resetToSelect });
-    rev.to([cancelBtn, placeholder], { opacity: 0, y: 12, duration: 0.35, ease: 'power2.in' });
+    const rev = gsap.timeline({
+      defaults: { ease: 'power2.out' },
+      onComplete: resetToSelect,
+    });
+    rev.to([cancelBtn, placeholder], { opacity: 0, y: 8, duration: 0.3, ease: 'power2.in' });
 
     cards.forEach((c) => {
       const cardImage = c.querySelector('.card-image');
       const cardText = c.querySelector('.card-text');
-      rev.to(cardImage, { opacity: 1, duration: 0.45, ease: 'power3.inOut' }, 0.1);
-      rev.set(cardImage, { clearProps: 'position,left,top,width,height,flex,zIndex,opacity' });
+      rev.to(cardImage, { opacity: 1, duration: 0.4 }, 0.05);
+      rev.set(cardImage, { clearProps: 'position,left,top,width,height,flex,zIndex,opacity,willChange' });
       rev.set(cardText, { clearProps: 'position,zIndex' });
       rev.set(c, { clearProps: 'gap' });
     });
