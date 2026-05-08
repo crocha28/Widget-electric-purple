@@ -174,9 +174,10 @@
 
     /* ─── Loading placeholder ─── */
     .video-loading-placeholder {
-      /* Cap height at 17.5vh so placeholder + CTA always fit in the viewport.
-         Width derived from aspect-ratio (16/9), capped at 100% of parent. */
-      width: min(100%, calc(17.5vh * 16 / 9));
+      /* Cap height at 35vh so placeholder + CTA always fit in the viewport.
+         Width derived from aspect-ratio (16/9), capped at 100% of parent.
+         !important defeats any Tailwind utility class on the same element. */
+      width: min(100%, calc(35vh * 16 / 9)) !important;
       aspect-ratio: 16 / 9;
       margin-left: auto;
       margin-right: auto;
@@ -534,7 +535,7 @@
 
         </div>
 
-        <div id="video-placeholder" class="w-full rounded-[16px] overflow-hidden mt-10 video-loading-placeholder" style="opacity:0">
+        <div id="video-placeholder" class="rounded-[16px] overflow-hidden mt-10 video-loading-placeholder" style="opacity:0">
           <div class="video-loading-inner">
             <div class="video-loading-spinner">
               <svg viewBox="0 0 40 40" fill="none">
