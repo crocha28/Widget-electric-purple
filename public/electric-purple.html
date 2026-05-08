@@ -834,18 +834,27 @@ function resetToSelect() {
       c.style.flexGrow = 424;
       desktopImages[i].style.cssText = 'left:23px;width:calc(100% - 46px)';
     });
-  } else {
-    requestAnimationFrame(equalizeCardHeights);
   }
+  requestAnimationFrame(equalizeCardHeights);
 }
 
 function equalizeCardHeights() {
-  if (isDesktop()) {
-    cards.forEach(c => { c.style.height = ''; });
+  cards.forEach(c => { c.style.height = ''; });
+  if (phase !== 'select') return;
+
+  if (isXLDesktop()) {
+    let maxDescH = 0;
+    cards.forEach(c => {
+      const desc = c.querySelector('.card-desc');
+      if (desc && desc.offsetHeight > maxDescH) maxDescH = desc.offsetHeight;
+    });
+    const cardH = 24 + 52 + 24 + 258 + 24 + maxDescH + 24;
+    cards.forEach(c => { c.style.height = cardH + 'px'; });
     return;
   }
-  if (phase !== 'select') return;
-  cards.forEach(c => { c.style.height = ''; });
+
+  if (isDesktop()) return;
+
   let maxH = 0;
   cards.forEach(c => { if (c.offsetHeight > maxH) maxH = c.offsetHeight; });
   cards.forEach(c => { c.style.height = maxH + 'px'; });
