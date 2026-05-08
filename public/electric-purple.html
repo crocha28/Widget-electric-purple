@@ -403,6 +403,8 @@
       .dream-image-desktop {
         display: block;
         position: absolute;
+        top: 120px;
+        height: 238px;
         z-index: 0;
         border-radius: 8px;
         overflow: hidden;
@@ -451,6 +453,7 @@
       .widget-inner { padding: 80px; gap: 64px; }
       .widget-heading { font-size: 48px; }
       .dream-card { height: 460px; }
+      .dream-image-desktop { top: 100px; height: 258px; }
       .card-title { font-size: 28px; }
       .card-desc { font-size: 18px; }
       .video-title-text { font-size: 40px; }
@@ -475,7 +478,7 @@
 
           <!-- Card 1: Archipelago -->
           <button data-dream="archipelago" data-cat="Nature" class="dream-card" style="flex-grow:424">
-            <div class="dream-image-desktop" style="left:23px;top:120px;width:calc(100% - 46px);height:238px">
+            <div class="dream-image-desktop" style="left:23px;width:calc(100% - 46px)">
               <img src="images/dream-archipelago.png" alt="" class="w-full h-full object-cover" />
             </div>
             <div class="card-image">
@@ -495,7 +498,7 @@
 
           <!-- Card 2: Gröna Lund -->
           <button data-dream="grona-lund" data-cat="Music" class="dream-card" style="flex-grow:424">
-            <div class="dream-image-desktop" style="left:23px;top:120px;width:calc(100% - 46px);height:238px">
+            <div class="dream-image-desktop" style="left:23px;width:calc(100% - 46px)">
               <img src="images/dream-grona-lund.png" alt="" class="w-full h-full object-cover" />
             </div>
             <div class="card-image">
@@ -516,7 +519,7 @@
 
           <!-- Card 3: Floating Sauna -->
           <button data-dream="floating-sauna" data-cat="Wellness" class="dream-card" style="flex-grow:424">
-            <div class="dream-image-desktop" style="left:23px;top:120px;width:calc(100% - 46px);height:238px">
+            <div class="dream-image-desktop" style="left:23px;width:calc(100% - 46px)">
               <img src="images/dream-floating-sauna.png" alt="" class="w-full h-full object-cover" />
             </div>
             <div class="card-image">
@@ -584,6 +587,10 @@
 
 <script>
 const isDesktop = () => window.innerWidth >= 1025;
+const isXLDesktop = () => window.innerWidth >= 1440;
+const idleImgTop = () => isXLDesktop() ? 100 : 120;
+const idleImgHeight = () => isXLDesktop() ? 258 : 238;
+const hoverOutImgHeight = () => isXLDesktop() ? 240 : 220;
 
 const dreams = {
   archipelago: { title: 'Archipelago Sunset Cruise' },
@@ -609,13 +616,13 @@ cards.forEach((card, i) => {
     if (phase !== 'select' || !isDesktop()) return;
     cards.forEach((c, j) => {
       if (j === i) { c.style.flexGrow = 524; desktopImages[j].style.cssText = 'left:0;top:0;width:100%;height:100%'; }
-      else { c.style.flexGrow = 370; desktopImages[j].style.cssText = 'left:23px;top:120px;width:calc(100% - 46px);height:220px'; }
+      else { c.style.flexGrow = 370; desktopImages[j].style.cssText = `left:23px;top:${idleImgTop()}px;width:calc(100% - 46px);height:${hoverOutImgHeight()}px`; }
     });
   });
 });
 dreamCardsContainer.addEventListener('mouseleave', () => {
   if (phase !== 'select' || !isDesktop()) return;
-  cards.forEach((c, j) => { c.style.flexGrow = 424; desktopImages[j].style.cssText = 'left:23px;top:120px;width:calc(100% - 46px);height:238px'; });
+  cards.forEach((c, j) => { c.style.flexGrow = 424; desktopImages[j].style.cssText = 'left:23px;width:calc(100% - 46px)'; });
 });
 
 const section = document.getElementById('dream-selector');
@@ -751,16 +758,18 @@ cancelBtn.addEventListener('click', () => {
     const rev = gsap.timeline({ onComplete: resetToSelect });
     rev.to([cancelBtn, placeholder], { opacity: 0, y: 12, duration: 0.35, ease: 'power2.in' });
     const targetImgW = (dreamCardsContainer.offsetWidth - 48) / 3 - 46;
+    const idleTop = idleImgTop();
+    const idleH = idleImgHeight();
     cards.forEach((c, i) => {
       rev.to(c, { height: _idleCardHeights[i] || 500, flexGrow: 424, justifyContent: 'space-between', gap: 0, duration: 0.75, ease: 'power3.inOut' }, 0.1);
-      rev.to(desktopImages[i], { left: 23, top: 120, width: targetImgW, height: 238, borderRadius: 8, opacity: 1, duration: 0.75, ease: 'power3.inOut' }, 0.1);
+      rev.to(desktopImages[i], { left: 23, top: idleTop, width: targetImgW, height: idleH, borderRadius: 8, opacity: 1, duration: 0.75, ease: 'power3.inOut' }, 0.1);
     });
     rev.set(cards, { pointerEvents: 'auto', cursor: 'pointer' });
     rev.set(cards, { clearProps: 'height,flexGrow,justifyContent,gap' });
     rev.set(desktopImages, { clearProps: 'left,top,width,height,borderRadius,opacity' });
     rev.call(() => {
       desktopImages.forEach(img => {
-        img.style.cssText = 'left:23px;top:120px;width:calc(100% - 46px);height:238px';
+        img.style.cssText = 'left:23px;width:calc(100% - 46px)';
       });
     });
   } else {
@@ -796,7 +805,7 @@ tryAnother.addEventListener('click', () => {
       gsap.set(c, { clearProps: 'height,flexGrow,justifyContent,gap,pointerEvents,cursor' });
       gsap.set(desktopImages[i], { clearProps: 'left,top,width,height,borderRadius,opacity' });
       c.style.flexGrow = 424;
-      desktopImages[i].style.cssText = 'left:23px;top:120px;width:calc(100% - 46px);height:238px';
+      desktopImages[i].style.cssText = 'left:23px;width:calc(100% - 46px)';
     });
   } else {
     cards.forEach((c) => {
@@ -817,7 +826,7 @@ function resetToSelect() {
   if (isDesktop()) {
     cards.forEach((c, i) => {
       c.style.flexGrow = 424;
-      desktopImages[i].style.cssText = 'left:23px;top:120px;width:calc(100% - 46px);height:238px';
+      desktopImages[i].style.cssText = 'left:23px;width:calc(100% - 46px)';
     });
   } else {
     requestAnimationFrame(equalizeCardHeights);
