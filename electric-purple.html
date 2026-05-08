@@ -174,13 +174,10 @@
 
     /* ─── Loading placeholder ─── */
     .video-loading-placeholder {
-      /* Cap height at 35vh so placeholder + CTA always fit in the viewport.
-         Width derived from aspect-ratio (16/9), capped at 100% of parent.
-         !important defeats any Tailwind utility class on the same element. */
-      width: min(100%, calc(35vh * 16 / 9)) !important;
+      /* Full width (parent .widget-inner already has the lateral padding);
+         height is derived from the 16:9 aspect ratio. */
+      width: 100%;
       aspect-ratio: 16 / 9;
-      margin-left: auto;
-      margin-right: auto;
       background: linear-gradient(
         110deg,
         rgba(255,253,251,0.06) 0%,
