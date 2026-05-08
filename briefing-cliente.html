@@ -1,0 +1,1714 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Briefing — Identidade Visual</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT@0,9..144,300..900,30..100;1,9..144,300..900,30..100&family=DM+Sans:opsz,wght@9..40,300..700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<style>
+  /* ---------- TOKENS ---------- */
+  :root {
+    --parchment: #f1e7d3;
+    --parchment-light: #f8f1e1;
+    --sand: #e6d8be;
+    --cream: #fbf6ea;
+    --saddle: #6b3a1f;
+    --cognac: #a85d2b;
+    --tan: #c9954f;
+    --gold: #b48a3c;
+    --espresso: #2b1810;
+    --ink: #1a0f08;
+    --rule: #b89c75;
+    --rule-soft: #d4bf9b;
+
+    --serif: "Fraunces", "Cormorant Garamond", "Garamond", serif;
+    --sans: "DM Sans", system-ui, sans-serif;
+    --mono: "DM Mono", ui-monospace, monospace;
+  }
+
+  /* ---------- RESET ---------- */
+  *,*::before,*::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: var(--sans);
+    font-size: 16px;
+    line-height: 1.65;
+    color: var(--espresso);
+    background: var(--parchment);
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  /* Subtle grain overlay */
+  body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 1000;
+    opacity: 0.18;
+    mix-blend-mode: multiply;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='220' height='220'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.16  0 0 0 0 0.09  0 0 0 0 0.05  0 0 0 0.4 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+  }
+
+  /* ---------- TYPOGRAPHY HELPERS ---------- */
+  .eyebrow {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.32em;
+    text-transform: uppercase;
+    color: var(--cognac);
+    font-weight: 500;
+  }
+  em.it {
+    font-family: var(--serif);
+    font-style: italic;
+    font-weight: 300;
+    font-variation-settings: "opsz" 144, "SOFT" 100;
+    color: var(--cognac);
+  }
+
+  /* ---------- LAYOUT ---------- */
+  .page {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 56px;
+    position: relative;
+  }
+  section { padding: 100px 0; position: relative; }
+  section + section { border-top: 1px solid var(--rule-soft); }
+
+  /* ---------- COVER ---------- */
+  .cover {
+    min-height: 100vh;
+    padding: 0;
+    display: flex;
+    align-items: stretch;
+    background:
+      radial-gradient(ellipse at 80% 20%, rgba(168,93,43,0.18), transparent 60%),
+      radial-gradient(ellipse at 10% 90%, rgba(107,58,31,0.15), transparent 55%),
+      linear-gradient(180deg, var(--parchment) 0%, var(--sand) 100%);
+    border-bottom: 1px solid var(--rule-soft);
+  }
+  .cover-grid {
+    flex: 1;
+    display: grid;
+    grid-template-columns: 1.3fr 1fr;
+    gap: 0;
+    align-items: stretch;
+  }
+  .cover-left {
+    padding: 80px 56px 60px 56px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  .cover-right {
+    border-left: 1px solid var(--rule-soft);
+    padding: 80px 56px 60px 56px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background:
+      radial-gradient(ellipse at center, rgba(180,138,60,0.08), transparent 70%);
+  }
+
+  .brand-mark {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: var(--saddle);
+  }
+  .brand-mark .dot {
+    width: 8px; height: 8px; border-radius: 50%;
+    background: var(--cognac);
+    box-shadow: 0 0 0 3px var(--parchment), 0 0 0 4px var(--cognac);
+  }
+
+  .cover h1 {
+    font-family: var(--serif);
+    font-weight: 300;
+    font-variation-settings: "opsz" 144, "SOFT" 100;
+    font-size: clamp(64px, 9vw, 138px);
+    line-height: 0.86;
+    letter-spacing: -0.035em;
+    color: var(--espresso);
+    margin-top: 32px;
+  }
+  .cover h1 .it {
+    font-style: italic;
+    font-weight: 300;
+    color: var(--cognac);
+    display: block;
+    padding-left: 1.2em;
+  }
+  .cover-tagline {
+    margin-top: 36px;
+    max-width: 480px;
+    font-size: 17px;
+    line-height: 1.55;
+    color: var(--saddle);
+  }
+
+  .cover-meta {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 28px 32px;
+    margin-top: 40px;
+  }
+  .cover-meta .item .k {
+    font-family: var(--mono);
+    font-size: 10.5px;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: var(--cognac);
+    margin-bottom: 6px;
+  }
+  .cover-meta .item .v {
+    font-family: var(--serif);
+    font-style: italic;
+    font-weight: 300;
+    font-variation-settings: "opsz" 60;
+    font-size: 22px;
+    color: var(--espresso);
+    line-height: 1.2;
+  }
+
+  /* Stamp / seal */
+  .seal {
+    width: 100%;
+    aspect-ratio: 1;
+    max-width: 360px;
+    margin: 0 auto;
+    position: relative;
+    display: grid;
+    place-items: center;
+  }
+  .seal svg { width: 100%; height: 100%; }
+
+  .cover-bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: end;
+    gap: 24px;
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--saddle);
+  }
+
+  /* ---------- INSTRUCTIONS PAGE ---------- */
+  .intro {
+    background: var(--parchment-light);
+  }
+  .intro-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.2fr;
+    gap: 80px;
+    align-items: start;
+  }
+  .intro h2 {
+    font-family: var(--serif);
+    font-weight: 300;
+    font-variation-settings: "opsz" 144, "SOFT" 100;
+    font-size: clamp(40px, 5vw, 64px);
+    line-height: 1;
+    letter-spacing: -0.02em;
+    color: var(--espresso);
+  }
+  .intro h2 .it {
+    font-style: italic;
+    color: var(--cognac);
+  }
+  .intro .num {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.32em;
+    text-transform: uppercase;
+    color: var(--cognac);
+    padding-top: 14px;
+    border-top: 1px solid var(--rule);
+    margin-bottom: 32px;
+    display: inline-block;
+    padding-right: 80px;
+  }
+  .intro p {
+    font-size: 16.5px;
+    line-height: 1.7;
+    color: var(--saddle);
+  }
+  .intro p + p { margin-top: 14px; }
+  .intro p strong { color: var(--espresso); font-weight: 600; }
+
+  .how-list {
+    margin-top: 32px;
+    list-style: none;
+  }
+  .how-list li {
+    padding: 18px 0;
+    border-top: 1px solid var(--rule-soft);
+    display: grid;
+    grid-template-columns: 56px 1fr;
+    gap: 20px;
+    align-items: start;
+  }
+  .how-list li:last-child { border-bottom: 1px solid var(--rule-soft); }
+  .how-list li .n {
+    font-family: var(--serif);
+    font-style: italic;
+    font-weight: 300;
+    font-variation-settings: "opsz" 144;
+    font-size: 36px;
+    line-height: 0.9;
+    color: var(--cognac);
+  }
+  .how-list li .t h4 {
+    font-family: var(--serif);
+    font-weight: 400;
+    font-size: 19px;
+    line-height: 1.2;
+    color: var(--espresso);
+    margin-bottom: 4px;
+  }
+  .how-list li .t p {
+    font-size: 14.5px;
+    line-height: 1.55;
+    color: var(--saddle);
+  }
+
+  /* ---------- SECTION HEADERS ---------- */
+  .section-head {
+    display: grid;
+    grid-template-columns: 220px 1fr;
+    gap: 64px;
+    align-items: start;
+    margin-bottom: 56px;
+  }
+  .section-head .num {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.32em;
+    text-transform: uppercase;
+    color: var(--cognac);
+    padding-top: 14px;
+    border-top: 1px solid var(--rule);
+  }
+  .section-head h2 {
+    font-family: var(--serif);
+    font-weight: 300;
+    font-variation-settings: "opsz" 144, "SOFT" 100;
+    font-size: clamp(36px, 5vw, 64px);
+    line-height: 0.98;
+    letter-spacing: -0.02em;
+    color: var(--espresso);
+  }
+  .section-head h2 .it {
+    font-style: italic;
+    color: var(--cognac);
+  }
+  .section-head .lead {
+    margin-top: 18px;
+    font-size: 16.5px;
+    line-height: 1.55;
+    color: var(--saddle);
+    max-width: 660px;
+  }
+
+  /* ---------- QUESTIONS ---------- */
+  .qs {
+    display: flex;
+    flex-direction: column;
+    gap: 36px;
+  }
+  .q {
+    display: grid;
+    grid-template-columns: 64px 1fr;
+    gap: 32px;
+    align-items: start;
+  }
+  .q .n {
+    font-family: var(--serif);
+    font-weight: 300;
+    font-style: italic;
+    font-variation-settings: "opsz" 144;
+    font-size: 32px;
+    line-height: 1;
+    color: var(--cognac);
+    padding-top: 4px;
+    text-align: right;
+  }
+  .q .body { min-width: 0; }
+  .q label.question {
+    display: block;
+    font-family: var(--serif);
+    font-weight: 400;
+    font-variation-settings: "opsz" 60;
+    font-size: 21px;
+    line-height: 1.35;
+    color: var(--espresso);
+    margin-bottom: 6px;
+  }
+  .q .helper {
+    font-size: 13.5px;
+    line-height: 1.55;
+    color: var(--saddle);
+    font-style: italic;
+    margin-bottom: 14px;
+  }
+
+  /* Form fields */
+  .field-line {
+    width: 100%;
+    border: none;
+    border-bottom: 1px solid var(--rule);
+    background: transparent;
+    padding: 12px 0 10px;
+    font-family: var(--serif);
+    font-style: italic;
+    font-weight: 300;
+    font-variation-settings: "opsz" 60;
+    font-size: 17px;
+    color: var(--saddle);
+    outline: none;
+    transition: border-color 0.2s ease, color 0.2s ease;
+  }
+  .field-line::placeholder {
+    color: var(--rule);
+    font-style: italic;
+    font-weight: 300;
+  }
+  .field-line:focus {
+    border-bottom-color: var(--cognac);
+    color: var(--espresso);
+  }
+
+  .field-box {
+    width: 100%;
+    border: 1px solid var(--rule-soft);
+    background:
+      repeating-linear-gradient(
+        to bottom,
+        transparent,
+        transparent 31px,
+        var(--rule-soft) 31px,
+        var(--rule-soft) 32px
+      );
+    padding: 14px 18px;
+    min-height: 130px;
+    font-family: var(--serif);
+    font-style: italic;
+    font-weight: 300;
+    font-variation-settings: "opsz" 60;
+    font-size: 16px;
+    line-height: 32px;
+    color: var(--saddle);
+    outline: none;
+    resize: vertical;
+    transition: border-color 0.2s ease, color 0.2s ease;
+  }
+  .field-box.tall { min-height: 200px; }
+  .field-box::placeholder {
+    color: var(--rule);
+    font-style: italic;
+  }
+  .field-box:focus {
+    border-color: var(--cognac);
+    color: var(--espresso);
+  }
+
+  .field-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px 28px;
+  }
+  .field-grid.three { grid-template-columns: repeat(3, 1fr); }
+
+  .field-group { display: flex; flex-direction: column; gap: 6px; }
+  .field-group .lab {
+    font-family: var(--mono);
+    font-size: 10.5px;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: var(--cognac);
+  }
+
+  /* Checkbox-style choices */
+  .choices {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+    gap: 10px;
+  }
+  .choice {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 14px;
+    border: 1px solid var(--rule-soft);
+    background: var(--cream);
+    cursor: pointer;
+    transition: all 0.2s ease;
+    font-size: 14.5px;
+    line-height: 1.3;
+    color: var(--espresso);
+  }
+  .choice:hover {
+    border-color: var(--cognac);
+    background: var(--parchment-light);
+  }
+  .choice input { display: none; }
+  .choice .mark {
+    width: 14px;
+    height: 14px;
+    border: 1.5px solid var(--rule);
+    flex-shrink: 0;
+    position: relative;
+    transition: all 0.2s ease;
+  }
+  .choice input:checked ~ .mark {
+    background: var(--saddle);
+    border-color: var(--saddle);
+  }
+  .choice input:checked ~ .mark::after {
+    content: "";
+    position: absolute;
+    inset: 2px;
+    background: var(--cream);
+    clip-path: polygon(15% 50%, 0 65%, 38% 100%, 100% 25%, 85% 10%, 38% 70%);
+  }
+  .choice input:checked ~ .label-text {
+    color: var(--saddle);
+    font-weight: 500;
+  }
+
+  /* Scale (1-5) */
+  .scale {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    gap: 16px;
+    align-items: center;
+    padding: 14px 0;
+  }
+  .scale .lab-end {
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 14.5px;
+    color: var(--saddle);
+  }
+  .scale .lab-end.right { text-align: right; }
+  .scale .dots {
+    display: flex;
+    gap: 14px;
+  }
+  .scale .dots label {
+    width: 28px;
+    height: 28px;
+    border: 1.5px solid var(--rule);
+    border-radius: 50%;
+    cursor: pointer;
+    display: grid;
+    place-items: center;
+    transition: all 0.2s ease;
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--saddle);
+  }
+  .scale .dots label:hover { border-color: var(--cognac); }
+  .scale .dots input { display: none; }
+  .scale .dots input:checked + span {
+    color: var(--cream);
+  }
+  .scale .dots label:has(input:checked) {
+    background: var(--saddle);
+    border-color: var(--saddle);
+    color: var(--cream);
+  }
+
+  /* Adjective pairs */
+  .adj-pair {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    gap: 16px;
+    align-items: center;
+    padding: 14px 16px;
+    border: 1px solid var(--rule-soft);
+    background: var(--cream);
+    margin-bottom: 8px;
+  }
+  .adj-pair .left,
+  .adj-pair .right {
+    font-family: var(--serif);
+    font-weight: 400;
+    font-style: italic;
+    font-variation-settings: "opsz" 60;
+    font-size: 18px;
+    color: var(--saddle);
+  }
+  .adj-pair .right { text-align: right; }
+  .adj-pair .dots { display: flex; gap: 10px; }
+  .adj-pair .dots label {
+    width: 22px; height: 22px;
+    border: 1.5px solid var(--rule);
+    border-radius: 50%;
+    cursor: pointer;
+    display: block;
+    transition: all 0.2s ease;
+  }
+  .adj-pair .dots label:hover { border-color: var(--cognac); }
+  .adj-pair .dots input { display: none; }
+  .adj-pair .dots label:has(input:checked) {
+    background: var(--cognac);
+    border-color: var(--cognac);
+  }
+
+  /* ---------- FINAL ---------- */
+  .closing {
+    background: var(--saddle);
+    color: var(--cream);
+    text-align: center;
+    padding: 140px 0;
+  }
+  .closing h2 {
+    font-family: var(--serif);
+    font-weight: 300;
+    font-variation-settings: "opsz" 144, "SOFT" 100;
+    font-size: clamp(48px, 7vw, 100px);
+    line-height: 0.95;
+    letter-spacing: -0.02em;
+    color: var(--cream);
+    margin-bottom: 24px;
+  }
+  .closing h2 .it {
+    font-style: italic;
+    color: var(--tan);
+  }
+  .closing p {
+    max-width: 560px;
+    margin: 0 auto 48px;
+    font-size: 17px;
+    line-height: 1.6;
+    color: rgba(251,246,234,0.78);
+  }
+  .closing .ornament {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    color: var(--tan);
+    max-width: 320px;
+    margin: 0 auto 32px;
+  }
+  .closing .ornament::before, .closing .ornament::after {
+    content: "";
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--tan) 30%, var(--tan) 70%, transparent);
+  }
+
+  .signature-block {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 48px;
+    text-align: left;
+    max-width: 720px;
+    margin: 80px auto 0;
+    padding-top: 36px;
+    border-top: 1px solid rgba(251,246,234,0.2);
+  }
+  .signature-block .item .k {
+    font-family: var(--mono);
+    font-size: 10.5px;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: var(--tan);
+    margin-bottom: 12px;
+  }
+  .signature-block .item .line {
+    border-bottom: 1px solid rgba(251,246,234,0.4);
+    height: 28px;
+    margin-bottom: 8px;
+  }
+  .signature-block .item .helper {
+    font-family: var(--sans);
+    font-size: 12.5px;
+    color: rgba(251,246,234,0.6);
+  }
+
+  /* ---------- FOOTER ---------- */
+  footer {
+    padding: 32px 56px;
+    border-top: 1px solid var(--rule-soft);
+    background: var(--espresso);
+    color: rgba(251,246,234,0.5);
+    font-family: var(--mono);
+    font-size: 10.5px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  /* ---------- RESPONSIVE ---------- */
+  @media (max-width: 960px) {
+    .page { padding: 0 32px; }
+    .cover-grid { grid-template-columns: 1fr; }
+    .cover-right { border-left: none; border-top: 1px solid var(--rule-soft); }
+    .cover-left, .cover-right { padding: 56px 32px; }
+    .section-head { grid-template-columns: 1fr; gap: 24px; }
+    .intro-grid { grid-template-columns: 1fr; gap: 32px; }
+    .q { grid-template-columns: 40px 1fr; gap: 16px; }
+    .q .n { font-size: 24px; }
+    .field-grid, .field-grid.three { grid-template-columns: 1fr; }
+    .signature-block { grid-template-columns: 1fr; }
+    .adj-pair { grid-template-columns: 1fr; gap: 8px; text-align: left; }
+    .adj-pair .right { text-align: left; }
+    .adj-pair .dots { justify-content: flex-start; }
+  }
+
+  /* ---------- PRINT ---------- */
+  @media print {
+    body::before { display: none; }
+    section { padding: 50px 0; page-break-inside: avoid; }
+    .cover { min-height: auto; page-break-after: always; }
+    .field-line {
+      border-bottom-color: var(--saddle);
+    }
+    .field-box {
+      border-color: var(--rule);
+    }
+    .q { page-break-inside: avoid; }
+  }
+
+  /* ---------- ENTRANCE ANIMATION ---------- */
+  @keyframes rise {
+    from { opacity: 0; transform: translateY(28px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .cover h1, .cover-tagline, .cover-meta, .cover-bottom, .seal {
+    animation: rise 1.1s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+  }
+  .cover-tagline { animation-delay: 0.15s; }
+  .cover-meta { animation-delay: 0.3s; }
+  .seal { animation-delay: 0.45s; }
+  .cover-bottom { animation-delay: 0.6s; }
+</style>
+</head>
+<body>
+
+<!-- ============================================== -->
+<!-- COVER -->
+<!-- ============================================== -->
+<section class="cover">
+  <div class="cover-grid">
+    <div class="cover-left">
+      <div class="brand-mark">
+        <span class="dot"></span>
+        <span>Estúdio · [Nome do Designer]</span>
+      </div>
+
+      <div>
+        <span class="eyebrow">Documento · Questionário Inicial</span>
+        <h1>
+          Briefing
+          <span class="it">criativo</span>
+        </h1>
+        <p class="cover-tagline">
+          Antes de desenhar a marca, é preciso ouvir a história. Este documento ajuda-nos a chegar à raiz do que torna o seu trabalho — e o seu negócio — único.
+        </p>
+
+        <div class="cover-meta">
+          <div class="item">
+            <div class="k">Para</div>
+            <div class="v">[Nome do Cliente]<br/>Professional Hand-Made Saddles</div>
+          </div>
+          <div class="item">
+            <div class="k">De</div>
+            <div class="v">[O Teu Nome]<br/>Designer · Freelance</div>
+          </div>
+          <div class="item">
+            <div class="k">Documento</div>
+            <div class="v">Briefing · Identidade Visual</div>
+          </div>
+          <div class="item">
+            <div class="k">Tempo estimado</div>
+            <div class="v">30–45 min<br/><small style="font-family:var(--sans); font-style:normal; font-size:13px; color:var(--saddle);">Pode preencher em vários momentos</small></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="cover-bottom">
+        <span>Lisboa · Portugal</span>
+        <span>Confidencial</span>
+      </div>
+    </div>
+
+    <div class="cover-right">
+      <div></div>
+      <div class="seal">
+        <svg viewBox="0 0 360 360" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <path id="circ" d="M 180,180 m -148,0 a 148,148 0 1,1 296,0 a 148,148 0 1,1 -296,0" />
+          </defs>
+          <circle cx="180" cy="180" r="170" fill="none" stroke="#6b3a1f" stroke-width="1"/>
+          <circle cx="180" cy="180" r="156" fill="none" stroke="#6b3a1f" stroke-width="1.5"/>
+          <circle cx="180" cy="180" r="118" fill="none" stroke="#6b3a1f" stroke-width="0.8" stroke-dasharray="2 4"/>
+
+          <text font-family="DM Mono, monospace" font-size="11" letter-spacing="4" fill="#6b3a1f">
+            <textPath href="#circ" startOffset="0%">
+              · BRIEFING · DISCOVERY · BRAND · STORY · BRIEFING · DISCOVERY · BRAND · STORY ·
+            </textPath>
+          </text>
+
+          <g transform="translate(180,180)">
+            <text text-anchor="middle" font-family="Fraunces, serif" font-style="italic" font-size="84" font-weight="300" fill="#a85d2b" dy="6">
+              BR
+            </text>
+            <line x1="-46" y1="34" x2="46" y2="34" stroke="#6b3a1f" stroke-width="0.8"/>
+            <text text-anchor="middle" font-family="DM Mono, monospace" font-size="9" letter-spacing="3" fill="#6b3a1f" dy="56">
+              ETAPA · 01
+            </text>
+            <text text-anchor="middle" font-family="Fraunces, serif" font-style="italic" font-size="13" fill="#6b3a1f" dy="80">
+              questionário do cliente
+            </text>
+          </g>
+
+          <g fill="#a85d2b">
+            <circle cx="180" cy="22" r="2.5"/>
+            <circle cx="180" cy="338" r="2.5"/>
+            <circle cx="22" cy="180" r="2.5"/>
+            <circle cx="338" cy="180" r="2.5"/>
+          </g>
+        </svg>
+      </div>
+      <div style="text-align: center;">
+        <div style="display: flex; align-items: center; gap: 18px; color: var(--rule); max-width: 240px; margin: 0 auto;">
+          <span style="flex: 1; height: 1px; background: linear-gradient(90deg, transparent, var(--rule) 30%, var(--rule) 70%, transparent);"></span>
+          <svg width="14" height="14" viewBox="0 0 14 14"><circle cx="7" cy="7" r="3" fill="none" stroke="currentColor" stroke-width="1"/></svg>
+          <span style="flex: 1; height: 1px; background: linear-gradient(90deg, transparent, var(--rule) 30%, var(--rule) 70%, transparent);"></span>
+        </div>
+        <p style="margin-top: 24px; font-family: var(--serif); font-style: italic; font-size: 18px; color: var(--saddle); line-height: 1.4;">
+          “Uma boa marca nasce<br/>de uma boa pergunta.”
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ============================================== -->
+<!-- INTRODUCTION / HOW TO -->
+<!-- ============================================== -->
+<section class="intro">
+  <div class="page">
+    <div class="intro-grid">
+      <div>
+        <span class="num">Antes de começar</span>
+        <h2>Como <span class="it">preencher</span> este documento.</h2>
+      </div>
+      <div>
+        <p>
+          Obrigado(a) pela disponibilidade. Este briefing é a base de tudo o que vamos construir juntos. <strong>Não há respostas certas ou erradas</strong> — quanto mais honestas e detalhadas forem, melhor a marca final irá refletir o seu negócio.
+        </p>
+        <p>
+          Pode preencher diretamente neste documento (digital), imprimir e escrever à mão, ou simplesmente enviar-me as respostas por email. O importante é que sinta as perguntas como uma conversa, não como um formulário.
+        </p>
+
+        <ul class="how-list">
+          <li>
+            <div class="n">01</div>
+            <div class="t">
+              <h4>Demore o tempo que precisar</h4>
+              <p>Não tem de responder tudo de uma vez. Pode pausar, voltar, alterar respostas anteriores.</p>
+            </div>
+          </li>
+          <li>
+            <div class="n">02</div>
+            <div class="t">
+              <h4>Se não souber, deixe em branco</h4>
+              <p>É melhor uma resposta vazia do que uma resposta forçada. Discutiremos o que ficar por preencher na nossa próxima conversa.</p>
+            </div>
+          </li>
+          <li>
+            <div class="n">03</div>
+            <div class="t">
+              <h4>Sinta-se à vontade para divagar</h4>
+              <p>Histórias, anedotas, frases soltas — tudo conta. Por vezes, a alma da marca aparece num parêntesis.</p>
+            </div>
+          </li>
+          <li>
+            <div class="n">04</div>
+            <div class="t">
+              <h4>Devolva quando estiver pronto(a)</h4>
+              <p>Após a entrega, marcamos uma chamada de 30 min para alinhar leituras e dar o arranque oficial ao projeto.</p>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ============================================== -->
+<!-- 01 — SOBRE O NEGÓCIO -->
+<!-- ============================================== -->
+<section>
+  <div class="page">
+    <div class="section-head">
+      <div class="num">01 — Sobre o Negócio</div>
+      <div>
+        <h2>Comece por <span class="it">apresentar</span> a sua selaria.</h2>
+        <p class="lead">As bases. Quem é, o que faz, há quanto tempo, e a história que o trouxe até aqui.</p>
+      </div>
+    </div>
+
+    <div class="qs">
+      <div class="q">
+        <div class="n">01</div>
+        <div class="body">
+          <label class="question">Nome oficial da empresa / marca.</label>
+          <p class="helper">Se tem mais de um nome (legal, comercial, abreviatura), indique todos.</p>
+          <div class="field-grid">
+            <div class="field-group">
+              <span class="lab">Nome principal</span>
+              <input class="field-line" type="text" placeholder="Ex.: Selaria São João" />
+            </div>
+            <div class="field-group">
+              <span class="lab">Outros nomes / abreviaturas</span>
+              <input class="field-line" type="text" placeholder="Ex.: SSJ" />
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="q">
+        <div class="n">02</div>
+        <div class="body">
+          <label class="question">Em uma frase, o que faz a sua selaria?</label>
+          <p class="helper">Como descreveria o seu trabalho a alguém que nunca ouviu falar de selas feitas à mão.</p>
+          <textarea class="field-box" placeholder="Ex.: Construo selas de salto e dressage feitas à mão, peça a peça, com couro português..."></textarea>
+        </div>
+      </div>
+
+      <div class="q">
+        <div class="n">03</div>
+        <div class="body">
+          <label class="question">Há quantos anos existe? Quem fundou?</label>
+          <div class="field-grid">
+            <div class="field-group">
+              <span class="lab">Ano de fundação</span>
+              <input class="field-line" type="text" placeholder="Ex.: 2008" />
+            </div>
+            <div class="field-group">
+              <span class="lab">Fundador(es)</span>
+              <input class="field-line" type="text" placeholder="Ex.: João Silva" />
+            </div>
+            <div class="field-group">
+              <span class="lab">Localização da oficina</span>
+              <input class="field-line" type="text" placeholder="Ex.: Golegã, Portugal" />
+            </div>
+            <div class="field-group">
+              <span class="lab">Equipa atual</span>
+              <input class="field-line" type="text" placeholder="Ex.: 1 mestre + 2 aprendizes" />
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="q">
+        <div class="n">04</div>
+        <div class="body">
+          <label class="question">Conte-me a história — como começou tudo isto?</label>
+          <p class="helper">Pode ser longa, pode ser curta. As melhores marcas vivem da história que carregam.</p>
+          <textarea class="field-box tall" placeholder="Ex.: O meu avô era selareiro na Golegã, e em criança passava horas na oficina..."></textarea>
+        </div>
+      </div>
+
+      <div class="q">
+        <div class="n">05</div>
+        <div class="body">
+          <label class="question">Quais são os valores que guiam o seu trabalho?</label>
+          <p class="helper">Selecione até quatro. Se faltar algum, escreva no espaço final.</p>
+          <div class="choices">
+            <label class="choice"><input type="checkbox"/><span class="mark"></span><span class="label-text">Tradição</span></label>
+            <label class="choice"><input type="checkbox"/><span class="mark"></span><span class="label-text">Qualidade artesanal</span></label>
+            <label class="choice"><input type="checkbox"/><span class="mark"></span><span class="label-text">Durabilidade</span></label>
+            <label class="choice"><input type="checkbox"/><span class="mark"></span><span class="label-text">Personalização</span></label>
+            <label class="choice"><input type="checkbox"/><span class="mark"></span><span class="label-text">Conforto do cavalo</span></label>
+            <label class="choice"><input type="checkbox"/><span class="mark"></span><span class="label-text">Honestidade</span></label>
+            <label class="choice"><input type="checkbox"/><span class="mark"></span><span class="label-text">Inovação técnica</span></label>
+            <label class="choice"><input type="checkbox"/><span class="mark"></span><span class="label-text">Sustentabilidade</span></label>
+            <label class="choice"><input type="checkbox"/><span class="mark"></span><span class="label-text">Herança familiar</span></label>
+            <label class="choice"><input type="checkbox"/><span class="mark"></span><span class="label-text">Excelência desportiva</span></label>
+            <label class="choice"><input type="checkbox"/><span class="mark"></span><span class="label-text">Discrição / sobriedade</span></label>
+            <label class="choice"><input type="checkbox"/><span class="mark"></span><span class="label-text">Atenção ao detalhe</span></label>
+          </div>
+          <div style="margin-top: 16px;">
+            <input class="field-line" type="text" placeholder="Outros valores que considera importantes..." />
+          </div>
+        </div>
+      </div>
+
+      <div class="q">
+        <div class="n">06</div>
+        <div class="body">
+          <label class="question">Qual a missão da empresa? Porque faz o que faz?</label>
+          <p class="helper">Para além de ganhar a vida — o que o(a) move?</p>
+          <textarea class="field-box" placeholder="Ex.: Manter viva uma técnica que se está a perder em Portugal..."></textarea>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ============================================== -->
+<!-- 02 — O PRODUTO -->
+<!-- ============================================== -->
+<section>
+  <div class="page">
+    <div class="section-head">
+      <div class="num">02 — O Produto</div>
+      <div>
+        <h2>O que <span class="it">sai</span> da sua oficina.</h2>
+        <p class="lead">Quanto mais souber sobre o produto, mais a marca poderá honrar o que ele tem de especial.</p>
+      </div>
+    </div>
+
+    <div class="qs">
+      <div class="q">
+        <div class="n">07</div>
+        <div class="body">
+          <label class="question">Que tipos de selas faz?</label>
+          <p class="helper">Marque todos os que se aplicam.</p>
+          <div class="choices">
+            <label class="choice"><input type="checkbox"/><span class="mark"></span><span class="label-text">Salto / hipismo</span></label>
+            <label class="choice"><input type="checkbox"/><span class="mark"></span><span class="label-text">Dressage</span></label>
+            <label class="choice"><input type="checkbox"/><span class="mark"></span><span class="label-text">Endurance</span></label>
+            <label class="choice"><input type="checkbox"/><span class="mark"></span><span class="label-text">Trabalho / passeio</span></label>
+            <label class="choice"><input type="checkbox"/><span class="mark"></span><span class="label-text">Equitação portuguesa</span></label>
+            <label class="choice"><input type="checkbox"/><span class="mark"></span><span class="label-text">Western</span></label>
+            <label class="choice"><input type="checkbox"/><span class="mark"></span><span class="label-text">Toureio</span></label>
+            <label class="choice"><input type="checkbox"/><span class="mark"></span><span class="label-text">Acessórios (cabeçadas, rédeas)</span></label>
+          </div>
+          <div style="margin-top: 16px;">
+            <input class="field-line" type="text" placeholder="Outros produtos que faz..." />
+          </div>
+        </div>
+      </div>
+
+      <div class="q">
+        <div class="n">08</div>
+        <div class="body">
+          <label class="question">Quanto tempo demora a fazer uma sela?</label>
+          <div class="field-grid three">
+            <div class="field-group">
+              <span class="lab">Modelo mais simples</span>
+              <input class="field-line" type="text" placeholder="Ex.: 80 horas" />
+            </div>
+            <div class="field-group">
+              <span class="lab">Modelo médio</span>
+              <input class="field-line" type="text" placeholder="Ex.: 120 horas" />
+            </div>
+            <div class="field-group">
+              <span class="lab">Modelo mais complexo</span>
+              <input class="field-line" type="text" placeholder="Ex.: 200+ horas" />
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="q">
+        <div class="n">09</div>
+        <div class="body">
+          <label class="question">Que materiais usa? E porquê esses?</label>
+          <p class="helper">Origem do couro, fornecedores, técnicas — quanto mais detalhe, melhor.</p>
+          <textarea class="field-box" placeholder="Ex.: Trabalho exclusivamente com couro de curtimenta vegetal de Alcanena..."></textarea>
+        </div>
+      </div>
+
+      <div class="q">
+        <div class="n">10</div>
+        <div class="body">
+          <label class="question">Qual é a faixa de preços do seu produto?</label>
+          <div class="field-grid three">
+            <div class="field-group">
+              <span class="lab">Mínimo</span>
+              <input class="field-line" type="text" placeholder="Ex.: 1.800€" />
+            </div>
+            <div class="field-group">
+              <span class="lab">Médio</span>
+              <input class="field-line" type="text" placeholder="Ex.: 3.500€" />
+            </div>
+            <div class="field-group">
+              <span class="lab">Máximo</span>
+              <input class="field-line" type="text" placeholder="Ex.: 6.000€+" />
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="q">
+        <div class="n">11</div>
+        <div class="body">
+          <label class="question">O que torna as suas selas únicas?</label>
+          <p class="helper">Aquilo que mais ninguém faz, ou que faz de forma diferente. Seja específico — "qualidade" não basta.</p>
+          <textarea class="field-box tall" placeholder="Ex.: Cada sela é moldada à medida do par cavaleiro-cavalo. Faço primeiro um molde em argila..."></textarea>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ============================================== -->
+<!-- 03 — OS CLIENTES -->
+<!-- ============================================== -->
+<section>
+  <div class="page">
+    <div class="section-head">
+      <div class="num">03 — Os Clientes</div>
+      <div>
+        <h2>Quem <span class="it">monta</span> as suas selas.</h2>
+        <p class="lead">Uma marca não fala para todos — fala para alguém específico. Conhecer essa pessoa é fundamental.</p>
+      </div>
+    </div>
+
+    <div class="qs">
+      <div class="q">
+        <div class="n">12</div>
+        <div class="body">
+          <label class="question">Descreva o seu cliente típico.</label>
+          <p class="helper">Idade, profissão, nível de equitação, estilo de vida. Pode descrever uma pessoa real que conhece.</p>
+          <textarea class="field-box" placeholder="Ex.: Mulher, 35–55 anos, pratica dressage como amadora há mais de 10 anos, frequenta concursos regionais..."></textarea>
+        </div>
+      </div>
+
+      <div class="q">
+        <div class="n">13</div>
+        <div class="body">
+          <label class="question">Porque é que escolhem você, e não outro?</label>
+          <p class="helper">O que dizem os seus clientes quando explicam porque o(a) recomendam.</p>
+          <textarea class="field-box" placeholder="Ex.: Dizem-me que sou o único em Portugal que ainda mede o cavalo presencialmente..."></textarea>
+        </div>
+      </div>
+
+      <div class="q">
+        <div class="n">14</div>
+        <div class="body">
+          <label class="question">Onde é que estão geograficamente os seus clientes?</label>
+          <div class="choices">
+            <label class="choice"><input type="checkbox"/><span class="mark"></span><span class="label-text">Local / regional</span></label>
+            <label class="choice"><input type="checkbox"/><span class="mark"></span><span class="label-text">Nacional (Portugal)</span></label>
+            <label class="choice"><input type="checkbox"/><span class="mark"></span><span class="label-text">Espanha</span></label>
+            <label class="choice"><input type="checkbox"/><span class="mark"></span><span class="label-text">Resto da Europa</span></label>
+            <label class="choice"><input type="checkbox"/><span class="mark"></span><span class="label-text">EUA / Reino Unido</span></label>
+            <label class="choice"><input type="checkbox"/><span class="mark"></span><span class="label-text">Mercado internacional alargado</span></label>
+          </div>
+        </div>
+      </div>
+
+      <div class="q">
+        <div class="n">15</div>
+        <div class="body">
+          <label class="question">Como é que os clientes o(a) descobrem hoje?</label>
+          <p class="helper">Por ordem de importância, se possível.</p>
+          <textarea class="field-box" placeholder="Ex.: 1) Recomendação boca-a-boca; 2) Concursos hípicos; 3) Instagram..."></textarea>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ============================================== -->
+<!-- 04 — CONCORRÊNCIA -->
+<!-- ============================================== -->
+<section>
+  <div class="page">
+    <div class="section-head">
+      <div class="num">04 — Concorrência &amp; Posicionamento</div>
+      <div>
+        <h2>Como se <span class="it">distingue</span> dos outros.</h2>
+        <p class="lead">Não para copiar — para perceber onde está o espaço que só você pode ocupar.</p>
+      </div>
+    </div>
+
+    <div class="qs">
+      <div class="q">
+        <div class="n">16</div>
+        <div class="body">
+          <label class="question">Quem são os seus principais concorrentes?</label>
+          <p class="helper">Indique 3 a 5 nomes — diretos (que fazem o mesmo) ou indiretos (alternativas que o cliente pondera).</p>
+          <textarea class="field-box" placeholder="Ex.: Selaria Antarés (FR), Devoucoux, marcas portuguesas..."></textarea>
+        </div>
+      </div>
+
+      <div class="q">
+        <div class="n">17</div>
+        <div class="body">
+          <label class="question">O que admira nos concorrentes — e o que detesta?</label>
+          <div class="field-grid">
+            <div class="field-group">
+              <span class="lab">O que admiro</span>
+              <textarea class="field-box" placeholder="Ex.: O posicionamento internacional da Antarés..."></textarea>
+            </div>
+            <div class="field-group">
+              <span class="lab">O que evito</span>
+              <textarea class="field-box" placeholder="Ex.: A imagem demasiado industrial e impessoal..."></textarea>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="q">
+        <div class="n">18</div>
+        <div class="body">
+          <label class="question">Onde quer estar posicionado?</label>
+          <div class="adj-pair">
+            <span class="left">Acessível / popular</span>
+            <div class="dots">
+              <label><input type="radio" name="pos1"/></label>
+              <label><input type="radio" name="pos1"/></label>
+              <label><input type="radio" name="pos1"/></label>
+              <label><input type="radio" name="pos1"/></label>
+              <label><input type="radio" name="pos1"/></label>
+            </div>
+            <span class="right">Premium / luxo</span>
+          </div>
+          <div class="adj-pair">
+            <span class="left">Massa / volume</span>
+            <div class="dots">
+              <label><input type="radio" name="pos2"/></label>
+              <label><input type="radio" name="pos2"/></label>
+              <label><input type="radio" name="pos2"/></label>
+              <label><input type="radio" name="pos2"/></label>
+              <label><input type="radio" name="pos2"/></label>
+            </div>
+            <span class="right">Nicho / exclusivo</span>
+          </div>
+          <div class="adj-pair">
+            <span class="left">Tradicional</span>
+            <div class="dots">
+              <label><input type="radio" name="pos3"/></label>
+              <label><input type="radio" name="pos3"/></label>
+              <label><input type="radio" name="pos3"/></label>
+              <label><input type="radio" name="pos3"/></label>
+              <label><input type="radio" name="pos3"/></label>
+            </div>
+            <span class="right">Contemporâneo</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ============================================== -->
+<!-- 05 — A MARCA ATUAL -->
+<!-- ============================================== -->
+<section>
+  <div class="page">
+    <div class="section-head">
+      <div class="num">05 — A Marca Atual</div>
+      <div>
+        <h2>O que está em <span class="it">cima da mesa</span> hoje.</h2>
+        <p class="lead">Para fazer melhor, é preciso entender o que existe — e porque deixou de servir.</p>
+      </div>
+    </div>
+
+    <div class="qs">
+      <div class="q">
+        <div class="n">19</div>
+        <div class="body">
+          <label class="question">Em que ano foi criado o logótipo atual? Por quem?</label>
+          <div class="field-grid">
+            <div class="field-group">
+              <span class="lab">Ano</span>
+              <input class="field-line" type="text" placeholder="Ex.: 2010" />
+            </div>
+            <div class="field-group">
+              <span class="lab">Autor</span>
+              <input class="field-line" type="text" placeholder="Ex.: Designer local / familiar / próprio" />
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="q">
+        <div class="n">20</div>
+        <div class="body">
+          <label class="question">O que funciona bem no logótipo atual?</label>
+          <p class="helper">Algo que queira manter — uma cor, um símbolo, uma sensação.</p>
+          <textarea class="field-box" placeholder="Ex.: A inicial em itálico é reconhecível pelos clientes mais antigos..."></textarea>
+        </div>
+      </div>
+
+      <div class="q">
+        <div class="n">21</div>
+        <div class="body">
+          <label class="question">O que o(a) frustra no logótipo atual?</label>
+          <p class="helper">Não tenha pudor. Esta é a pergunta mais útil de todas.</p>
+          <textarea class="field-box" placeholder="Ex.: Parece amador. Não fica bem nas redes sociais. Não imprime bem em couro..."></textarea>
+        </div>
+      </div>
+
+      <div class="q">
+        <div class="n">22</div>
+        <div class="body">
+          <label class="question">Há algum elemento ou herança que tem mesmo que ficar?</label>
+          <p class="helper">Símbolos com significado pessoal, datas, iniciais, referências familiares.</p>
+          <textarea class="field-box" placeholder="Ex.: A ferradura — é um símbolo que o meu pai usava na primeira oficina..."></textarea>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ============================================== -->
+<!-- 06 — OBJETIVOS DO PROJETO -->
+<!-- ============================================== -->
+<section>
+  <div class="page">
+    <div class="section-head">
+      <div class="num">06 — Objetivos do Projeto</div>
+      <div>
+        <h2>Para onde <span class="it">queremos</span> chegar.</h2>
+        <p class="lead">A nova identidade não é um fim — é uma ferramenta. Para quê?</p>
+      </div>
+    </div>
+
+    <div class="qs">
+      <div class="q">
+        <div class="n">23</div>
+        <div class="body">
+          <label class="question">Porquê redesenhar agora? Porque não há dois anos, ou daqui a dois?</label>
+          <textarea class="field-box" placeholder="Ex.: Vou expandir para o mercado espanhol em 2027 e a marca atual não passa nesses meios..."></textarea>
+        </div>
+      </div>
+
+      <div class="q">
+        <div class="n">24</div>
+        <div class="body">
+          <label class="question">Quais os 3 objetivos concretos para esta nova marca?</label>
+          <p class="helper">Pode ser comercial, emocional, técnico — qualquer combinação.</p>
+          <div style="display: flex; flex-direction: column; gap: 14px;">
+            <div class="field-group">
+              <span class="lab">Objetivo 01</span>
+              <input class="field-line" type="text" placeholder="Ex.: Justificar um aumento de 20% no preço médio" />
+            </div>
+            <div class="field-group">
+              <span class="lab">Objetivo 02</span>
+              <input class="field-line" type="text" placeholder="Ex.: Atrair clientes mais jovens nas redes sociais" />
+            </div>
+            <div class="field-group">
+              <span class="lab">Objetivo 03</span>
+              <input class="field-line" type="text" placeholder="Ex.: Ter uma marca de que eu próprio me orgulhe" />
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="q">
+        <div class="n">25</div>
+        <div class="body">
+          <label class="question">Onde quer ver a sua selaria daqui a 5 anos?</label>
+          <p class="helper">Sonhe alto. A marca tem de aguentar essa ambição.</p>
+          <textarea class="field-box" placeholder="Ex.: Reconhecida em Portugal e Espanha como referência em selas de dressage de alto nível..."></textarea>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ============================================== -->
+<!-- 07 — PERSONALIDADE & TOM -->
+<!-- ============================================== -->
+<section>
+  <div class="page">
+    <div class="section-head">
+      <div class="num">07 — Personalidade da Marca</div>
+      <div>
+        <h2>Se a marca fosse uma <span class="it">pessoa</span>...</h2>
+        <p class="lead">Toda a marca tem temperamento. Vamos definir o seu antes de definir as cores.</p>
+      </div>
+    </div>
+
+    <div class="qs">
+      <div class="q">
+        <div class="n">26</div>
+        <div class="body">
+          <label class="question">Em que extremo está a sua marca?</label>
+          <p class="helper">Marque o ponto em cada eixo. Não há respostas erradas — só escolhas.</p>
+          <div style="margin-top: 16px;">
+            <div class="adj-pair">
+              <span class="left">Sério, formal</span>
+              <div class="dots">
+                <label><input type="radio" name="adj1"/></label>
+                <label><input type="radio" name="adj1"/></label>
+                <label><input type="radio" name="adj1"/></label>
+                <label><input type="radio" name="adj1"/></label>
+                <label><input type="radio" name="adj1"/></label>
+              </div>
+              <span class="right">Descontraído, próximo</span>
+            </div>
+            <div class="adj-pair">
+              <span class="left">Clássico, atemporal</span>
+              <div class="dots">
+                <label><input type="radio" name="adj2"/></label>
+                <label><input type="radio" name="adj2"/></label>
+                <label><input type="radio" name="adj2"/></label>
+                <label><input type="radio" name="adj2"/></label>
+                <label><input type="radio" name="adj2"/></label>
+              </div>
+              <span class="right">Moderno, ousado</span>
+            </div>
+            <div class="adj-pair">
+              <span class="left">Discreto, sóbrio</span>
+              <div class="dots">
+                <label><input type="radio" name="adj3"/></label>
+                <label><input type="radio" name="adj3"/></label>
+                <label><input type="radio" name="adj3"/></label>
+                <label><input type="radio" name="adj3"/></label>
+                <label><input type="radio" name="adj3"/></label>
+              </div>
+              <span class="right">Expressivo, marcante</span>
+            </div>
+            <div class="adj-pair">
+              <span class="left">Rural, terra</span>
+              <div class="dots">
+                <label><input type="radio" name="adj4"/></label>
+                <label><input type="radio" name="adj4"/></label>
+                <label><input type="radio" name="adj4"/></label>
+                <label><input type="radio" name="adj4"/></label>
+                <label><input type="radio" name="adj4"/></label>
+              </div>
+              <span class="right">Urbano, refinado</span>
+            </div>
+            <div class="adj-pair">
+              <span class="left">Robusto, masculino</span>
+              <div class="dots">
+                <label><input type="radio" name="adj5"/></label>
+                <label><input type="radio" name="adj5"/></label>
+                <label><input type="radio" name="adj5"/></label>
+                <label><input type="radio" name="adj5"/></label>
+                <label><input type="radio" name="adj5"/></label>
+              </div>
+              <span class="right">Delicado, refinado</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="q">
+        <div class="n">27</div>
+        <div class="body">
+          <label class="question">Escolha 5 palavras que descrevam a sua marca ideal.</label>
+          <p class="helper">Adjetivos, substantivos, sentimentos. Aquilo que quer que as pessoas sintam quando virem o logótipo.</p>
+          <div class="field-grid three">
+            <input class="field-line" type="text" placeholder="01 · Ex.: Honesta" />
+            <input class="field-line" type="text" placeholder="02 · Ex.: Discreta" />
+            <input class="field-line" type="text" placeholder="03 · Ex.: Robusta" />
+            <input class="field-line" type="text" placeholder="04 · Ex.: Atemporal" />
+            <input class="field-line" type="text" placeholder="05 · Ex.: Portuguesa" />
+          </div>
+        </div>
+      </div>
+
+      <div class="q">
+        <div class="n">28</div>
+        <div class="body">
+          <label class="question">E 3 palavras que a marca NÃO pode ser, em circunstância nenhuma.</label>
+          <p class="helper">Tão importante como saber o que ser, é saber o que evitar.</p>
+          <div class="field-grid three">
+            <input class="field-line" type="text" placeholder="01 · Ex.: Tecnológica" />
+            <input class="field-line" type="text" placeholder="02 · Ex.: Infantil" />
+            <input class="field-line" type="text" placeholder="03 · Ex.: Vulgar" />
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ============================================== -->
+<!-- 08 — PREFERÊNCIAS VISUAIS -->
+<!-- ============================================== -->
+<section>
+  <div class="page">
+    <div class="section-head">
+      <div class="num">08 — Preferências Visuais</div>
+      <div>
+        <h2>O que <span class="it">já gosta</span> — e o que evitar.</h2>
+        <p class="lead">Imagens, cores, marcas que admira. As referências ajudam-nos a falar a mesma língua visual.</p>
+      </div>
+    </div>
+
+    <div class="qs">
+      <div class="q">
+        <div class="n">29</div>
+        <div class="body">
+          <label class="question">Indique 3 a 5 marcas (de qualquer setor) cuja identidade visual admira.</label>
+          <p class="helper">Não precisam de ser do seu setor. Pode ser uma garrafa de vinho, uma marca de moda, um café.</p>
+          <textarea class="field-box" placeholder="Ex.: Hermès — pelo equilíbrio entre tradição e modernidade. Aesop — pela tipografia e simplicidade..."></textarea>
+        </div>
+      </div>
+
+      <div class="q">
+        <div class="n">30</div>
+        <div class="body">
+          <label class="question">Cores com as quais se identifica.</label>
+          <div class="choices">
+            <label class="choice"><input type="checkbox"/><span class="mark"></span><span class="label-text">Castanhos / couro</span></label>
+            <label class="choice"><input type="checkbox"/><span class="mark"></span><span class="label-text">Pretos / cinzas</span></label>
+            <label class="choice"><input type="checkbox"/><span class="mark"></span><span class="label-text">Cremes / nudes</span></label>
+            <label class="choice"><input type="checkbox"/><span class="mark"></span><span class="label-text">Verdes (oliva, militar)</span></label>
+            <label class="choice"><input type="checkbox"/><span class="mark"></span><span class="label-text">Azuis profundos</span></label>
+            <label class="choice"><input type="checkbox"/><span class="mark"></span><span class="label-text">Vermelhos / bordô</span></label>
+            <label class="choice"><input type="checkbox"/><span class="mark"></span><span class="label-text">Dourados / cobre</span></label>
+            <label class="choice"><input type="checkbox"/><span class="mark"></span><span class="label-text">Brancos puros</span></label>
+          </div>
+        </div>
+      </div>
+
+      <div class="q">
+        <div class="n">31</div>
+        <div class="body">
+          <label class="question">Cores ou estilos a EVITAR — o que nunca pode entrar na sua marca.</label>
+          <textarea class="field-box" placeholder="Ex.: Cor-de-rosa, néons, fluorescentes; tipografia tipo cartoon..."></textarea>
+        </div>
+      </div>
+
+      <div class="q">
+        <div class="n">32</div>
+        <div class="body">
+          <label class="question">Estilo de logótipo que prefere.</label>
+          <div class="choices">
+            <label class="choice"><input type="checkbox"/><span class="mark"></span><span class="label-text">Apenas tipografia (wordmark)</span></label>
+            <label class="choice"><input type="checkbox"/><span class="mark"></span><span class="label-text">Símbolo + texto</span></label>
+            <label class="choice"><input type="checkbox"/><span class="mark"></span><span class="label-text">Iniciais / monograma</span></label>
+            <label class="choice"><input type="checkbox"/><span class="mark"></span><span class="label-text">Brasão / emblema</span></label>
+            <label class="choice"><input type="checkbox"/><span class="mark"></span><span class="label-text">Ilustração detalhada</span></label>
+            <label class="choice"><input type="checkbox"/><span class="mark"></span><span class="label-text">Sou flexível — surpreenda-me</span></label>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ============================================== -->
+<!-- 09 — APLICAÇÕES -->
+<!-- ============================================== -->
+<section>
+  <div class="page">
+    <div class="section-head">
+      <div class="num">09 — Aplicações Práticas</div>
+      <div>
+        <h2>Onde a marca <span class="it">vai viver</span>.</h2>
+        <p class="lead">Saber onde o logótipo vai aparecer ajuda a desenhá-lo bem desde o primeiro traço.</p>
+      </div>
+    </div>
+
+    <div class="qs">
+      <div class="q">
+        <div class="n">33</div>
+        <div class="body">
+          <label class="question">Em que suportes vai a marca aparecer?</label>
+          <p class="helper">Marque todos os que se aplicam — incluindo os que ainda não tem mas quer ter.</p>
+          <div class="choices">
+            <label class="choice"><input type="checkbox"/><span class="mark"></span><span class="label-text">Marcação a fogo no couro</span></label>
+            <label class="choice"><input type="checkbox"/><span class="mark"></span><span class="label-text">Etiquetas costuradas no produto</span></label>
+            <label class="choice"><input type="checkbox"/><span class="mark"></span><span class="label-text">Cartões de visita</span></label>
+            <label class="choice"><input type="checkbox"/><span class="mark"></span><span class="label-text">Estojos / embalagem</span></label>
+            <label class="choice"><input type="checkbox"/><span class="mark"></span><span class="label-text">Website</span></label>
+            <label class="choice"><input type="checkbox"/><span class="mark"></span><span class="label-text">Instagram / redes sociais</span></label>
+            <label class="choice"><input type="checkbox"/><span class="mark"></span><span class="label-text">Stand de feira / concurso</span></label>
+            <label class="choice"><input type="checkbox"/><span class="mark"></span><span class="label-text">Roupa / merchandise (polos, bonés)</span></label>
+            <label class="choice"><input type="checkbox"/><span class="mark"></span><span class="label-text">Faturação / documentos legais</span></label>
+            <label class="choice"><input type="checkbox"/><span class="mark"></span><span class="label-text">Sinalética da oficina</span></label>
+          </div>
+        </div>
+      </div>
+
+      <div class="q">
+        <div class="n">34</div>
+        <div class="body">
+          <label class="question">Tem website / Instagram / loja online?</label>
+          <div class="field-grid">
+            <div class="field-group">
+              <span class="lab">Website</span>
+              <input class="field-line" type="text" placeholder="URL ou 'não tenho'" />
+            </div>
+            <div class="field-group">
+              <span class="lab">Instagram / Facebook</span>
+              <input class="field-line" type="text" placeholder="@handle ou 'não tenho'" />
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="q">
+        <div class="n">35</div>
+        <div class="body">
+          <label class="question">Há alguma aplicação especialmente importante ou desafiante?</label>
+          <p class="helper">Ex.: gravação a fogo num espaço pequeno, aplicação em couro escuro, etc.</p>
+          <textarea class="field-box" placeholder="Ex.: A marcação a fogo tem 12mm — o logótipo precisa de funcionar nesse tamanho..."></textarea>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ============================================== -->
+<!-- 10 — LOGÍSTICA -->
+<!-- ============================================== -->
+<section>
+  <div class="page">
+    <div class="section-head">
+      <div class="num">10 — Logística do Projeto</div>
+      <div>
+        <h2>Os <span class="it">detalhes finais</span>.</h2>
+        <p class="lead">Para definir prazos, comunicação e os próximos passos com clareza.</p>
+      </div>
+    </div>
+
+    <div class="qs">
+      <div class="q">
+        <div class="n">36</div>
+        <div class="body">
+          <label class="question">Qual o pacote escolhido na proposta de orçamento?</label>
+          <div class="choices">
+            <label class="choice"><input type="radio" name="pkg"/><span class="mark"></span><span class="label-text">Essencial · 450€</span></label>
+            <label class="choice"><input type="radio" name="pkg"/><span class="mark"></span><span class="label-text">Profissional · 850€</span></label>
+            <label class="choice"><input type="radio" name="pkg"/><span class="mark"></span><span class="label-text">Completo · 1.500€</span></label>
+            <label class="choice"><input type="radio" name="pkg"/><span class="mark"></span><span class="label-text">Ainda a decidir — quero discutir</span></label>
+          </div>
+        </div>
+      </div>
+
+      <div class="q">
+        <div class="n">37</div>
+        <div class="body">
+          <label class="question">Há alguma data importante a respeitar?</label>
+          <p class="helper">Feira, lançamento, aniversário do negócio, viagem internacional...</p>
+          <textarea class="field-box" placeholder="Ex.: Tenho a Feira de Golegã em novembro — gostava de já lá ir com a marca nova."></textarea>
+        </div>
+      </div>
+
+      <div class="q">
+        <div class="n">38</div>
+        <div class="body">
+          <label class="question">Quem decide?</label>
+          <p class="helper">É só você, ou há mais pessoas envolvidas (sócio, cônjuge, equipa)?</p>
+          <input class="field-line" type="text" placeholder="Ex.: A decisão final é minha, mas a minha esposa dá opinião em todas as fases" />
+        </div>
+      </div>
+
+      <div class="q">
+        <div class="n">39</div>
+        <div class="body">
+          <label class="question">Como prefere comunicar durante o projeto?</label>
+          <div class="choices">
+            <label class="choice"><input type="checkbox"/><span class="mark"></span><span class="label-text">Email</span></label>
+            <label class="choice"><input type="checkbox"/><span class="mark"></span><span class="label-text">WhatsApp</span></label>
+            <label class="choice"><input type="checkbox"/><span class="mark"></span><span class="label-text">Chamada telefónica</span></label>
+            <label class="choice"><input type="checkbox"/><span class="mark"></span><span class="label-text">Videochamada (Zoom / Meet)</span></label>
+            <label class="choice"><input type="checkbox"/><span class="mark"></span><span class="label-text">Reuniões presenciais</span></label>
+          </div>
+        </div>
+      </div>
+
+      <div class="q">
+        <div class="n">40</div>
+        <div class="body">
+          <label class="question">Dados de contacto principais.</label>
+          <div class="field-grid">
+            <div class="field-group">
+              <span class="lab">Nome completo</span>
+              <input class="field-line" type="text" placeholder="" />
+            </div>
+            <div class="field-group">
+              <span class="lab">Email</span>
+              <input class="field-line" type="email" placeholder="" />
+            </div>
+            <div class="field-group">
+              <span class="lab">Telefone / Whatsapp</span>
+              <input class="field-line" type="tel" placeholder="" />
+            </div>
+            <div class="field-group">
+              <span class="lab">Morada da oficina</span>
+              <input class="field-line" type="text" placeholder="" />
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="q">
+        <div class="n">41</div>
+        <div class="body">
+          <label class="question">Mais alguma coisa que ache importante eu saber?</label>
+          <p class="helper">Histórias, manias, restrições, parcerias, planos secretos. Tudo conta.</p>
+          <textarea class="field-box tall" placeholder="O que tiver na cabeça e ainda não me disse..."></textarea>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ============================================== -->
+<!-- CLOSING -->
+<!-- ============================================== -->
+<section class="closing">
+  <div class="page">
+    <div class="ornament">
+      <svg width="14" height="14" viewBox="0 0 14 14"><circle cx="7" cy="7" r="3" fill="none" stroke="currentColor" stroke-width="1"/></svg>
+    </div>
+    <span class="eyebrow" style="color: var(--tan);">Fim do briefing</span>
+    <h2 style="margin-top: 24px;">Obrigado(a) — agora <span class="it">começa</span> o trabalho.</h2>
+    <p>
+      Assim que receber este documento de volta, marcamos uma chamada de 30 minutos para clarificar respostas, alinhar leituras e dar arranque oficial ao projeto. A partir desse momento, o seu logótipo está a nascer.
+    </p>
+
+    <div style="display: inline-flex; gap: 14px; padding: 16px 28px; background: var(--cream); color: var(--saddle); border-radius: 999px; font-family: var(--mono); font-size: 11px; letter-spacing: 0.28em; text-transform: uppercase;">
+      <span>Devolver até</span>
+      <span style="color: var(--cognac);">→</span>
+      <span style="color: var(--cognac);">[DD.MM.2026]</span>
+    </div>
+
+    <div class="signature-block">
+      <div class="item">
+        <div class="k">Preenchido por</div>
+        <div class="line"></div>
+        <div class="helper">Nome &amp; data</div>
+      </div>
+      <div class="item">
+        <div class="k">Assinatura</div>
+        <div class="line"></div>
+        <div class="helper">Assinatura do cliente</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <span>Briefing · Identidade Visual · 2026</span>
+  <span>Hand-crafted, just like the saddles</span>
+</footer>
+
+</body>
+</html>
