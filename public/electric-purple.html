@@ -672,7 +672,7 @@ cards.forEach((card, ci) => {
         gsap.set(d.card, { pointerEvents: 'none', cursor: 'default' });
 
         if (i === ci) {
-          tl.to(d.cardText, { opacity: 0, duration: 0.12, ease: 'power2.in' }, 0);
+          tl.to(d.cardText, { opacity: 0, duration: 0.18, ease: 'sine.in' }, 0);
 
           tl.call(() => {
             gsap.set(d.card, { height: d.cardH, willChange: 'height' });
@@ -687,37 +687,37 @@ cards.forEach((card, ci) => {
               zIndex: 0,
               willChange: 'left, top, width, height',
             });
-          }, null, 0.12);
+          }, null, 0.18);
 
           tl.to(d.cardImage, {
             left: 0, top: 0, width: '100%', height: '100%',
-            duration: 0.55, ease: 'power3.inOut',
-          }, 0.12);
+            duration: 0.95, ease: 'expo.out',
+          }, 0.18);
 
           tl.to(d.cardText, {
             opacity: 1,
-            duration: 0.3,
-            ease: 'power2.out',
-          }, 0.42);
+            duration: 0.5,
+            ease: 'sine.out',
+          }, 0.7);
         } else {
-          const stagger = Math.abs(i - ci) * 0.05;
-          tl.to(d.cardImage, { opacity: 0, duration: 0.3, ease: 'power2.out' }, stagger);
+          const stagger = Math.abs(i - ci) * 0.07;
+          tl.to(d.cardImage, { opacity: 0, duration: 0.45, ease: 'sine.out' }, stagger);
           tl.to(d.cardImage, {
             width: 0, height: 0, flex: '0 0 0px',
-            duration: 0.55, ease: 'power3.inOut',
+            duration: 0.85, ease: 'power2.inOut',
           }, stagger);
-          tl.to(d.card, { gap: 0, duration: 0.55, ease: 'power3.inOut' }, stagger);
+          tl.to(d.card, { gap: 0, duration: 0.85, ease: 'power2.inOut' }, stagger);
         }
       });
 
       tl.fromTo(placeholder,
-        { opacity: 0, y: 6 },
-        { opacity: 1, y: 0, duration: 0.4, ease: 'power2.out' },
-        0.5);
+        { opacity: 0, y: 8 },
+        { opacity: 1, y: 0, duration: 0.55, ease: 'sine.out' },
+        0.85);
       tl.fromTo(cancelBtn,
-        { opacity: 0, y: 10 },
-        { opacity: 1, y: 0, duration: 0.3, ease: 'power2.out' },
-        0.65);
+        { opacity: 0, y: 12 },
+        { opacity: 1, y: 0, duration: 0.45, ease: 'sine.out' },
+        1.0);
     }
 
     setTimeout(() => {
