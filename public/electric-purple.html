@@ -399,6 +399,18 @@
         min-width: 0;
         transition: flex-grow 0.5s cubic-bezier(0.4, 0, 0.2, 1);
       }
+    }
+    /* ─── DESKTOP (1280px+) reduce height as cards get wider ─── */
+    @media (min-width: 1280px) {
+      .dream-card { height: 470px; }
+    }
+    @media (min-width: 1500px) {
+      .dream-card { height: 450px; }
+    }
+    @media (min-width: 1800px) {
+      .dream-card { height: 430px; }
+    }
+    @media (min-width: 1024px) {
       .card-image { display: none; }
       .dream-image-desktop {
         display: block;
@@ -591,6 +603,7 @@ const heading = document.getElementById('dream-heading');
 const tryAnother = document.getElementById('try-another');
 let currentTl = null;
 let phase = 'select';
+let _idleCardHeights = []; // captured at click time, used by cancel
 
 cards.forEach((card, i) => {
   card.addEventListener('mouseenter', () => {
@@ -618,15 +631,16 @@ cards.forEach((card, ci) => {
 
     if (isDesktop()) {
       dreamCardsContainer.classList.add('animating');
+      _idleCardHeights = cards.map(c => c.offsetHeight);
       const imgPos = desktopImages.map(img => ({ left: img.offsetLeft, top: img.offsetTop, width: img.offsetWidth, height: img.offsetHeight }));
       const cardFG = cards.map(c => parseFloat(getComputedStyle(c).flexGrow) || 424);
 
       desktopImages.forEach((img, i) => gsap.set(img, { left: imgPos[i].left, top: imgPos[i].top, width: imgPos[i].width, height: imgPos[i].height, opacity: 1 }));
-      cards.forEach((c, i) => gsap.set(c, { pointerEvents: 'none', cursor: 'default', height: 500, flexGrow: cardFG[i] }));
+      cards.forEach((c, i) => gsap.set(c, { pointerEvents: 'none', cursor: 'default', height: _idleCardHeights[i], flexGrow: cardFG[i] }));
 
       cards.forEach((c, i) => gsap.set(c, { height: 'auto', flexGrow: i === ci ? 524 : 370, justifyContent: 'flex-start', gap: 16 }));
       const uniH = Math.max(...cards.map(c => c.offsetHeight));
-      cards.forEach((c, i) => gsap.set(c, { height: 500, flexGrow: cardFG[i], justifyContent: 'space-between', gap: 0 }));
+      cards.forEach((c, i) => gsap.set(c, { height: _idleCardHeights[i], flexGrow: cardFG[i], justifyContent: 'space-between', gap: 0 }));
 
       gsap.set(placeholder, { opacity: 0 });
       gsap.set(cancelBtn, { opacity: 0, y: 0 });
@@ -739,7 +753,7 @@ cancelBtn.addEventListener('click', () => {
     rev.to([cancelBtn, placeholder], { opacity: 0, y: 12, duration: 0.35, ease: 'power2.in' });
     const targetImgW = (dreamCardsContainer.offsetWidth - 48) / 3 - 46;
     cards.forEach((c, i) => {
-      rev.to(c, { height: 500, flexGrow: 424, justifyContent: 'space-between', gap: 0, duration: 0.75, ease: 'power3.inOut' }, 0.1);
+      rev.to(c, { height: _idleCardHeights[i] || 500, flexGrow: 424, justifyContent: 'space-between', gap: 0, duration: 0.75, ease: 'power3.inOut' }, 0.1);
       rev.to(desktopImages[i], { left: 23, top: 120, width: targetImgW, height: 238, borderRadius: 8, opacity: 1, duration: 0.75, ease: 'power3.inOut' }, 0.1);
     });
     rev.set(cards, { pointerEvents: 'auto', cursor: 'pointer' });
