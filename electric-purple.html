@@ -234,8 +234,19 @@
       align-items: center;
       justify-content: center;
       position: relative;
+      overflow: hidden;
     }
-    .video-play-btn { opacity: 0.6; }
+    .video-play-btn { opacity: 0.6; position: relative; z-index: 1; }
+    .video-element {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 16px;
+      background: #000;
+    }
+    .video-player.has-video .video-play-btn { display: none; }
     .video-sidebar-inner {
       background: rgba(255,253,251,0.1);
       border: 1px solid rgba(255,253,251,0.1);
@@ -551,7 +562,8 @@
 
       <div id="video-phase" class="video-phase-wrap flex flex-col w-full" style="display:none;opacity:0">
         <div class="video-area">
-          <div class="video-player">
+          <div id="video-player" class="video-player">
+            <video id="video-el" class="video-element" muted loop playsinline preload="metadata" style="display:none"></video>
             <svg width="70" height="70" viewBox="0 0 70 70" fill="none" class="video-play-btn">
               <circle cx="35" cy="35" r="35" fill="rgba(255,255,255,0.3)"/>
               <circle cx="35" cy="35" r="22" fill="rgba(255,255,255,0.5)"/>
@@ -582,7 +594,7 @@
 const isDesktop = () => window.innerWidth >= 1024;
 
 const dreams = {
-  archipelago: { title: 'Archipelago Sunset Cruise' },
+  archipelago: { title: 'Archipelago Sunset Cruise', video: '/videos/archipelago-sunset-cruise.mp4' },
   'grona-lund': { title: 'Gröna Lund Live Concert' },
   'floating-sauna': { title: 'Floating Sauna Experience' },
 };
@@ -666,7 +678,9 @@ cards.forEach((card, ci) => {
     setTimeout(() => {
       if (phase !== 'loading') return;
       phase = 'video';
-      videoTitle.textContent = dreams[dreamId].title;
+      const dream = dreams[dreamId];
+      videoTitle.textContent = dream.title;
+      setVideoSource(dream.video);
       cardsPhase.style.display = 'none';
       videoPhase.style.display = 'flex';
       gsap.fromTo(videoPhase, { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.6, ease: 'power3.out' });
@@ -674,6 +688,23 @@ cards.forEach((card, ci) => {
     }, 8000);
   });
 });
+
+const videoEl = document.getElementById('video-el');
+const videoPlayer = document.getElementById('video-player');
+function setVideoSource(src) {
+  if (src) {
+    videoEl.src = src;
+    videoEl.style.display = 'block';
+    videoPlayer.classList.add('has-video');
+    videoEl.play().catch(() => {});
+  } else {
+    videoEl.pause();
+    videoEl.removeAttribute('src');
+    videoEl.load();
+    videoEl.style.display = 'none';
+    videoPlayer.classList.remove('has-video');
+  }
+}
 
 function scrollLoadingIntoView() {
   requestAnimationFrame(() => {
@@ -717,6 +748,7 @@ cancelBtn.addEventListener('click', () => {
 tryAnother.addEventListener('click', () => {
   videoPhase.style.display = 'none';
   videoPhase.style.opacity = 0;
+  setVideoSource(null);
   gsap.set(placeholder, { opacity: 0 });
   gsap.set(cancelBtn, { opacity: 0 });
   cardsPhase.style.display = 'block';
