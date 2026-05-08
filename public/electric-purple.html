@@ -674,7 +674,9 @@ cards.forEach((card, ci) => {
             duration: 0.6, ease: 'power3.inOut',
           }, 0);
         } else {
-          tl.to(cardImage, { opacity: 0, duration: 0.4, ease: 'power2.out' }, 0);
+          tl.to(cardImage, { opacity: 0, duration: 0.3, ease: 'power2.out' }, 0);
+          tl.to(cardImage, { width: 0, flex: '0 0 0px', duration: 0.5, ease: 'power3.inOut' }, 0);
+          tl.to(c, { gap: 0, duration: 0.5, ease: 'power3.inOut' }, 0);
         }
       });
 
@@ -717,6 +719,7 @@ cancelBtn.addEventListener('click', () => {
       rev.to(cardImage, { opacity: 1, duration: 0.45, ease: 'power3.inOut' }, 0.1);
       rev.set(cardImage, { clearProps: 'position,left,top,width,height,flex,zIndex,opacity' });
       rev.set(cardText, { clearProps: 'position,zIndex' });
+      rev.set(c, { clearProps: 'gap' });
     });
     rev.set(cards, { pointerEvents: 'auto', cursor: 'pointer' });
   }
@@ -742,7 +745,7 @@ tryAnother.addEventListener('click', () => {
       const cardText = c.querySelector('.card-text');
       gsap.set(cardImage, { clearProps: 'position,left,top,width,height,flex,zIndex,opacity' });
       gsap.set(cardText, { clearProps: 'position,zIndex' });
-      gsap.set(c, { clearProps: 'pointerEvents,cursor' });
+      gsap.set(c, { clearProps: 'pointerEvents,cursor,gap' });
     });
   }
 });
