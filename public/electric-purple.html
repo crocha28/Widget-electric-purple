@@ -46,6 +46,16 @@
     }
     ::selection { background-color: #a082e6; color: white; }
 
+    /* ─── Mobile: free up section so loader/cancel are visible below cards ─── */
+    @media (max-width: 767px) {
+      #dream-selector {
+        height: auto !important;
+        min-height: 100vh;
+        overflow: visible !important;
+        align-items: flex-start !important;
+      }
+    }
+
     /* ─── Section wrapper ─── */
     .widget-inner {
       position: relative;
