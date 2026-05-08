@@ -390,7 +390,7 @@
       .dream-cards { flex-direction: row; }
       .dream-card {
         flex-direction: column;
-        height: 430px;
+        height: 500px;
         justify-content: space-between;
         padding: 24px;
         gap: 0;
@@ -622,11 +622,11 @@ cards.forEach((card, ci) => {
       const cardFG = cards.map(c => parseFloat(getComputedStyle(c).flexGrow) || 424);
 
       desktopImages.forEach((img, i) => gsap.set(img, { left: imgPos[i].left, top: imgPos[i].top, width: imgPos[i].width, height: imgPos[i].height, opacity: 1 }));
-      cards.forEach((c, i) => gsap.set(c, { pointerEvents: 'none', cursor: 'default', height: 430, flexGrow: cardFG[i] }));
+      cards.forEach((c, i) => gsap.set(c, { pointerEvents: 'none', cursor: 'default', height: 500, flexGrow: cardFG[i] }));
 
       cards.forEach((c, i) => gsap.set(c, { height: 'auto', flexGrow: i === ci ? 524 : 370, justifyContent: 'flex-start', gap: 16 }));
       const uniH = Math.max(...cards.map(c => c.offsetHeight));
-      cards.forEach((c, i) => gsap.set(c, { height: 430, flexGrow: cardFG[i], justifyContent: 'space-between', gap: 0 }));
+      cards.forEach((c, i) => gsap.set(c, { height: 500, flexGrow: cardFG[i], justifyContent: 'space-between', gap: 0 }));
 
       gsap.set(placeholder, { opacity: 0 });
       gsap.set(cancelBtn, { opacity: 0, y: 0 });
@@ -739,7 +739,7 @@ cancelBtn.addEventListener('click', () => {
     rev.to([cancelBtn, placeholder], { opacity: 0, y: 12, duration: 0.35, ease: 'power2.in' });
     const targetImgW = (dreamCardsContainer.offsetWidth - 48) / 3 - 46;
     cards.forEach((c, i) => {
-      rev.to(c, { height: 430, flexGrow: 424, justifyContent: 'space-between', gap: 0, duration: 0.75, ease: 'power3.inOut' }, 0.1);
+      rev.to(c, { height: 500, flexGrow: 424, justifyContent: 'space-between', gap: 0, duration: 0.75, ease: 'power3.inOut' }, 0.1);
       rev.to(desktopImages[i], { left: 23, top: 96, width: targetImgW, height: 238, borderRadius: 8, opacity: 1, duration: 0.75, ease: 'power3.inOut' }, 0.1);
     });
     rev.set(cards, { pointerEvents: 'auto', cursor: 'pointer' });
