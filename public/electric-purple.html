@@ -175,9 +175,10 @@
     /* ─── Loading placeholder ─── */
     .video-loading-placeholder {
       /* Full width (parent .widget-inner already has the lateral padding);
-         height is derived from the 16:9 aspect ratio. */
+         height derived from a 32:9 ratio so the rectangle stays short
+         enough for placeholder + CTA to fit alongside the cards. */
       width: 100%;
-      aspect-ratio: 16 / 9;
+      aspect-ratio: 32 / 9;
       background: linear-gradient(
         110deg,
         rgba(255,253,251,0.06) 0%,
