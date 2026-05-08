@@ -383,7 +383,7 @@
       }
     }
 
-    /* ─── DESKTOP (1024px+) ─── */
+    /* ─── DESKTOP (1024px – 1499px) ─── */
     @media (min-width: 1024px) {
       .widget-inner { padding: 64px; gap: 56px; }
       .widget-heading { font-size: 40px; }
@@ -399,18 +399,6 @@
         min-width: 0;
         transition: flex-grow 0.5s cubic-bezier(0.4, 0, 0.2, 1);
       }
-    }
-    /* ─── DESKTOP (1280px+) reduce height as cards get wider ─── */
-    @media (min-width: 1280px) {
-      .dream-card { height: 470px; }
-    }
-    @media (min-width: 1500px) {
-      .dream-card { height: 450px; }
-    }
-    @media (min-width: 1800px) {
-      .dream-card { height: 430px; }
-    }
-    @media (min-width: 1024px) {
       .card-image { display: none; }
       .dream-image-desktop {
         display: block;
@@ -456,6 +444,17 @@
         box-sizing: border-box;
       }
       .video-title-text { font-size: 32px; }
+    }
+
+    /* ─── XL DESKTOP (1500px+) ─── */
+    @media (min-width: 1500px) {
+      .widget-inner { padding: 80px; gap: 64px; }
+      .widget-heading { font-size: 48px; }
+      .dream-card { height: 460px; }
+      .card-title { font-size: 28px; }
+      .card-desc { font-size: 18px; }
+      .video-title-text { font-size: 40px; }
+      .video-sidebar { width: 420px; }
     }
   </style>
 </head>
