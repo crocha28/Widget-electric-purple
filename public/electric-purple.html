@@ -262,6 +262,20 @@
     .video-element::-webkit-media-controls-volume-control-hover-background {
       display: none !important;
     }
+    /* Dark overlay shown only while the custom play button is visible. */
+    .video-player::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: rgba(0,0,0,0.35);
+      border-radius: 16px;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.25s ease;
+      z-index: 1;
+    }
+    .video-player.has-video::after { opacity: 1; }
+    .video-player.has-video.is-playing::after { opacity: 0; }
     /* Custom play button is the only visible control until the user clicks it. */
     .video-player.has-video .video-play-btn { display: block; }
     .video-player.has-video.is-playing .video-play-btn { display: none; }
