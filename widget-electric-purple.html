@@ -246,6 +246,13 @@
       border-radius: 16px;
       background: #000;
     }
+    /* Hide the volume / mute control entirely (Chrome, Safari, Edge). */
+    .video-element::-webkit-media-controls-mute-button,
+    .video-element::-webkit-media-controls-volume-slider,
+    .video-element::-webkit-media-controls-volume-control-container,
+    .video-element::-webkit-media-controls-volume-control-hover-background {
+      display: none !important;
+    }
     .video-player.has-video .video-play-btn { display: none; }
     .video-sidebar-inner {
       background: rgba(255,253,251,0.1);
