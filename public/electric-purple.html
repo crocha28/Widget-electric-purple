@@ -236,7 +236,16 @@
       position: relative;
       overflow: hidden;
     }
-    .video-play-btn { opacity: 0.6; position: relative; z-index: 1; }
+    .video-play-btn {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 2;
+      cursor: pointer;
+      transition: transform 0.2s ease, opacity 0.2s ease;
+    }
+    .video-play-btn:hover { transform: translate(-50%, -50%) scale(1.05); }
     .video-element {
       position: absolute;
       inset: 0;
@@ -253,7 +262,9 @@
     .video-element::-webkit-media-controls-volume-control-hover-background {
       display: none !important;
     }
-    .video-player.has-video .video-play-btn { display: none; }
+    /* Custom play button is the only visible control until the user clicks it. */
+    .video-player.has-video .video-play-btn { display: block; }
+    .video-player.has-video.is-playing .video-play-btn { display: none; }
     .video-sidebar-inner {
       background: rgba(255,253,251,0.1);
       border: 1px solid rgba(255,253,251,0.1);
@@ -570,7 +581,7 @@
       <div id="video-phase" class="video-phase-wrap flex flex-col w-full" style="display:none;opacity:0">
         <div class="video-area">
           <div id="video-player" class="video-player">
-            <video id="video-el" class="video-element" controls muted playsinline preload="metadata" controlslist="nodownload noplaybackrate noremoteplayback" disablepictureinpicture disableremoteplayback style="display:none"></video>
+            <video id="video-el" class="video-element" muted playsinline preload="metadata" controlslist="nodownload noplaybackrate noremoteplayback" disablepictureinpicture disableremoteplayback style="display:none"></video>
             <svg width="70" height="70" viewBox="0 0 70 70" fill="none" class="video-play-btn">
               <circle cx="35" cy="35" r="35" fill="rgba(255,255,255,0.3)"/>
               <circle cx="35" cy="35" r="22" fill="rgba(255,255,255,0.5)"/>
@@ -703,15 +714,26 @@ function setVideoSource(src) {
     videoEl.src = src;
     videoEl.style.display = 'block';
     videoPlayer.classList.add('has-video');
+    videoPlayer.classList.remove('is-playing');
+    videoEl.removeAttribute('controls');
     videoEl.load();
   } else {
     videoEl.pause();
     videoEl.removeAttribute('src');
+    videoEl.removeAttribute('controls');
     videoEl.load();
     videoEl.style.display = 'none';
-    videoPlayer.classList.remove('has-video');
+    videoPlayer.classList.remove('has-video', 'is-playing');
   }
 }
+
+document.querySelector('.video-play-btn').addEventListener('click', (e) => {
+  if (!videoPlayer.classList.contains('has-video')) return;
+  e.stopPropagation();
+  videoPlayer.classList.add('is-playing');
+  videoEl.setAttribute('controls', '');
+  videoEl.play().catch(() => {});
+});
 
 function scrollLoadingIntoView() {
   requestAnimationFrame(() => {
