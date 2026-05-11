@@ -743,6 +743,12 @@ cards.forEach((card, ci) => {
             duration: 0.6,
             ease: 'power3.inOut'
           }, 0);
+          tl.to(cardTexts[i], {
+            left: 12 - c.clientLeft,
+            width: c.offsetWidth - 24,
+            duration: 0.6,
+            ease: 'power3.inOut'
+          }, 0);
         } else {
           tl.to(cardImages[i], {
             opacity: 0,
