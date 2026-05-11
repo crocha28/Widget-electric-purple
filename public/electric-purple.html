@@ -692,6 +692,12 @@ cards.forEach((card, ci) => {
         return { top: r.top - cr.top, left: r.left - cr.left, width: r.width, height: r.height };
       });
 
+      const textRects = cardTexts.map(txt => {
+        const r = txt.getBoundingClientRect();
+        const cr = txt.parentElement.getBoundingClientRect();
+        return { top: r.top - cr.top, left: r.left - cr.left, width: r.width, height: r.height };
+      });
+
       cards.forEach(c => gsap.set(c, {
         height: c.offsetHeight,
         pointerEvents: 'none',
@@ -707,8 +713,18 @@ cards.forEach((card, ci) => {
           height: mobileImgRects[i].height,
           flex: 'none',
           margin: 0,
-          zIndex: 2
+          zIndex: 1
         });
+      });
+
+      gsap.set(cardTexts[ci], {
+        position: 'absolute',
+        top: textRects[ci].top,
+        left: textRects[ci].left,
+        width: textRects[ci].width,
+        flex: 'none',
+        margin: 0,
+        zIndex: 3
       });
 
       gsap.set(placeholder, { opacity: 0 });
@@ -716,8 +732,6 @@ cards.forEach((card, ci) => {
 
       const tl = gsap.timeline();
       currentTl = tl;
-
-      gsap.set(cardTexts[ci], { opacity: 0, visibility: 'hidden' });
 
       cards.forEach((c, i) => {
         if (i === ci) {
@@ -828,7 +842,7 @@ cancelBtn.addEventListener('click', () => {
       cards.forEach((c, i) => {
         gsap.set(c, { clearProps: 'height,pointerEvents,cursor' });
         gsap.set(cardImages[i], { clearProps: 'position,top,left,width,height,flex,zIndex,opacity,margin' });
-        gsap.set(cardTexts[i], { clearProps: 'opacity,visibility' });
+        gsap.set(cardTexts[i], { clearProps: 'position,top,left,width,flex,margin,zIndex,opacity,visibility' });
       });
       mobileImgRects = null;
       resetToSelect();
@@ -847,10 +861,6 @@ cancelBtn.addEventListener('click', () => {
           duration: 0.55,
           ease: 'power3.inOut'
         }, 0.1);
-      });
-      cardTexts.forEach(txt => {
-        rev.set(txt, { visibility: 'visible' }, 0.1);
-        rev.to(txt, { opacity: 1, duration: 0.4, ease: 'power2.out' }, 0.3);
       });
     }
   }
@@ -875,7 +885,7 @@ tryAnother.addEventListener('click', () => {
     cards.forEach(c => {
       gsap.set(c, { clearProps: 'height,pointerEvents,cursor' });
       gsap.set(c.querySelector('.card-image'), { clearProps: 'position,top,left,width,height,flex,zIndex,opacity,margin' });
-      gsap.set(c.querySelector('.card-text'), { clearProps: 'opacity,visibility' });
+      gsap.set(c.querySelector('.card-text'), { clearProps: 'position,top,left,width,flex,margin,zIndex,opacity,visibility' });
     });
     mobileImgRects = null;
   }
