@@ -717,6 +717,8 @@ cards.forEach((card, ci) => {
       const tl = gsap.timeline();
       currentTl = tl;
 
+      gsap.set(cardTexts[ci], { opacity: 0, visibility: 'hidden' });
+
       cards.forEach((c, i) => {
         if (i === ci) {
           tl.to(cardImages[i], {
@@ -727,7 +729,6 @@ cards.forEach((card, ci) => {
             duration: 0.6,
             ease: 'power3.inOut'
           }, 0);
-          tl.to(cardTexts[i], { opacity: 0, duration: 0.35, ease: 'power2.out' }, 0);
         } else {
           tl.to(cardImages[i], {
             opacity: 0,
@@ -827,7 +828,7 @@ cancelBtn.addEventListener('click', () => {
       cards.forEach((c, i) => {
         gsap.set(c, { clearProps: 'height,pointerEvents,cursor' });
         gsap.set(cardImages[i], { clearProps: 'position,top,left,width,height,flex,zIndex,opacity,margin' });
-        gsap.set(cardTexts[i], { clearProps: 'opacity' });
+        gsap.set(cardTexts[i], { clearProps: 'opacity,visibility' });
       });
       mobileImgRects = null;
       resetToSelect();
@@ -848,6 +849,7 @@ cancelBtn.addEventListener('click', () => {
         }, 0.1);
       });
       cardTexts.forEach(txt => {
+        rev.set(txt, { visibility: 'visible' }, 0.1);
         rev.to(txt, { opacity: 1, duration: 0.4, ease: 'power2.out' }, 0.3);
       });
     }
@@ -873,7 +875,7 @@ tryAnother.addEventListener('click', () => {
     cards.forEach(c => {
       gsap.set(c, { clearProps: 'height,pointerEvents,cursor' });
       gsap.set(c.querySelector('.card-image'), { clearProps: 'position,top,left,width,height,flex,zIndex,opacity,margin' });
-      gsap.set(c.querySelector('.card-text'), { clearProps: 'opacity' });
+      gsap.set(c.querySelector('.card-text'), { clearProps: 'opacity,visibility' });
     });
     mobileImgRects = null;
   }
