@@ -4,7 +4,7 @@ import { resolve } from "path";
 
 const DREAM_LABELS: Record<string, string> = {
   archipelago: "Archipelago Sunset Cruise",
-  "grona-lund": "Gröna Lund Live Concert",
+  "amber-festival": "Amber Festival",
   "floating-sauna": "Floating Sauna Experience",
 };
 
@@ -61,7 +61,7 @@ console.log(
   `  Archipelago: ${VIDEO_VARIATIONS.filter((v) => v.dreamId === "archipelago").length}`
 );
 console.log(
-  `  Gröna Lund: ${VIDEO_VARIATIONS.filter((v) => v.dreamId === "grona-lund").length}`
+  `  Amber Festival: ${VIDEO_VARIATIONS.filter((v) => v.dreamId === "amber-festival").length}`
 );
 console.log(
   `  Floating Sauna: ${VIDEO_VARIATIONS.filter((v) => v.dreamId === "floating-sauna").length}`

@@ -27,7 +27,7 @@ The landing page features a widget where users choose from 3 "Electric Dreams." 
 | # | Dream | Theme | Videos |
 | --- | --- | --- | --- |
 | 1 | **Archipelago Sunset Cruise** | Nature / Sea / Purple Sunset / Worldwide | 25 |
-| 2 | **Gröna Lund Live Concert** | Music / Neon / Night Energy | 25 |
+| 2 | **Amber Festival** | Music / Neon / Night Energy | 25 |
 | 3 | **Floating Sauna Experience** | Wellness / Steam / Stillness | 25 |
 
 ---
@@ -109,7 +109,7 @@ Tags are used for internal organization during review/approval and potential fut
 
 **Archipelago Sunset Cruise**: `nature`, `sea`, `sunset`, `cruise`, `archipelago`, `pink-violeten-hour`, `water`, `islands`, `boat`, `horizon`, `reflections`, `waves`, `calm`, `serenity`, `nordic`, `twilight`, `silhouette`, `deck`, `wake`, `sky`, `paris`, `rome`, `santorini`, `maldives`, `venice`, `dubai`, `sydney`, `bangkok`, `lisbon`, `iceland`, `whitsundays`, `amalfi`, `norway`, `new-york`, `istanbul`, `ha-long-bay`, `new-zealand`, `australia`, `lofoten`, `mexico`, `como`, `ireland`, `dubrovnik`, `egypt`, `nile`
 
-**Gröna Lund Live Concert**: `music`, `concert`, `festival`, `night`, `lights`, `stage`, `crowd`, `energy`, `neon`, `bass`, `rhythm`, `amusement-park`, `ferris-wheel`, `lasers`, `confetti`, `speakers`, `vibration`, `electric`, `strobe`, `atmosphere`, `new-york`, `london`, `tokyo`, `berlin`, `rio`, `coachella`, `nashville`, `paris`, `havana`, `las-vegas`, `ibiza`, `tomorrowland`, `santa-monica`, `amsterdam`, `hollywood`, `cappadocia`, `detroit`, `sydney`, `dubai`, `hong-kong`, `glastonbury`, `marrakech`
+**Amber Festival**: `music`, `concert`, `festival`, `night`, `lights`, `stage`, `crowd`, `energy`, `neon`, `bass`, `rhythm`, `amusement-park`, `ferris-wheel`, `lasers`, `confetti`, `speakers`, `vibration`, `electric`, `strobe`, `atmosphere`, `new-york`, `london`, `tokyo`, `berlin`, `rio`, `coachella`, `nashville`, `paris`, `havana`, `las-vegas`, `ibiza`, `tomorrowland`, `santa-monica`, `amsterdam`, `hollywood`, `cappadocia`, `detroit`, `sydney`, `dubai`, `hong-kong`, `glastonbury`, `marrakech`
 
 **Floating Sauna Experience**: `wellness`, `sauna`, `steam`, `water`, `heat`, `cold-plunge`, `stillness`, `wood`, `floating`, `lake`, `minimal`, `breath`, `mist`, `glow`, `ritual`, `contrast`, `ice`, `embers`, `zen`, `immersion`, `iceland`, `norway`, `kyoto`, `istanbul`, `marrakech`, `swiss-alps`, `lake-bled`, `lapland`, `azores`, `bali`, `cenote`, `finland`, `tromso`, `budapest`, `dead-sea`, `santorini`, `capri`, `abisko`, `sahara`, `hallstatt`, `bangkok`, `taj-mahal`
 
@@ -792,7 +792,7 @@ The very last sliver of the sun disappears behind the unmistakable triangular si
 ---
 
 
-# 🎸 Dream: Gröna Lund Live Concert
+# 🎸 Dream: Amber Festival
 
 > Music, neon, and electric energy — 25 cinematic variations of a dream concert night at the world's most iconic entertainment venues.
 
@@ -831,7 +831,7 @@ The very last sliver of the sun disappears behind the unmistakable triangular si
 
 | Field | Detail |
 | --- | --- |
-| **ID** | `grona-lund-01` |
+| **ID** | `amber-festival-01` |
 | **Camera** | Slow dolly forward |
 | **Focus** | Wide |
 | **Key Element** | Stage lit in deep purple/violet with Times Square billboards visible |
@@ -856,7 +856,7 @@ A massive concert stage erected in the heart of Times Square, New York, seen fro
 
 | Field | Detail |
 | --- | --- |
-| **ID** | `grona-lund-02` |
+| **ID** | `amber-festival-02` |
 | **Camera** | Orbit around |
 | **Focus** | Wide |
 | **Key Element** | London Eye ferris wheel with Big Ben and Parliament silhouette behind |
@@ -881,7 +881,7 @@ The London Eye dominates the frame, its massive structure outlined in LED lights
 
 | Field | Detail |
 | --- | --- |
-| **ID** | `grona-lund-03` |
+| **ID** | `amber-festival-03` |
 | **Camera** | Static with subtle shake |
 | **Focus** | Medium |
 | **Key Element** | Speaker stack vibrating with Shibuya Crossing neon signs visible |
@@ -906,7 +906,7 @@ A massive wall of black speaker stacks at the side of an outdoor stage set up ne
 
 | Field | Detail |
 | --- | --- |
-| **ID** | `grona-lund-04` |
+| **ID** | `amber-festival-04` |
 | **Camera** | Tilt up |
 | **Focus** | Wide |
 | **Key Element** | Grid of purple/pink lasers in a Berlin warehouse club |
@@ -931,7 +931,7 @@ Looking upward from the crowd level inside a cavernous Berlin warehouse club as 
 
 | Field | Detail |
 | --- | --- |
-| **ID** | `grona-lund-05` |
+| **ID** | `amber-festival-05` |
 | **Camera** | Slow-motion fall |
 | **Focus** | Detail |
 | **Key Element** | Purple confetti falling with Christ the Redeemer silhouette in distance |
@@ -956,7 +956,7 @@ Thousands of pieces of confetti in shades of purple, violet, lavender, and pink 
 
 | Field | Detail |
 | --- | --- |
-| **ID** | `grona-lund-06` |
+| **ID** | `amber-festival-06` |
 | **Camera** | Static wide, backlit |
 | **Focus** | Wide |
 | **Key Element** | Desert concert silhouettes with palm trees and Ferris wheel |
@@ -981,7 +981,7 @@ A wide shot of a desert concert crowd at Coachella in complete silhouette. The s
 
 | Field | Detail |
 | --- | --- |
-| **ID** | `grona-lund-07` |
+| **ID** | `amber-festival-07` |
 | **Camera** | Macro drift |
 | **Focus** | Extreme detail |
 | **Key Element** | Guitar strings vibrating with Broadway honky-tonk neon reflected in chrome |
@@ -1006,7 +1006,7 @@ Extreme macro of an electric guitar's strings, seen from the side, on a stage al
 
 | Field | Detail |
 | --- | --- |
-| **ID** | `grona-lund-08` |
+| **ID** | `amber-festival-08` |
 | **Camera** | Tracking the beam |
 | **Focus** | Wide |
 | **Key Element** | Spotlight sweeping with Moulin Rouge windmill silhouette |
@@ -1031,7 +1031,7 @@ A single powerful spotlight beam sweeps slowly across an outdoor concert venue i
 
 | Field | Detail |
 | --- | --- |
-| **ID** | `grona-lund-09` |
+| **ID** | `amber-festival-09` |
 | **Camera** | Slow-motion |
 | **Focus** | Detail |
 | **Key Element** | Drumstick impact on Cuban conga in purple-lit Havana street |
@@ -1056,7 +1056,7 @@ Ultra-slow-motion capture of a drumstick striking a conga drum on a Havana stree
 
 | Field | Detail |
 | --- | --- |
-| **ID** | `grona-lund-10` |
+| **ID** | `amber-festival-10` |
 | **Camera** | Crane rising |
 | **Focus** | Ultra-wide |
 | **Key Element** | Concert venue with Las Vegas Strip neon skyline visible behind |
@@ -1081,7 +1081,7 @@ The camera rises on a crane above a massive outdoor concert venue on the Las Veg
 
 | Field | Detail |
 | --- | --- |
-| **ID** | `grona-lund-11` |
+| **ID** | `amber-festival-11` |
 | **Camera** | Strobe-cut style |
 | **Focus** | Medium |
 | **Key Element** | Frozen strobe moments in Ibiza superclub with Mediterranean visible |
@@ -1106,7 +1106,7 @@ Inside a legendary Ibiza superclub, the stage strobes fire in rapid succession, 
 
 | Field | Detail |
 | --- | --- |
-| **ID** | `grona-lund-12` |
+| **ID** | `amber-festival-12` |
 | **Camera** | Slow orbit |
 | **Focus** | Detail |
 | **Key Element** | Chrome mic stand in a legendary Abbey Road recording studio setting |
@@ -1131,7 +1131,7 @@ A chrome microphone on a stand, center stage in a legendary recording studio ins
 
 | Field | Detail |
 | --- | --- |
-| **ID** | `grona-lund-13` |
+| **ID** | `amber-festival-13` |
 | **Camera** | Close tracking |
 | **Focus** | Detail |
 | **Key Element** | LED wristbands pulsing with Tomorrowland's iconic mainstage visible |
@@ -1156,7 +1156,7 @@ Hundreds of LED wristbands on raised wrists pulse in perfect unison — all elec
 
 | Field | Detail |
 | --- | --- |
-| **ID** | `grona-lund-14` |
+| **ID** | `amber-festival-14` |
 | **Camera** | Tracking alongside |
 | **Focus** | Wide |
 | **Key Element** | Coaster track with Pacific Ocean and Santa Monica Pier visible |
@@ -1181,7 +1181,7 @@ A roller coaster track on Santa Monica Pier outlined in LED strip lights — ele
 
 | Field | Detail |
 | --- | --- |
-| **ID** | `grona-lund-15` |
+| **ID** | `amber-festival-15` |
 | **Camera** | Abstract visualization |
 | **Focus** | Abstract |
 | **Key Element** | Sound waves rippling with Harpa Concert Hall's crystalline facade visible |
@@ -1206,7 +1206,7 @@ An abstract, semi-real visualization of sound waves propagating through the conc
 
 | Field | Detail |
 | --- | --- |
-| **ID** | `grona-lund-16` |
+| **ID** | `amber-festival-16` |
 | **Camera** | Low-angle |
 | **Focus** | Medium |
 | **Key Element** | Dense purple fog in a canal-side Amsterdam venue |
@@ -1231,7 +1231,7 @@ Low-angle shot from the stage floor level inside a canal-side concert venue in A
 
 | Field | Detail |
 | --- | --- |
-| **ID** | `grona-lund-17` |
+| **ID** | `amber-festival-17` |
 | **Camera** | Macro static |
 | **Focus** | Extreme detail |
 | **Key Element** | Concert ticket with Hollywood sign bokeh and Walk of Fame stars |
@@ -1256,7 +1256,7 @@ Extreme close-up of a concert ticket held between fingers (anonymous, no identif
 
 | Field | Detail |
 | --- | --- |
-| **ID** | `grona-lund-18` |
+| **ID** | `amber-festival-18` |
 | **Camera** | Slow tilt up |
 | **Focus** | Wide |
 | **Key Element** | Hot air balloons rising over fairy chimneys at dawn, purple-lit |
@@ -1281,7 +1281,7 @@ A cluster of hot air balloons in shades of purple, violet, and lavender ascends 
 
 | Field | Detail |
 | --- | --- |
-| **ID** | `grona-lund-19` |
+| **ID** | `amber-festival-19` |
 | **Camera** | Slow pan across |
 | **Focus** | Detail |
 | **Key Element** | Mixing console in legendary Detroit Motown-style studio |
@@ -1306,7 +1306,7 @@ A professional audio mixing console inside a legendary Detroit recording studio 
 
 | Field | Detail |
 | --- | --- |
-| **ID** | `grona-lund-20` |
+| **ID** | `amber-festival-20` |
 | **Camera** | Wide establishing |
 | **Focus** | Ultra-wide |
 | **Key Element** | Stage reflected in harbour with Sydney Opera House shell roof visible |
@@ -1331,7 +1331,7 @@ Ultra-wide shot from across Sydney Harbour, framing a concert stage on the fores
 
 | Field | Detail |
 | --- | --- |
-| **ID** | `grona-lund-21` |
+| **ID** | `amber-festival-21` |
 | **Camera** | Fast zoom out |
 | **Focus** | Wide |
 | **Key Element** | Violet pyrotechnics with Burj Khalifa illuminated in background |
@@ -1356,7 +1356,7 @@ The encore moment at an outdoor concert in Dubai — the stage erupts with a mas
 
 | Field | Detail |
 | --- | --- |
-| **ID** | `grona-lund-22` |
+| **ID** | `amber-festival-22` |
 | **Camera** | Static with rain |
 | **Focus** | Detail |
 | **Key Element** | Raindrops catching neon purple lights with Hong Kong skyline visible |
@@ -1381,7 +1381,7 @@ A light rain falls through concert spotlight beams at an outdoor venue on Hong K
 
 | Field | Detail |
 | --- | --- |
-| **ID** | `grona-lund-23` |
+| **ID** | `amber-festival-23` |
 | **Camera** | Slow tracking over |
 | **Focus** | Medium |
 | **Key Element** | Raised hands with Glastonbury Tor and Pyramid Stage visible |
@@ -1406,7 +1406,7 @@ A sea of raised hands at the Glastonbury Festival seen from a slightly elevated 
 
 | Field | Detail |
 | --- | --- |
-| **ID** | `grona-lund-24` |
+| **ID** | `amber-festival-24` |
 | **Camera** | Macro orbit |
 | **Focus** | Detail |
 | **Key Element** | Vinyl spinning on riad rooftop with Koutoubia minaret visible |
@@ -1431,7 +1431,7 @@ A vinyl record spins on a turntable at a rooftop DJ set on a traditional Marrake
 
 | Field | Detail |
 | --- | --- |
-| **ID** | `grona-lund-25` |
+| **ID** | `amber-festival-25` |
 | **Camera** | Slow fade/dolly back |
 | **Focus** | Wide |
 | **Key Element** | Single purple beam rising alongside the illuminated Eiffel Tower |
@@ -2119,7 +2119,7 @@ A floating wellness pavilion in silhouette against a breaking dawn sky over the 
 | Dream | Pattern | Example |
 | --- | --- | --- |
 | Archipelago Sunset Cruise | `archipelago-XX.mp4` | `archipelago-01.mp4` |
-| Gröna Lund Live Concert | `grona-lund-XX.mp4` | `grona-lund-01.mp4` |
+| Amber Festival | `amber-festival-XX.mp4` | `amber-festival-01.mp4` |
 | Floating Sauna Experience | `floating-sauna-XX.mp4` | `floating-sauna-01.mp4` |
 
 ---

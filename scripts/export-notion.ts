@@ -19,8 +19,8 @@ const DREAMS: { id: DreamId; label: string; emoji: string; tagline: string }[] =
         "Nature, purple sunset, and iconic worldwide waterways — 25 cinematic variations of a dream boat journey through the world's most beautiful destinations bathed in purple light.",
     },
     {
-      id: "grona-lund",
-      label: "Gröna Lund Live Concert",
+      id: "amber-festival",
+      label: "Amber Festival",
       emoji: "🎸",
       tagline:
         "Music, neon, and electric energy — 25 cinematic variations of a dream concert night at the world's most iconic entertainment venues.",
@@ -174,7 +174,7 @@ function generateDocument(): string {
     `| 1 | **Archipelago Sunset Cruise** | Nature / Sea / Purple Sunset / Worldwide | 25 |`
   );
   lines.push(
-    `| 2 | **Gröna Lund Live Concert** | Music / Neon / Night Energy | 25 |`
+    `| 2 | **Amber Festival** | Music / Neon / Night Energy | 25 |`
   );
   lines.push(
     `| 3 | **Floating Sauna Experience** | Wellness / Steam / Stillness | 25 |`
@@ -396,7 +396,7 @@ function generateDocument(): string {
     `| Archipelago Sunset Cruise | \`archipelago-XX.mp4\` | \`archipelago-01.mp4\` |`
   );
   lines.push(
-    `| Gröna Lund Live Concert | \`grona-lund-XX.mp4\` | \`grona-lund-01.mp4\` |`
+    `| Amber Festival | \`amber-festival-XX.mp4\` | \`amber-festival-01.mp4\` |`
   );
   lines.push(
     `| Floating Sauna Experience | \`floating-sauna-XX.mp4\` | \`floating-sauna-01.mp4\` |`

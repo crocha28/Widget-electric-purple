@@ -20,7 +20,7 @@ export default function CompetitionCta() {
             Dream experiences.
           </h2>
           <p className="text-sm text-dark/70 max-w-[531px] leading-relaxed">
-            From an Archipelago Sunset Cruise to a Gröna Lund Live Concert or a
+            From an Archipelago Sunset Cruise to a Amber Festival or a
             Floating Sauna — five winners will live their Electric Dream for
             real.
           </p>

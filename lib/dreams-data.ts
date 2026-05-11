@@ -21,8 +21,8 @@ export const dreams: Dream[] = [
       "Archipelago Dinner Cruise at Sunset for 2 + IQOS ILUMA i Prime Electric Purple",
   },
   {
-    id: "grona-lund",
-    title: "Gröna Lund Live Concert",
+    id: "amber-festival",
+    title: "Amber Festival",
     subtitle: "Music · Stockholm",
     category: "Music",
     location: "Stockholm",

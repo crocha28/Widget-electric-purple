@@ -34,8 +34,8 @@ const DREAMS: {
     headerFill: BRAND.deepPurple,
   },
   {
-    id: "grona-lund",
-    label: "Gröna Lund Live Concert",
+    id: "amber-festival",
+    label: "Amber Festival",
     tabColor: BRAND.pink,
     headerFill: BRAND.electricViolet,
   },

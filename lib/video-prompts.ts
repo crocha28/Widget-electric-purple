@@ -5,7 +5,7 @@
 // (visual consistency) + a variation-specific scene block.
 // ---------------------------------------------------------------------------
 
-export type DreamId = "archipelago" | "grona-lund" | "floating-sauna";
+export type DreamId = "archipelago" | "amber-festival" | "floating-sauna";
 
 export interface DreamVideoVariation {
   id: string;
@@ -120,7 +120,7 @@ export const DREAM_TAGS: Record<DreamId, readonly string[]> = {
     "ha-long-bay", "new-zealand", "australia", "lofoten", "mexico",
     "como", "ireland", "dubrovnik", "egypt", "nile",
   ],
-  "grona-lund": [
+  "amber-festival": [
     "music", "concert", "festival", "night", "lights", "stage", "crowd",
     "energy", "neon", "bass", "rhythm", "amusement-park", "ferris-wheel",
     "lasers", "confetti", "speakers", "vibration", "electric", "strobe",
@@ -1051,14 +1051,14 @@ pyramids grow more monumental as more of the scene is revealed.`),
 ];
 
 // ---------------------------------------------------------------------------
-// DREAM 2 — Gröna Lund Live Concert (25 variations)
+// DREAM 2 — Amber Festival (25 variations)
 // ---------------------------------------------------------------------------
 
 const gronaLundVariations: DreamVideoVariation[] = [
   {
-    id: "grona-lund-01",
+    id: "amber-festival-01",
     variationNumber: 1,
-    dreamId: "grona-lund",
+    dreamId: "amber-festival",
     name: "Times Square Pulse",
     camera: "Slow dolly forward",
     focus: "Wide",
@@ -1092,9 +1092,9 @@ MOTION: Forward dolly; haze drifts and swirls; light beams pulse with the \
 rhythm; Times Square billboards animate in sync; crowd hands sway.`),
   },
   {
-    id: "grona-lund-02",
+    id: "amber-festival-02",
     variationNumber: 2,
-    dreamId: "grona-lund",
+    dreamId: "amber-festival",
     name: "London Eye & Big Ben",
     camera: "Orbit around",
     focus: "Wide",
@@ -1130,9 +1130,9 @@ Big Ben progressively; LED lights animate in sequence; Thames reflections \
 of both wheel and Parliament shimmer.`),
   },
   {
-    id: "grona-lund-03",
+    id: "amber-festival-03",
     variationNumber: 3,
-    dreamId: "grona-lund",
+    dreamId: "amber-festival",
     name: "Shibuya Bass Drop",
     camera: "Static with subtle shake",
     focus: "Medium",
@@ -1166,9 +1166,9 @@ camera micro-shakes on each bass hit; mist at the base ripples with the \
 pressure waves; Shibuya screens flicker in the background.`),
   },
   {
-    id: "grona-lund-04",
+    id: "amber-festival-04",
     variationNumber: 4,
-    dreamId: "grona-lund",
+    dreamId: "amber-festival",
     name: "Berlin Laser Cathedral",
     camera: "Tilt up",
     focus: "Wide",
@@ -1202,9 +1202,9 @@ around the beams; beam intersections pulse; the tilt reveals new layers of \
 the laser architecture against the industrial ceiling.`),
   },
   {
-    id: "grona-lund-05",
+    id: "amber-festival-05",
     variationNumber: 5,
-    dreamId: "grona-lund",
+    dreamId: "amber-festival",
     name: "Rio Confetti Rain",
     camera: "Slow-motion fall",
     focus: "Detail",
@@ -1239,9 +1239,9 @@ light at different angles; some pieces collide and redirect; spotlight beams \
 illuminate different zones; the statue stands sentinel in the distance.`),
   },
   {
-    id: "grona-lund-06",
+    id: "amber-festival-06",
     variationNumber: 6,
-    dreamId: "grona-lund",
+    dreamId: "amber-festival",
     name: "Coachella Silhouettes",
     camera: "Static wide, backlit",
     focus: "Wide",
@@ -1278,9 +1278,9 @@ dim; desert dust drifts languidly across the frame; the stage light breathes \
 slightly with the music; the Ferris wheel rotates in the distance.`),
   },
   {
-    id: "grona-lund-07",
+    id: "amber-festival-07",
     variationNumber: 7,
-    dreamId: "grona-lund",
+    dreamId: "amber-festival",
     name: "Nashville Guitar Strings",
     camera: "Macro drift",
     focus: "Extreme detail",
@@ -1316,9 +1316,9 @@ the camera drifts slowly across them; lens flare shifts with the camera \
 position; Broadway neon reflections dance on the chrome frets.`),
   },
   {
-    id: "grona-lund-08",
+    id: "amber-festival-08",
     variationNumber: 8,
-    dreamId: "grona-lund",
+    dreamId: "amber-festival",
     name: "Moulin Rouge Spotlight",
     camera: "Tracking the beam",
     focus: "Wide",
@@ -1355,9 +1355,9 @@ its wake; the camera tracks with the beam; the windmill sails slowly rotate \
 catching purple light.`),
   },
   {
-    id: "grona-lund-09",
+    id: "amber-festival-09",
     variationNumber: 9,
-    dreamId: "grona-lund",
+    dreamId: "amber-festival",
     name: "Havana Drum Hit",
     camera: "Slow-motion",
     focus: "Detail",
@@ -1392,9 +1392,9 @@ the drum skin, the rebound arc — all happening in dreamy time against \
 Havana's timeless backdrop.`),
   },
   {
-    id: "grona-lund-10",
+    id: "amber-festival-10",
     variationNumber: 10,
-    dreamId: "grona-lund",
+    dreamId: "amber-festival",
     name: "Las Vegas Strip Skyline",
     camera: "Crane rising",
     focus: "Ultra-wide",
@@ -1431,9 +1431,9 @@ reveals more of the Strip's neon canyon; casino signs pulse; distant \
 fountains dance.`),
   },
   {
-    id: "grona-lund-11",
+    id: "amber-festival-11",
     variationNumber: 11,
-    dreamId: "grona-lund",
+    dreamId: "amber-festival",
     name: "Ibiza Strobe Freeze",
     camera: "Strobe-cut style",
     focus: "Medium",
@@ -1469,9 +1469,9 @@ moves in jerky reveals; the Mediterranean shimmers steadily through the \
 windows; the effect is hypnotic and dream-like.`),
   },
   {
-    id: "grona-lund-12",
+    id: "amber-festival-12",
     variationNumber: 12,
-    dreamId: "grona-lund",
+    dreamId: "amber-festival",
     name: "Abbey Road Mic Stand",
     camera: "Slow orbit",
     focus: "Detail",
@@ -1508,9 +1508,9 @@ from a breeze; light reflections on the chrome surface are liquid and \
 ever-changing; vintage VU meters pulse faintly in the background.`),
   },
   {
-    id: "grona-lund-13",
+    id: "amber-festival-13",
     variationNumber: 13,
-    dreamId: "grona-lund",
+    dreamId: "amber-festival",
     name: "Tomorrowland Wristband Glow",
     camera: "Close tracking",
     focus: "Detail",
@@ -1548,9 +1548,9 @@ mainstage; arms sway; the synchronized color changes ripple through the \
 crowd like a digital aurora; pyrotechnics flash from the distant stage.`),
   },
   {
-    id: "grona-lund-14",
+    id: "amber-festival-14",
     variationNumber: 14,
-    dreamId: "grona-lund",
+    dreamId: "amber-festival",
     name: "Santa Monica Pier Lights",
     camera: "Tracking alongside",
     focus: "Wide",
@@ -1586,9 +1586,9 @@ creates a dynamic perspective; the LED lights streak at the edges; waves \
 crash below the pier in purple-lit foam.`),
   },
   {
-    id: "grona-lund-15",
+    id: "amber-festival-15",
     variationNumber: 15,
-    dreamId: "grona-lund",
+    dreamId: "amber-festival",
     name: "Reykjavik Sound Wave",
     camera: "Abstract visualization",
     focus: "Abstract",
@@ -1628,9 +1628,9 @@ as waves pass; the crystalline windows refract the waves into geometric \
 patterns.`),
   },
   {
-    id: "grona-lund-16",
+    id: "amber-festival-16",
     variationNumber: 16,
-    dreamId: "grona-lund",
+    dreamId: "amber-festival",
     name: "Amsterdam Stage Fog",
     camera: "Low-angle",
     focus: "Medium",
@@ -1668,9 +1668,9 @@ create shifting patterns; eddies form and dissolve; canal reflections shimmer \
 through the venue windows.`),
   },
   {
-    id: "grona-lund-17",
+    id: "amber-festival-17",
     variationNumber: 17,
-    dreamId: "grona-lund",
+    dreamId: "amber-festival",
     name: "Hollywood Ticket Stub",
     camera: "Macro static",
     focus: "Extreme detail",
@@ -1706,9 +1706,9 @@ Hollywood bokeh circles drift and shift; the holographic strip flashes as \
 the angle changes; Walk of Fame stars twinkle below.`),
   },
   {
-    id: "grona-lund-18",
+    id: "amber-festival-18",
     variationNumber: 18,
-    dreamId: "grona-lund",
+    dreamId: "amber-festival",
     name: "Cappadocia Balloons",
     camera: "Slow tilt up",
     focus: "Wide",
@@ -1745,9 +1745,9 @@ differently; the tilt reveals the fairy chimney landscape progressively; \
 burner flames pulse inside the balloon envelopes.`),
   },
   {
-    id: "grona-lund-19",
+    id: "amber-festival-19",
     variationNumber: 19,
-    dreamId: "grona-lund",
+    dreamId: "amber-festival",
     name: "Detroit Mixing Desk",
     camera: "Slow pan across",
     focus: "Detail",
@@ -1782,9 +1782,9 @@ VU meters bounce with the music; LED indicators blink; the Detroit skyline \
 glows steadily through the studio window.`),
   },
   {
-    id: "grona-lund-20",
+    id: "amber-festival-20",
     variationNumber: 20,
-    dreamId: "grona-lund",
+    dreamId: "amber-festival",
     name: "Sydney Harbour View",
     camera: "Wide establishing",
     focus: "Ultra-wide",
@@ -1821,9 +1821,9 @@ a harbour ferry crosses leaving a wake through the purple reflections; the \
 Opera House sails glow steadily in violet.`),
   },
   {
-    id: "grona-lund-21",
+    id: "amber-festival-21",
     variationNumber: 21,
-    dreamId: "grona-lund",
+    dreamId: "amber-festival",
     name: "Burj Khalifa Encore",
     camera: "Fast zoom out",
     focus: "Wide",
@@ -1860,9 +1860,9 @@ reveals the Burj Khalifa's full height; the tower's LED patterns animate; \
 crowd surges; the entire scene is kinetic and monumental.`),
   },
   {
-    id: "grona-lund-22",
+    id: "amber-festival-22",
     variationNumber: 22,
-    dreamId: "grona-lund",
+    dreamId: "amber-festival",
     name: "Hong Kong Rain on Lights",
     camera: "Static with rain",
     focus: "Detail",
@@ -1900,9 +1900,9 @@ shimmer with Hong Kong's skyline; spotlight beams become rain-shower curtains; \
 the harbour glistens beyond.`),
   },
   {
-    id: "grona-lund-23",
+    id: "amber-festival-23",
     variationNumber: 23,
-    dreamId: "grona-lund",
+    dreamId: "amber-festival",
     name: "Glastonbury Crowd Hands",
     camera: "Slow tracking over",
     focus: "Medium",
@@ -1940,9 +1940,9 @@ wristbands pulse; the tracking creates a flowing perspective over the living \
 sea of hands toward the glowing Pyramid Stage.`),
   },
   {
-    id: "grona-lund-24",
+    id: "amber-festival-24",
     variationNumber: 24,
-    dreamId: "grona-lund",
+    dreamId: "amber-festival",
     name: "Marrakech Vinyl Spin",
     camera: "Macro orbit",
     focus: "Detail",
@@ -1982,9 +1982,9 @@ the Koutoubia; the tonearm vibrates microscopically; light patterns on the \
 vinyl surface are hypnotic.`),
   },
   {
-    id: "grona-lund-25",
+    id: "amber-festival-25",
     variationNumber: 25,
-    dreamId: "grona-lund",
+    dreamId: "amber-festival",
     name: "Final Beam over Paris",
     camera: "Slow fade/dolly back",
     focus: "Wide",
