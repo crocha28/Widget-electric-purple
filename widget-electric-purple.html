@@ -627,6 +627,7 @@ const heading = document.getElementById('dream-heading');
 const tryAnother = document.getElementById('try-another');
 let currentTl = null;
 let phase = 'select';
+let mobileImgRects = null;
 
 cards.forEach((card, i) => {
   card.addEventListener('mouseenter', () => {
@@ -682,12 +683,63 @@ cards.forEach((card, ci) => {
       tl.fromTo(placeholder, { opacity: 0 }, { opacity: 1, duration: 0.7, ease: 'power3.out' }, 0.25);
       tl.fromTo(cancelBtn, { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: 0.4, ease: 'power2.out' }, 0.6);
     } else {
-      gsap.set(cancelBtn, { opacity: 0, y: 0 });
+      const cardImages = cards.map(c => c.querySelector('.card-image'));
+      const cardTexts = cards.map(c => c.querySelector('.card-text'));
+
+      mobileImgRects = cardImages.map(img => {
+        const r = img.getBoundingClientRect();
+        const cr = img.parentElement.getBoundingClientRect();
+        return { top: r.top - cr.top, left: r.left - cr.left, width: r.width, height: r.height };
+      });
+
+      cards.forEach(c => gsap.set(c, {
+        height: c.offsetHeight,
+        pointerEvents: 'none',
+        cursor: 'default'
+      }));
+
+      cardImages.forEach((img, i) => {
+        gsap.set(img, {
+          position: 'absolute',
+          top: mobileImgRects[i].top,
+          left: mobileImgRects[i].left,
+          width: mobileImgRects[i].width,
+          height: mobileImgRects[i].height,
+          flex: 'none',
+          margin: 0,
+          zIndex: 2
+        });
+      });
+
       gsap.set(placeholder, { opacity: 0 });
+      gsap.set(cancelBtn, { opacity: 0, y: 0 });
+
       const tl = gsap.timeline();
       currentTl = tl;
-      tl.fromTo(placeholder, { opacity: 0 }, { opacity: 1, duration: 0.7, ease: 'power3.out' }, 0);
-      tl.fromTo(cancelBtn, { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: 0.4, ease: 'power2.out' }, 0.4);
+
+      cards.forEach((c, i) => {
+        if (i === ci) {
+          tl.to(cardImages[i], {
+            top: 0,
+            left: 0,
+            width: c.offsetWidth,
+            height: c.offsetHeight,
+            duration: 0.6,
+            ease: 'power3.inOut'
+          }, 0);
+          tl.to(cardTexts[i], { opacity: 0, duration: 0.35, ease: 'power2.out' }, 0);
+        } else {
+          tl.to(cardImages[i], {
+            opacity: 0,
+            width: 0,
+            duration: 0.5,
+            ease: 'power3.inOut'
+          }, 0);
+        }
+      });
+
+      tl.fromTo(placeholder, { opacity: 0 }, { opacity: 1, duration: 0.6, ease: 'power3.out' }, 0.5);
+      tl.fromTo(cancelBtn, { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: 0.4, ease: 'power2.out' }, 0.7);
     }
 
     scrollLoadingIntoView();
@@ -768,8 +820,37 @@ cancelBtn.addEventListener('click', () => {
     rev.set(cards, { clearProps: 'height,flexGrow,justifyContent,gap' });
     rev.set(desktopImages, { clearProps: 'left,top,width,height,borderRadius,opacity' });
   } else {
-    const rev = gsap.timeline({ onComplete: resetToSelect });
-    rev.to([cancelBtn, placeholder], { opacity: 0, y: 12, duration: 0.35, ease: 'power2.in' });
+    const cardImages = cards.map(c => c.querySelector('.card-image'));
+    const cardTexts = cards.map(c => c.querySelector('.card-text'));
+
+    const rev = gsap.timeline({ onComplete: () => {
+      cards.forEach((c, i) => {
+        gsap.set(c, { clearProps: 'height,pointerEvents,cursor' });
+        gsap.set(cardImages[i], { clearProps: 'position,top,left,width,height,flex,zIndex,opacity,margin' });
+        gsap.set(cardTexts[i], { clearProps: 'opacity' });
+      });
+      mobileImgRects = null;
+      resetToSelect();
+    }});
+
+    rev.to([cancelBtn, placeholder], { opacity: 0, y: 12, duration: 0.3, ease: 'power2.in' });
+
+    if (mobileImgRects) {
+      cardImages.forEach((img, i) => {
+        rev.to(img, {
+          top: mobileImgRects[i].top,
+          left: mobileImgRects[i].left,
+          width: mobileImgRects[i].width,
+          height: mobileImgRects[i].height,
+          opacity: 1,
+          duration: 0.55,
+          ease: 'power3.inOut'
+        }, 0.1);
+      });
+      cardTexts.forEach(txt => {
+        rev.to(txt, { opacity: 1, duration: 0.4, ease: 'power2.out' }, 0.3);
+      });
+    }
   }
 });
 
@@ -788,6 +869,13 @@ tryAnother.addEventListener('click', () => {
       c.style.flexGrow = 424;
       desktopImages[i].style.cssText = 'left:23px;top:96px;width:376px;height:238px';
     });
+  } else {
+    cards.forEach(c => {
+      gsap.set(c, { clearProps: 'height,pointerEvents,cursor' });
+      gsap.set(c.querySelector('.card-image'), { clearProps: 'position,top,left,width,height,flex,zIndex,opacity,margin' });
+      gsap.set(c.querySelector('.card-text'), { clearProps: 'opacity' });
+    });
+    mobileImgRects = null;
   }
 });
 
